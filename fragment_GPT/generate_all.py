@@ -99,14 +99,14 @@ def Test(model, tokenizer, max_seq_len, temperature, top_k, stream, rp, kv_cache
         f"valid ratio:{len(valid_answer_list)}/{len(complete_answer_list)}={len(valid_answer_list) / len(complete_answer_list)}")
     if not os.path.exists(output_file_path):
         os.mkdir(output_file_path)
-    with open(os.path.join(output_file_path, f'nap_fragsCom_new_{seed}.smi'), "w") as w:
+    with open(os.path.join(output_file_path, f'crossovered0_fragsCom_new_{seed}.smi'), "w") as w:
         for j in complete_answer_list:
             if not isinstance(j, str):
                 j = str(j)
             w.write(j)
             w.write("\n")
     w.close()
-    with open(os.path.join(output_file_path, f'nap_frags_new_{seed}.smi'), "w") as w:
+    with open(os.path.join(output_file_path, f'crossovered0_frags_new_{seed}.smi'), "w") as w:
         for j in valid_answer_list:
             w.write(j)
             w.write("\n")
