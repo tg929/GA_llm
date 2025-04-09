@@ -1,0 +1,5 @@
+*.pt
+output/
+datasets/decompose/decompose_results/
+datasets/decompose/decompose_results_0/
+autogrow/
