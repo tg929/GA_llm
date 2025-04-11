@@ -1,1 +1,6 @@
 *.pt
+*.gif
+*.png
+*.pyc
+*.gz
+
