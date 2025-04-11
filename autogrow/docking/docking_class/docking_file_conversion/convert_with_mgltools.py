@@ -351,6 +351,7 @@ class MGLToolsConversion(ParentPDBQTConverter):
                         compound_name = line_stripped
 
             # line_stripped is now the name of the smile for this compound
-        else:
-            line_stripped = "unknown"
+            #我做了else语句的修改：原缩进并列路径。
+                    else:
+                        line_stripped = "unknown"
         return line_stripped

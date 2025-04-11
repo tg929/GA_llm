@@ -367,7 +367,7 @@ class ObabelConversion(ParentPDBQTConverter):
                         line_stripped = line_stripped.replace(
                             "\n", ""
                         ).strip()  # Need to remove whitespaces on both ends
-
+            line_stripped = "unknown"
             # line_stripped is now the name of the smile for this compound
         else:
             line_stripped = "unknown"
