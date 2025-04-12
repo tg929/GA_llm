@@ -386,13 +386,22 @@ def main():
     
     # 写入结果文件
     success_count = 0
+    total_score = 0.0
     with open(args.output, 'w') as f:
         for smile, score in zip(smiles_list, results):
             if score is not None:
                 success_count += 1
+                total_score += score
                 f.write(f"{smile}\t{score:.2f}\n")
-                
-    logging.info(f"对接完成。成功率: {success_count}/{len(smiles_list)} ({success_count/len(smiles_list)*100:.1f}%)。结果保存至 {args.output}")
+    
+    # 计算平均得分
+    average_score = 0.0
+    if success_count > 0:
+        average_score = total_score / success_count
+        
+    logging.info(f"对接完成。成功率: {success_count}/{len(smiles_list)} ({success_count/len(smiles_list)*100:.1f}%)。")
+    logging.info(f"种群平均对接得分: {average_score:.2f} kcal/mol")
+    logging.info(f"结果保存至 {args.output}")
 
 if __name__ == "__main__":
     main()
