@@ -195,7 +195,10 @@ class DockingExecutor:
             return None
 
     def process_ligand(self, smile):
+       
         """处理单个配体的完整对接流程"""
+        # 在函数开始时初始化pdb_path为None，防止在异常情况下未定义
+        pdb_path = None
         try:
             # 生成分子对象
             mol = Chem.MolFromSmiles(smile)
@@ -323,14 +326,15 @@ class DockingExecutor:
             logging.error(f"对接失败，分子: {smile}，错误: {str(e)}")
             return None
         finally:
-            # 清理临时文件
-            for ext in ['', 'qt', '.error', '.sdf', 'qt.vina', 'qt_docking_output.txt']:
-                path = f"{pdb_path}{ext}"
-                if os.path.exists(path):
-                    try:
-                        os.remove(path)
-                    except:
-                        pass
+            # 清理临时文件，添加pdb_path存在性检查
+            if pdb_path is not None:
+                for ext in ['', 'qt', '.error', '.sdf', 'qt.vina', 'qt_docking_output.txt']:
+                    path = f"{pdb_path}{ext}"
+                    if os.path.exists(path):
+                        try:
+                            os.remove(path)
+                        except:
+                            pass
 
 # 主函数
 def main():

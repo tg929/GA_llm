@@ -1,0 +1,45 @@
+2025-04-15 01:17:11,472 - INFO - 开始对接 303 个分子...
+2025-04-15 01:43:08,341 - INFO - 已完成 50/303 分子对接，中间结果已保存
+2025-04-15 02:18:36,689 - INFO - 已完成 100/303 分子对接，中间结果已保存
+2025-04-15 02:27:12,733 - WARNING - 对接失败: CC([NH+]=[N+]=[N-])c1cccc(C(F)F)c1NCc1ccc(OC(F)(F)F)cc1
+2025-04-15 02:44:08,774 - WARNING - 对接失败: C#CCOc1ccc(NC(=O)CCCC(O)c2ccccc2)cc1
+2025-04-15 03:08:32,008 - INFO - 已完成 150/303 分子对接，中间结果已保存
+2025-04-15 03:14:03,819 - WARNING - 对接失败: CC([NH+]=[N+]=[N-])c1cccc(C(C)(C)C)c1NCc1ccc(OC(F)(F)F)cc1
+2025-04-15 03:16:04,294 - WARNING - 对接失败: C#CC[N+](C)(C)Cc1ncnn1CCCCCCCCC
+2025-04-15 03:51:05,063 - WARNING - 对接失败: Cc1nnn(C[C@@H]2CCCNC2)c1CSc1nnc(C2CC2)n1Cc1ccco1
+2025-04-15 04:01:54,946 - INFO - 已完成 200/303 分子对接，中间结果已保存
+2025-04-15 04:21:48,804 - WARNING - 对接失败: OCc1c(Cc2cccc(O)c2)nnn1CCOc1cccc2ccccc12
+2025-04-15 04:28:24,058 - WARNING - 对接失败: Cc1c(CC[N+](C)(C)Cc2cccc3ccccc23)nnn1C[C@H](O)c1ccco1
+2025-04-15 04:35:33,859 - WARNING - 对接失败: CC(C)N(CCc1cn(CCCOc2ccc3ccccc3c2)nn1)CC1CC1
+2025-04-15 04:40:31,645 - WARNING - 对接失败: C[C@H](O)CSCCCc1cn(CCOc2ccc3ccccc3c2)nn1
+2025-04-15 04:52:12,072 - WARNING - 对接失败: CC[C@H](N[C@@H]1CC[C@@H]1C)c1cnnn1CC#C[C@@](C)(O)c1ccc2ccccc2c1
+2025-04-15 04:54:12,479 - WARNING - 对接失败: CC(C)(O)Cc1nnn(-c2ccc(NC(=O)CCl)cc2)c1-c1cccc2ccccc12
+2025-04-15 04:56:12,864 - WARNING - 对接失败: C#CCNCCn1nnc(CS(=O)(=O)c2ccc3ccccc3c2)c1C
+2025-04-15 05:04:27,837 - WARNING - 对接失败: Cc1ccc2ccccc2c1C[N+](C)(C)Cc1cnnn1CCCOCCN
+2025-04-15 05:07:54,242 - WARNING - 对接失败: CCCC=CC(=O)NCCc1cn(CC[S](O)c2ccc3ccccc3c2)nn1
+2025-04-15 05:12:23,530 - WARNING - 对接失败: O=C1CCCN1CCc1cn(CCOCCCNCc2ccccc2)nn1
+2025-04-15 05:13:35,410 - INFO - 已完成 250/303 分子对接，中间结果已保存
+2025-04-15 05:15:35,925 - WARNING - 对接失败: CC[C@@H](Cc1cn(CC(O)COc2ccccc2)nn1)OCCO
+2025-04-15 05:24:02,131 - WARNING - 对接失败: C[C@@H](CCO)CC[C@@H](O)C(C)(C)OC(C)(C#CCO)C1C=CCCC1
+2025-04-15 05:27:21,454 - WARNING - 对接失败: CCCNCCSC(=O)CCc1cccc2cccc(N=[N+]=N)c12
+2025-04-15 05:29:22,245 - WARNING - 对接失败: C#CCOc1ccc2ccccc2c1CN(C(=O)[C@H](N)C1CCCC1)C1CCCC1
+2025-04-15 05:31:23,119 - WARNING - 对接失败: C#CC[N+](C)(C)Cc1ncnn1-c1ccc(/C=C/c2cnc(O)nc2O[C@@H](C)C#C)cc1
+2025-04-15 05:33:23,780 - WARNING - 对接失败: C[C@H]1CCCC[C@H]1C(=O)N(CCCOCCN=[N+]=[N-])Cc1ccccc1
+2025-04-15 05:37:45,935 - WARNING - 对接失败: CCc1nnn(CCCOc2ccc(Oc3ccccc3)cc2)c1CN1CC(C)(C#N)C1
+2025-04-15 05:41:49,998 - WARNING - 对接失败: Cc1ccccc1C(=O)NC(=S)NCc1cccc(CSCCN=[N+]=[N-])c1F
+2025-04-15 05:47:38,168 - WARNING - 对接失败: Cc1nnn(CC2CCOCC2)c1COc1cccc(OC(F)(F)F)c1
+2025-04-15 05:49:38,925 - WARNING - 对接失败: C#CC[N+](C)(C)Cc1ncnn1-c1ccc(C2=C(c3ccnc(N)c3)CCC2)cc1
+2025-04-15 05:49:39,126 - ERROR - 配体转换失败 - 没有输出文件: C#CC[N+](C)(C)Cc1cccc(OCc2n~c3c(ccc4nsnc43)o2)c1
+2025-04-15 05:52:44,743 - WARNING - 对接失败: COC[C@@H](C)NCc1c(C)nnn1CCCOc1ccc(OCCN2CCC(F)C2)cc1
+2025-04-15 05:54:45,346 - WARNING - 对接失败: C#CCN(C(=O)c1cccc(-c2noc(C3CCCC(OC)C3)n2)c1)[C@@H](C)CC=C
+2025-04-15 05:58:07,363 - WARNING - 对接失败: C#CC(O[C@H](c1ccccc1OC)[C@H](O)C(=O)OC)(n1cccc1)C(C)(C)C
+2025-04-15 06:04:13,429 - WARNING - 对接失败: C#CCOc1ccc2ccccc2c1CN(Cc1ccco1)S(=O)(=O)CCCC
+2025-04-15 06:09:30,607 - WARNING - 对接失败: C#CCOc1cc2ccccc2cc1C(=O)Sc1cc(N=C=O)cc2[nH]cnc12
+2025-04-15 06:13:26,402 - WARNING - 对接失败: Cc1c(CCN2CCC(C)(C)C2)nnn1[C@@H](CN)COc1cccc2ccccc12
+2025-04-15 06:15:26,825 - WARNING - 对接失败: CCC(CC)[C@H](C)NC(=O)NCCCOc1ccc2ccccc2c1
+2025-04-15 06:17:27,303 - WARNING - 对接失败: CCOCc1ccc(NCCCOc2cccc3ccccc23)nc1
+2025-04-15 06:26:46,455 - INFO - 已完成 300/303 分子对接，中间结果已保存
+2025-04-15 06:32:03,288 - WARNING - 对接失败: CC[C@@H](CC1CC1)NC(c1ccccc1)c1ccc(OC(=O)O[C@H]2CN(C)C[C@@H]2N)cc1
+2025-04-15 06:32:03,290 - INFO - 对接完成。成功率: 268/303 (88.4%)。
+2025-04-15 06:32:03,290 - INFO - 种群平均对接得分: -8.15 kcal/mol
+2025-04-15 06:32:03,290 - INFO - 结果保存至 /data1/ytg/GA_llm/output/generation_1/generation_1_docked.smi

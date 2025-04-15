@@ -162,4 +162,4 @@ N=[N+]=NCc1nnc(CCC2CC2)o1
 N=[N+]=[N+]=C(CNc1ccccc1)[N+](=O)[O-]
 C#CC[N+](C)(C)Cc1cccc(OCC(=O)O)c1
 CC(=O)NC(=O)C(NCC1CCN(C(=O)c2ccnc3c2OCO3)C1c1cccnc1)C(C)(C)C
-[H]Oc1c([H])c([H])c([H])c2c([H])c([H])c([H])c([H])c12
+[H]N=[N+]=Nc1cc([H])c([C@@](C#CC([H])([H])O[H])(O[H])C([H])([H])[H])c([H])c1[H]
