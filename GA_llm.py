@@ -28,6 +28,9 @@ import logging
 import subprocess
 import numpy as np
 from pathlib import Path
+import multiprocessing
+from functools import partial
+from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 
 # 设置项目根目录
 PROJECT_ROOT = "/data1/ytg/GA_llm"
@@ -209,32 +212,131 @@ def run_filter(input_file, output_file, logger):
     logger.info(f"分子过滤完成，生成文件: {output_file}")
     return output_file
 
-def run_docking(input_file, output_file, receptor_file, mgltools_path, logger):
-    """运行分子对接"""
-    logger.info(f"开始分子对接: {input_file}")
+# 并行对接的工作函数
+def dock_molecule(molecule_idx, molecule, args, temp_dir, logger):
+    """对单个分子进行对接"""
+    try:
+        # 创建临时输入文件
+        temp_input = os.path.join(temp_dir, f"mol_{molecule_idx}.smi")
+        with open(temp_input, 'w') as f:
+            f.write(molecule.strip() + '\n')
+            
+        # 创建临时输出文件
+        temp_output = os.path.join(temp_dir, f"mol_{molecule_idx}_docked.smi")
+        
+        # 构建对接命令
+        docking_script = os.path.join(PROJECT_ROOT, "operations/docking/docking_demo.py")
+        cmd = [
+            "python", docking_script,
+            "--input", temp_input,
+            "--receptor", args.receptor_file,
+            "--output", temp_output,
+            "--mgltools", args.mgltools_path,
+            "--max_failures", "5"
+        ]
+        
+        # 执行对接
+        process = subprocess.run(cmd, capture_output=True, text=True)
+        
+        if process.returncode != 0:
+            logger.warning(f"分子 {molecule_idx} 对接失败: {process.stderr}")
+            return None
+        
+        # 读取结果
+        if os.path.exists(temp_output):
+            with open(temp_output, 'r') as f:
+                result = f.read().strip()
+                if result:
+                    return result
+        
+        return None
+    except Exception as e:
+        logger.error(f"分子 {molecule_idx} 对接过程出错: {str(e)}")
+        return None
+
+def run_docking(input_file, output_file, receptor_file, mgltools_path, logger, num_processors=1, multithread_mode="serial"):
+    """运行分子对接，支持并行处理"""
+    logger.info(f"开始分子对接: {input_file}, 处理器数量: {num_processors}, 模式: {multithread_mode}")
     
     # 准备输出目录
     output_dir = os.path.dirname(output_file)
     os.makedirs(output_dir, exist_ok=True)
     
-    # 构建命令并执行
-    docking_script = os.path.join(PROJECT_ROOT, "operations/docking/docking_demo.py")
-    cmd = [
-        "python", docking_script,
-        "--input", input_file,
-        "--receptor", receptor_file,
-        "--output", output_file,
-        "--mgltools", mgltools_path,
-        "--max_failures", "5"
-    ]
+    # 如果选择串行模式或只使用一个处理器，使用原始的对接方法
+    if multithread_mode == "serial" or num_processors == 1:
+        logger.info("使用串行模式进行对接")
+        docking_script = os.path.join(PROJECT_ROOT, "operations/docking/docking_demo.py")
+        cmd = [
+            "python", docking_script,
+            "--input", input_file,
+            "--receptor", receptor_file,
+            "--output", output_file,
+            "--mgltools", mgltools_path,
+            "--max_failures", "5"
+        ]
+        
+        process = subprocess.run(cmd, capture_output=True, text=True)
+        
+        if process.returncode != 0:
+            logger.error(f"分子对接失败: {process.stderr}")
+            raise Exception("分子对接失败")
+        
+        logger.info(f"分子对接完成，生成文件: {output_file}")
+        return output_file
     
-    process = subprocess.run(cmd, capture_output=True, text=True)
+    # 并行处理
+    # 确定处理器数量
+    if num_processors == -1:
+        num_processors = multiprocessing.cpu_count()
     
-    if process.returncode != 0:
-        logger.error(f"分子对接失败: {process.stderr}")
-        raise Exception("分子对接失败")
+    logger.info(f"使用并行模式进行对接，处理器数量: {num_processors}")
     
-    logger.info(f"分子对接完成，生成文件: {output_file}")
+    # 读取输入文件中的分子
+    with open(input_file, 'r') as f:
+        molecules = [line for line in f.readlines() if line.strip()]
+    
+    logger.info(f"共有 {len(molecules)} 个分子需要对接")
+    
+    # 创建临时目录存放分割后的文件
+    temp_dir = os.path.join(output_dir, "temp_docking")
+    os.makedirs(temp_dir, exist_ok=True)
+    
+    # 设置工作函数参数
+    dock_func = partial(dock_molecule, args=argparse.Namespace(
+        receptor_file=receptor_file,
+        mgltools_path=mgltools_path
+    ), temp_dir=temp_dir, logger=logger)
+    
+    # 并行执行对接
+    results = []
+    if multithread_mode == "multithreading":
+        logger.info("使用多线程模式")
+        with ThreadPoolExecutor(max_workers=num_processors) as executor:
+            futures = [executor.submit(dock_func, idx, mol) for idx, mol in enumerate(molecules)]
+            for future in futures:
+                result = future.result()
+                if result:
+                    results.append(result)
+    else:  # mpi 模式实际上使用进程池实现
+        logger.info("使用多进程模式")
+        with ProcessPoolExecutor(max_workers=num_processors) as executor:
+            futures = [executor.submit(dock_func, idx, mol) for idx, mol in enumerate(molecules)]
+            for future in futures:
+                result = future.result()
+                if result:
+                    results.append(result)
+    
+    # 合并结果到输出文件
+    with open(output_file, 'w') as f:
+        for result in results:
+            f.write(result + '\n')
+    
+    logger.info(f"并行对接完成，成功对接 {len(results)}/{len(molecules)} 个分子，结果保存至: {output_file}")
+    
+    # 清理临时文件
+    import shutil
+    shutil.rmtree(temp_dir, ignore_errors=True)
+    
     return output_file
 
 def run_analysis(input_file, output_prefix, gen_num, logger):
@@ -305,8 +407,16 @@ def run_evolution(generation_num, args, logger):
     # 7. 分子过滤
     filter_output = run_filter(mutation_output, filter_output, logger)
     
-    # 8. 分子对接
-    docking_output = run_docking(filter_output, docking_output, args.receptor_file, args.mgltools_path, logger)
+    # 8. 分子对接（使用并行处理）
+    docking_output = run_docking(
+        filter_output, 
+        docking_output, 
+        args.receptor_file, 
+        args.mgltools_path, 
+        logger,
+        args.number_of_processors,
+        args.multithread_mode
+    )
     
     # 9. 对接结果分析
     analysis_output = run_analysis(docking_output, output_base, generation_num, logger)
@@ -340,6 +450,13 @@ def main():
                        help='每代执行的交叉次数')
     parser.add_argument('--num_mutations', type=int, default=1,
                        help='每代执行的变异次数')
+    
+    # 并行处理参数
+    parser.add_argument('--number_of_processors', '-p', type=int, default=1,
+                        help='用于并行计算的处理器数量。设置为-1表示使用所有可用CPU。')
+    parser.add_argument('--multithread_mode', default="serial",
+                        choices=["mpi", "multithreading", "serial"],
+                        help='多线程模式选择: mpi, multithreading, 或 serial。serial模式将忽略处理器数量设置，强制使用单处理器。')
     
     args = parser.parse_args()
     
