@@ -55,7 +55,7 @@ def main():
     parser = argparse.ArgumentParser(description='Analyze docking results')
     parser.add_argument('-i', '--input', required=True, 
                         help='Input SMILES file with docking scores')
-    parser.add_argument('-o', '--output', default='/data1/ytg/GA_llm/operations/ranking',
+    parser.add_argument('-o', '--output', default='/data1/tgy/GA_llm/operations/ranking',
                         help='Output directory for results')
     parser.add_argument('-p', '--prefix', default='result',
                         help='Prefix for output files')
@@ -72,7 +72,7 @@ def main():
     # 打印简要统计信息
     
     print(f"Analysis completed for {args.input}")
-    print("\ngeneration_1")
+    print("\ngeneration_2")
     print(f"Total molecules processed: {len(scores)}")
     for top in [1, 10, 20, 50]:
         print(f"Top {top} average score: {stats[f'top{top}']}")

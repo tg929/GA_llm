@@ -1,6 +1,6 @@
 import sys
 import os
-PROJECT_ROOT = "/data1/ytg/GA_llm"
+PROJECT_ROOT = "/data1/tgy/GA_llm"
 sys.path.insert(0, PROJECT_ROOT)
 from tdc import Evaluator, Oracle  
 import random
@@ -18,8 +18,8 @@ PARSER = argparse.ArgumentParser()
 
 PARSER = argparse.ArgumentParser(description='GA crossover parameters')
 PARSER.add_argument("--source_compound_file", "-s",type=str, required=True,help="萘衍生物数据集路径")
-PARSER.add_argument("--llm_generation_file", "-l",type=str, default="/data1/ytg/GA_llm/fragment_GPT/output/test0/crossovered0_frags_new_0.smi")
-PARSER.add_argument("--output_file", "-o",type=str, default="/data1/ytg/GA_llm/output/generation_crossover_0.smi")
+PARSER.add_argument("--llm_generation_file", "-l",type=str, default="/data1/tgy/GA_llm/fragment_GPT/output/test0/crossovered0_frags_new_0.smi")
+PARSER.add_argument("--output_file", "-o",type=str, default="/data1/tgy/GA_llm/output/generation_crossover_0.smi")
 PARSER.add_argument("--crossover_rate", type=float, default=0.8)
 #ARSER.add_argument("--max_crossover_attempts", type=int, default=1000)
 
@@ -145,7 +145,7 @@ def main():
                 crossed_population.append(ligand_new_smiles)
                 pbar.update(1)
     # #把新生成的crossed_population写进文件保存
-    with open("/data1/ytg/GA_llm/output/generation_0_crossed_new.smi", 'w') as f:
+    with open("/data1/tgy/GA_llm/output/generation_0_crossed_new.smi", 'w') as f:
         for smi in crossed_population:
             f.write(f"{smi}\n")
     #评估

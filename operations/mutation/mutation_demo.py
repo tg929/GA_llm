@@ -1,6 +1,6 @@
 import sys
 import os
-PROJECT_ROOT = "/data1/ytg/GA_llm"
+PROJECT_ROOT = "/data1/tgy/GA_llm"
 sys.path.insert(0, PROJECT_ROOT)
 from tdc import Evaluator, Oracle  
 import random
@@ -16,9 +16,9 @@ from autogrow.operators.filter.filter_classes.filter_children_classes.vande_wate
 
 PARSER = argparse.ArgumentParser()
 PARSER = argparse.ArgumentParser(description='GA mutation parameters')
-PARSER.add_argument("--input_file", "-i",type=str, required=True)#第一次：/data1/ytg/GA_llm/output/generation_crossover_0.smi
-PARSER.add_argument("--llm_generation_file", "-l",type=str, default="/data1/ytg/GA_llm/fragment_GPT/output/test0/crossovered0_frags_new_0.smi")
-PARSER.add_argument("--output_file", "-o",type=str, default="/data1/ytg/GA_llm/output/generation_0_mutationed.smi")     
+PARSER.add_argument("--input_file", "-i",type=str, required=True)#第一次：/data1/tgy/GA_llm/output/generation_crossover_0.smi
+PARSER.add_argument("--llm_generation_file", "-l",type=str, default="/data1/tgy/GA_llm/fragment_GPT/output/test0/crossovered0_frags_new_0.smi")
+PARSER.add_argument("--output_file", "-o",type=str, default="/data1/tgy/GA_llm/output/generation_0_mutationed.smi")     
 PARSER.add_argument("--mutation_attempts", type=int, default=1)
 PARSER.add_argument("--max_mutations", type=int, default=2, help="每个父代最大变异尝试次数")
 
@@ -98,10 +98,10 @@ def main():
     # 变异参数配置
     vars = {
         'rxn_library': 'all_rxns',
-        'rxn_library_file': '/data1/ytg/GA_llm/autogrow/operators/mutation/smiles_click_chem/reaction_libraries/all_rxns/All_Rxns_rxn_library.json',
-        'function_group_library': '/data1/ytg/GA_llm/autogrow/operators/mutation/smiles_click_chem/reaction_libraries/all_rxns/All_Rxns_functional_groups.json',
+        'rxn_library_file': '/data1/tgy/GA_llm/autogrow/operators/mutation/smiles_click_chem/reaction_libraries/all_rxns/All_Rxns_rxn_library.json',
+        'function_group_library': '/data1/tgy/GA_llm/autogrow/operators/mutation/smiles_click_chem/reaction_libraries/all_rxns/All_Rxns_functional_groups.json',
         
-        'complementary_mol_directory':'/data1/ytg/GA_llm/autogrow/operators/mutation/smiles_click_chem/reaction_libraries/all_rxns/complementary_mol_dir',
+        'complementary_mol_directory':'/data1/tgy/GA_llm/autogrow/operators/mutation/smiles_click_chem/reaction_libraries/all_rxns/complementary_mol_dir',
         'filter_object_dict': {
             # 可根据需要添加过滤器
             # 'SA_filter': SAScoreFilter(max_score=4.5)
@@ -163,7 +163,7 @@ def main():
   
     new_population = initial_population + mutation_results
     #把变异产生的新分子群存放文件中
-    with open("/data1/ytg/GA_llm/output/generation_0_mutation_new.smi", 'w') as f:
+    with open("/data1/tgy/GA_llm/output/generation_0_mutation_new.smi", 'w') as f:
         for smi in mutation_results:
             f.write(f"{smi}\n")
     

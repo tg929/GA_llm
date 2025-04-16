@@ -1,6 +1,6 @@
 import os
 import sys
-PROJECT_ROOT = "/data1/ytg/GA_llm"
+PROJECT_ROOT = "/data1/tgy/GA_llm"
 sys.path.insert(0, PROJECT_ROOT)
 import logging
 import argparse
@@ -68,7 +68,7 @@ class DockingExecutor:
             'mgl_python': os.path.join(self.mgltools_path, "bin/pythonsh"),
             'prepare_receptor4.py': os.path.join(self.mgltools_path, "MGLToolsPckgs/AutoDockTools/Utilities24/prepare_receptor4.py"),
             'prepare_ligand4.py': os.path.join(self.mgltools_path, "MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py"), 
-            'docking_executable': "/data1/ytg/GA_llm/autogrow/docking/docking_executables/vina/autodock_vina_1_1_2_linux_x86/bin/vina",
+            'docking_executable': "/data1/tgy/GA_llm/autogrow/docking/docking_executables/vina/autodock_vina_1_1_2_linux_x86/bin/vina",
             'number_of_processors': 1,
             'debug_mode': False,
             'timeout_vs_gtimeout': 'timeout',  
@@ -100,7 +100,7 @@ class DockingExecutor:
                 raise FileNotFoundError(f"Required file missing: {name} -> {path}")
 
     def generate_3d_conformer(self, mol, max_attempts=5):
-        """使用多种方法生成3D构象，提高成功率"""
+        """使用多种方法生成3D构象,提高成功率"""
         if mol is None:
             return None
             
@@ -339,10 +339,10 @@ class DockingExecutor:
 # 主函数
 def main():
     parser = argparse.ArgumentParser(description='Molecular Docking Pipeline')
-    parser.add_argument('-i', '--input', default="/data1/ytg/GA_llm/output/generation_0_filtered.smi", help='Input SMILES file')#/data1/ytg/GA_llm/output/generation_0_filtered.smi
-    parser.add_argument('-r', '--receptor', default="/data1/ytg/GA_llm/tutorial/PARP/4r6eA_PARP1_prepared.pdb", help='Receptor PDB file path')#/data1/ytg/GA_llm/tutorial/PARP/4r6eA_PARP1_prepared.pdb
-    parser.add_argument('-o', '--output', default="/data1/ytg/GA_llm/output/docking_results/generation_0_docked.smi", help='Output file path')#/data1/ytg/GA_llm/output/docking_results/generation_o_docked.smi
-    parser.add_argument('-m', '--mgltools', default="/data1/ytg/GA_llm/mgltools_x86_64Linux2_1.5.6", help='MGLTools installation path')
+    parser.add_argument('-i', '--input', default="/data1/tgy/GA_llm/output/generation_0_filtered.smi", help='Input SMILES file')#/data1/tgy/GA_llm/output/generation_0_filtered.smi
+    parser.add_argument('-r', '--receptor', default="/data1/tgy/GA_llm/tutorial/PARP/4r6eA_PARP1_prepared.pdb", help='Receptor PDB file path')#/data1/tgy/GA_llm/tutorial/PARP/4r6eA_PARP1_prepared.pdb
+    parser.add_argument('-o', '--output', default="/data1/tgy/GA_llm/output/docking_results/generation_0_docked.smi", help='Output file path')#/data1/tgy/GA_llm/output/docking_results/generation_o_docked.smi
+    parser.add_argument('-m', '--mgltools', default="/data1/tgy/GA_llm/mgltools_x86_64Linux2_1.5.6", help='MGLTools installation path')
     parser.add_argument('--max_failures', type=int, default=5, help='最大连续失败次数，超过此数将暂停并提示')
     
     args = parser.parse_args()
