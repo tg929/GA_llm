@@ -42,40 +42,43 @@ sys.path.insert(0, PROJECT_ROOT)
 
 # 配置日志
 def setup_logging(output_dir, generation_num):
-    log_file = os.path.join(output_dir, f"ga_evolution_{generation_num}.log")
+    """配置日志，只输出到控制台而不生成日志文件"""
     logging.basicConfig(
         level=logging.INFO,
         format='%(asctime)s - %(levelname)s - %(message)s',
         handlers=[
-            logging.FileHandler(log_file),
             logging.StreamHandler()
         ]
     )
     return logging.getLogger("GA_llm")
 
 def run_decompose(input_file, output_prefix, logger):
-    """运行分子分解模块"""
+    """运行分子分解模块，只生成必要的输出文件"""
     logger.info(f"开始分子分解: {input_file}")
     
     # 准备输出目录
     decompose_dir = os.path.join(PROJECT_ROOT, "datasets/decompose/decompose_results")
     os.makedirs(decompose_dir, exist_ok=True)
     
-    # 设置输出文件路径
-    output_file = os.path.join(decompose_dir, f"frags_result_{output_prefix}.smi")
-    output_file2 = os.path.join(decompose_dir, f"frags_seq_{output_prefix}.smi")
+    # 只保留必要的输出文件路径 - truncated_frags
     output_file3 = os.path.join(decompose_dir, f"truncated_frags_{output_prefix}.smi")
-    output_file4 = os.path.join(decompose_dir, f"decomposable_mols_{output_prefix}.smi")
+    
+    # 创建临时目录用于存放不需要的输出文件
+    temp_dir = os.path.join(decompose_dir, "temp")
+    os.makedirs(temp_dir, exist_ok=True)
+    temp_file1 = os.path.join(temp_dir, f"temp1_{output_prefix}.smi")
+    temp_file2 = os.path.join(temp_dir, f"temp2_{output_prefix}.smi")
+    temp_file4 = os.path.join(temp_dir, f"temp4_{output_prefix}.smi")
     
     # 构建命令并执行
     decompose_script = os.path.join(PROJECT_ROOT, "datasets/decompose/demo_frags.py")
     cmd = [
         "python", decompose_script,
         "-i", input_file,
-        "-o", output_file,
-        "-o2", output_file2,
+        "-o", temp_file1,
+        "-o2", temp_file2,
         "-o3", output_file3,
-        "-o4", output_file4
+        "-o4", temp_file4
     ]
     
     process = subprocess.run(cmd, capture_output=True, text=True)
@@ -83,6 +86,11 @@ def run_decompose(input_file, output_prefix, logger):
     if process.returncode != 0:
         logger.error(f"分子分解失败: {process.stderr}")
         raise Exception("分子分解失败")
+    
+    # 清理临时文件
+    import shutil
+    if os.path.exists(temp_dir):
+        shutil.rmtree(temp_dir, ignore_errors=True)
     
     logger.info(f"分子分解完成，生成文件: {output_file3}")
     return output_file3
@@ -566,8 +574,71 @@ def limit_population_size(file_path, max_size, output_path=None):
     print(f"种群大小已从{total}限制为{max_size}")
     return output_path
 
+def control_population_by_score(file_path, max_size=120, logger=None):
+    """根据对接分数控制种群大小，只保留分数最好的max_size个分子"""
+    if logger:
+        logger.info(f"根据对接分数控制种群大小: {file_path}")
+    
+    # 读取所有分子和它们的分数
+    molecules_with_scores = []
+    try:
+        with open(file_path, 'r') as f:
+            for line in f:
+                parts = line.strip().split()
+                if len(parts) >= 2:
+                    # 假设格式为: SMILES 分数 其他信息
+                    smiles = parts[0]
+                    try:
+                        score = float(parts[1])
+                        molecules_with_scores.append((smiles, score, line.strip()))
+                    except ValueError:
+                        # 如果分数不是数字，则跳过
+                        if logger:
+                            logger.warning(f"跳过无效分数的分子: {line.strip()}")
+                        continue
+    except Exception as e:
+        if logger:
+            logger.error(f"读取分子文件失败: {str(e)}")
+        return file_path
+    
+    # 如果分子数量已经少于阈值，不做处理
+    if len(molecules_with_scores) <= max_size:
+        if logger:
+            logger.info(f"种群大小({len(molecules_with_scores)})已经小于阈值({max_size})，不需要进一步控制")
+        return file_path
+    
+    # 计算平均分数
+    avg_score = sum(score for _, score, _ in molecules_with_scores) / len(molecules_with_scores)
+    
+    # 筛选分数好于平均值的分子
+    better_molecules = [mol for mol in molecules_with_scores if mol[1] < avg_score]  # 假设分数越小越好
+    
+    # 如果筛选后的分子数量仍然大于阈值，则只保留前max_size个分数最好的分子
+    if len(better_molecules) > max_size:
+        # 按分数从小到大排序
+        better_molecules.sort(key=lambda x: x[1])
+        better_molecules = better_molecules[:max_size]
+    
+    # 如果筛选后的分子数量太少，从原始列表中按分数排序增加分子
+    if len(better_molecules) < max_size:
+        # 按分数排序所有分子
+        molecules_with_scores.sort(key=lambda x: x[1])
+        # 添加分数最好的分子直到达到阈值
+        for mol in molecules_with_scores:
+            if mol not in better_molecules and len(better_molecules) < max_size:
+                better_molecules.append(mol)
+    
+    # 写回文件
+    with open(file_path, 'w') as f:
+        for _, _, mol_line in better_molecules:
+            f.write(f"{mol_line}\n")
+    
+    if logger:
+        logger.info(f"种群大小已从{len(molecules_with_scores)}控制为{len(better_molecules)}")
+    return file_path
+
 def run_evolution(generation_num, args, logger):
-    """执行一次完整的进化迭代"""
+    """执行一次完整的进化迭代，减少中间文件生成并控制种群大小"""
     logger.info(f"开始第 {generation_num} 代进化")
     
     # 创建各代输出目录
@@ -579,8 +650,10 @@ def run_evolution(generation_num, args, logger):
         # 第一代使用初始种群
         current_population = args.initial_population
     else:
-        # 后续代使用上一代的对接结果
-        current_population = os.path.join(args.output_dir, f"generation_{generation_num-1}", f"generation_{generation_num-1}_docked.smi")
+        # 后续代使用上一代的对接结果，并控制种群大小
+        prev_gen_docked = os.path.join(args.output_dir, f"generation_{generation_num-1}", f"generation_{generation_num-1}_docked.smi")
+        # 在使用上一代结果前先根据分数控制种群大小
+        current_population = control_population_by_score(prev_gen_docked, max_size=120, logger=logger)
     
     # 设置各阶段输出文件
     crossover_output = os.path.join(output_base, f"generation_{generation_num}_crossover.smi")
@@ -724,25 +797,25 @@ def main():
     
     # 过滤器参数
     parser.add_argument('--LipinskiStrictFilter', action='store_true', default=False,
-                        help='严格版Lipinski五规则过滤器，筛选口服可用药物。评估分子量、logP、氢键供体和受体数量。要求必须通过所有条件。')
+                        help='严格版Lipinski五规则过滤器,筛选口服可用药物。评估分子量、logP、氢键供体和受体数量。要求必须通过所有条件。')
     parser.add_argument('--LipinskiLenientFilter', action='store_true', default=False,
-                        help='宽松版Lipinski五规则过滤器，筛选口服可用药物。评估分子量、logP、氢键供体和受体数量。允许一个条件不满足。')
+                        help='宽松版Lipinski五规则过滤器,筛选口服可用药物。评估分子量、logP、氢键供体和受体数量。允许一个条件不满足。')
     parser.add_argument('--GhoseFilter', action='store_true', default=False,
-                        help='Ghose药物相似性过滤器，通过分子量、logP和原子数量进行筛选。')
+                        help='Ghose药物相似性过滤器,通过分子量、logP和原子数量进行筛选。')
     parser.add_argument('--GhoseModifiedFilter', action='store_true', default=False,
-                        help='修改版Ghose过滤器，将分子量上限从480Da放宽到500Da。设计用于与Lipinski过滤器配合使用。')
+                        help='修改版Ghose过滤器,将分子量上限从480Da放宽到500Da。设计用于与Lipinski过滤器配合使用。')
     parser.add_argument('--MozziconacciFilter', action='store_true', default=False,
-                        help='Mozziconacci药物相似性过滤器，评估可旋转键、环、氧原子和卤素原子的数量。')
+                        help='Mozziconacci药物相似性过滤器,评估可旋转键、环、氧原子和卤素原子的数量。')
     parser.add_argument('--VandeWaterbeemdFilter', action='store_true', default=False,
                         help='筛选可能透过血脑屏障的药物，基于分子量和极性表面积(PSA)。')
     parser.add_argument('--PAINSFilter', action='store_true', default=False,
-                        help='PAINS过滤器，用于过滤泛测试干扰化合物，使用子结构搜索。')
+                        help='PAINS过滤器,用于过滤泛测试干扰化合物，使用子结构搜索。')
     parser.add_argument('--NIHFilter', action='store_true', default=False,
-                        help='NIH过滤器，过滤含有不良功能团的分子，使用子结构搜索。')
+                        help='NIH过滤器,过滤含有不良功能团的分子,使用子结构搜索。')
     parser.add_argument('--BRENKFilter', action='store_true', default=False,
-                        help='BRENK前导物相似性过滤器，排除常见假阳性分子。')
+                        help='BRENK前导物相似性过滤器,排除常见假阳性分子。')
     parser.add_argument('--No_Filters', action='store_true', default=False,
-                        help='设置为True时，不应用任何过滤器。')
+                        help='设置为True时,不应用任何过滤器。')
     parser.add_argument('--alternative_filter', action='append',
                         help='添加自定义过滤器，需要提供列表格式：[[过滤器1名称, 过滤器1路径], [过滤器2名称, 过滤器2路径]]')
     
