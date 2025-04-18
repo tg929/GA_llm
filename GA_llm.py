@@ -784,13 +784,13 @@ def main():
         # 确定第0代使用的交叉变异次数
         if args.number_of_crossovers_first_generation is None:
             args.number_of_crossovers_first_generation = args.num_crossovers
-            logger.info(f"第0代交叉次数未指定，使用默认值: {args.num_crossovers}")
+            logger.info(f"第0代交叉次数未指定,使用默认值: {args.num_crossovers}")
         
         if args.number_of_mutants_first_generation is None:
             args.number_of_mutants_first_generation = args.num_mutations
-            logger.info(f"第0代变异次数未指定，使用默认值: {args.num_mutations}")
+            logger.info(f"第0代变异次数未指定,使用默认值: {args.num_mutations}")
             
-        logger.info(f"开始第0代（对初始种群进行交叉变异后对接）")
+        logger.info(f"开始第0代(对初始种群进行交叉变异后对接)")
         logger.info(f"第0代将执行 {args.number_of_crossovers_first_generation} 次交叉和 {args.number_of_mutants_first_generation} 次变异")
         start_time = time.time()
         
