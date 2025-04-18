@@ -72,7 +72,7 @@ def main():
     # 打印简要统计信息
     
     print(f"Analysis completed for {args.input}")
-    print("\ngeneration_1")
+    print("\ngeneration_2")
     print(f"Total molecules processed: {len(scores)}")
     for top in [1, 10, 20, 50]:
         print(f"Top {top} average score: {stats[f'top{top}']}")

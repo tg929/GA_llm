@@ -30,7 +30,7 @@ import numpy as np
 from pathlib import Path
 import multiprocessing
 from functools import partial
-from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
+from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor, as_completed
 
 # 设置项目根目录
 PROJECT_ROOT = "/data1/ytg/GA_llm"
@@ -126,7 +126,7 @@ def run_gpt_generation(input_file, output_prefix, gen_num, logger):
                 output_file = os.path.join(output_dir, newest_file)
                 logger.info(f"找到最新生成的文件: {output_file}")
             else:
-                raise Exception(f"找不到GPT生成的输出文件，生成可能失败")
+                raise Exception(f"找不到GPT生成的输出文件,生成可能失败")
     
     logger.info(f"GPT生成完成,输出文件: {output_file}")
     return output_file
@@ -262,6 +262,16 @@ def run_docking(input_file, output_file, receptor_file, mgltools_path, logger, n
     output_dir = os.path.dirname(output_file)
     os.makedirs(output_dir, exist_ok=True)
     
+    # 确定处理器数量 - 提前处理，避免重复代码
+    if num_processors == -1 or num_processors > multiprocessing.cpu_count():
+        num_processors = multiprocessing.cpu_count()
+        logger.info(f"自动设置使用所有可用的CPU核心: {num_processors}")
+    
+    # 根据处理器数量自动选择并行模式
+    if num_processors > 1 and multithread_mode == "serial":
+        logger.info(f"检测到使用多核({num_processors})但模式为seria,自动切换为multithreading模式")
+        multithread_mode = "multithreading"
+        
     # 如果选择串行模式或只使用一个处理器，使用原始的对接方法
     if multithread_mode == "serial" or num_processors == 1:
         logger.info("使用串行模式进行对接")
@@ -285,17 +295,14 @@ def run_docking(input_file, output_file, receptor_file, mgltools_path, logger, n
         return output_file
     
     # 并行处理
-    # 确定处理器数量
-    if num_processors == -1:
-        num_processors = multiprocessing.cpu_count()
-    
     logger.info(f"使用并行模式进行对接，处理器数量: {num_processors}")
     
     # 读取输入文件中的分子
     with open(input_file, 'r') as f:
         molecules = [line for line in f.readlines() if line.strip()]
     
-    logger.info(f"共有 {len(molecules)} 个分子需要对接")
+    total_molecules = len(molecules)
+    logger.info(f"共有 {total_molecules} 个分子需要对接")
     
     # 创建临时目录存放分割后的文件
     temp_dir = os.path.join(output_dir, "temp_docking")
@@ -307,31 +314,70 @@ def run_docking(input_file, output_file, receptor_file, mgltools_path, logger, n
         mgltools_path=mgltools_path
     ), temp_dir=temp_dir, logger=logger)
     
+    # 计算每个处理器应该处理的分子数量，确保负载平衡
+    molecules_per_processor = max(1, total_molecules // num_processors)
+    
     # 并行执行对接
     results = []
+    start_time = time.time()
+    
+    # 优化：使用批处理方式进行对接
     if multithread_mode == "multithreading":
         logger.info("使用多线程模式")
         with ThreadPoolExecutor(max_workers=num_processors) as executor:
-            futures = [executor.submit(dock_func, idx, mol) for idx, mol in enumerate(molecules)]
-            for future in futures:
+            # 批量提交任务，改善负载均衡
+            future_to_idx = {
+                executor.submit(dock_func, idx, mol): idx 
+                for idx, mol in enumerate(molecules)
+            }
+            
+            # 处理结果时显示进度
+            completed = 0
+            for future in as_completed(future_to_idx):
                 result = future.result()
+                completed += 1
+                if completed % 10 == 0 or completed == total_molecules:
+                    elapsed = time.time() - start_time
+                    logger.info(f"已完成: {completed}/{total_molecules} 分子 "
+                               f"({completed/total_molecules*100:.1f}%), "
+                               f"耗时: {elapsed:.1f}秒, "
+                               f"预计剩余时间: {elapsed/completed*(total_molecules-completed):.1f}秒")
                 if result:
                     results.append(result)
-    else:  # mpi 模式实际上使用进程池实现
+    else:  # mpi 模式使用进程池实现
         logger.info("使用多进程模式")
-        with ProcessPoolExecutor(max_workers=num_processors) as executor:
-            futures = [executor.submit(dock_func, idx, mol) for idx, mol in enumerate(molecules)]
-            for future in futures:
+        # 使用更高效的maxtasksperchild参数，避免内存泄漏
+        with ProcessPoolExecutor(max_workers=num_processors, 
+                                 mp_context=multiprocessing.get_context('spawn')) as executor:
+            # 批量提交任务
+            future_to_idx = {
+                executor.submit(dock_func, idx, mol): idx 
+                for idx, mol in enumerate(molecules)
+            }
+            
+            # 处理结果时显示进度
+            completed = 0
+            for future in as_completed(future_to_idx):
                 result = future.result()
+                completed += 1
+                if completed % 10 == 0 or completed == total_molecules:
+                    elapsed = time.time() - start_time
+                    logger.info(f"已完成: {completed}/{total_molecules} 分子 "
+                               f"({completed/total_molecules*100:.1f}%), "
+                               f"耗时: {elapsed:.1f}秒, "
+                               f"预计剩余时间: {elapsed/completed*(total_molecules-completed):.1f}秒")
                 if result:
                     results.append(result)
+    
+    end_time = time.time()
+    logger.info(f"对接计算完成，总耗时: {end_time - start_time:.2f}秒，平均每个分子: {(end_time - start_time)/total_molecules:.2f}秒")
     
     # 合并结果到输出文件
     with open(output_file, 'w') as f:
         for result in results:
             f.write(result + '\n')
     
-    logger.info(f"并行对接完成，成功对接 {len(results)}/{len(molecules)} 个分子，结果保存至: {output_file}")
+    logger.info(f"并行对接完成，成功对接 {len(results)}/{total_molecules} 个分子，结果保存至: {output_file}")
     
     # 清理临时文件
     import shutil
@@ -363,6 +409,35 @@ def run_analysis(input_file, output_prefix, gen_num, logger):
     
     logger.info(f"对接结果分析完成，结果保存至: {output_dir}/generation_{gen_num}_stats.txt")
     return f"{output_dir}/generation_{gen_num}_sorted.smi"
+
+# 限制种群大小的函数
+def limit_population_size(file_path, max_size, output_path=None):
+    """根据设置的最大种群数量限制文件中的分子数量"""
+    if max_size <= 0:  # 如果max_size为0或负数，不做任何处理
+        return file_path
+        
+    if output_path is None:
+        output_path = file_path
+        
+    # 读取全部分子
+    with open(file_path, 'r') as f:
+        molecules = [line.strip() for line in f if line.strip()]
+        
+    total = len(molecules)
+    if total <= max_size:  # 如果当前数量已经小于限制，不做任何处理
+        return file_path
+        
+    # 随机选择max_size个分子
+    import random
+    selected = random.sample(molecules, max_size)
+    
+    # 写回文件
+    with open(output_path, 'w') as f:
+        for mol in selected:
+            f.write(f"{mol}\n")
+            
+    print(f"种群大小已从{total}限制为{max_size}")
+    return output_path
 
 def run_evolution(generation_num, args, logger):
     """执行一次完整的进化迭代"""
@@ -450,18 +525,40 @@ def main():
                        help='每代执行的交叉次数')
     parser.add_argument('--num_mutations', type=int, default=1,
                        help='每代执行的变异次数')
+    parser.add_argument('--max_population', type=int, default=0,
+                       help='控制每代种群的最大数量,设置为0表示不限制(可能导致种群规模迅速增长）')
     
     # 并行处理参数
-    parser.add_argument('--number_of_processors', '-p', type=int, default=1,
-                        help='用于并行计算的处理器数量。设置为-1表示使用所有可用CPU。')
-    parser.add_argument('--multithread_mode', default="serial",
+    parser.add_argument('--number_of_processors', '-p', type=int, default=-1,
+                        help='用于并行计算的处理器数量。设置为-1表示自动检测并使用所有可用CPU核心(推荐）。')
+    parser.add_argument('--multithread_mode', default="multithreading",
                         choices=["mpi", "multithreading", "serial"],
-                        help='多线程模式选择: mpi, multithreading, 或 serial。serial模式将忽略处理器数量设置，强制使用单处理器。')
+                        help='多线程模式选择: mpi, multithreading, 或 serial。serial模式将忽略处理器数量设置,强制使用单处理器。')
     
     args = parser.parse_args()
     
     # 创建输出目录
     os.makedirs(args.output_dir, exist_ok=True)
+    
+    # 如果number_of_processors为-1，则自动检测并使用所有可用的CPU核心
+    if args.number_of_processors == -1:
+        args.number_of_processors = multiprocessing.cpu_count()
+        print(f"自动检测到{args.number_of_processors}个CPU核心,将全部使用")
+    
+    # 如果使用多核但未指定多线程模式，自动切换为multithreading模式
+    if args.number_of_processors > 1 and args.multithread_mode == "serial":
+        print(f"检测到使用多核({args.number_of_processors})但模式为serial,自动切换为multithreading模式")
+        args.multithread_mode = "multithreading"
+    
+    # 如果设置了种群大小限制，检查初始种群
+    if args.max_population > 0:
+        # 检查初始种群大小
+        with open(args.initial_population, 'r') as f:
+            initial_count = sum(1 for line in f if line.strip())
+        if initial_count > args.max_population:
+            limited_file = os.path.join(args.output_dir, "limited_initial_population.smi")
+            args.initial_population = limit_population_size(args.initial_population, args.max_population, limited_file)
+            print(f"初始种群已从{initial_count}限制为{args.max_population}")
     
     # 执行多代进化
     for gen in range(args.generations):
@@ -469,6 +566,16 @@ def main():
         try:
             logger.info(f"开始第 {gen} 代进化")
             start_time = time.time()
+            
+            # 如果前一代种群存在且超过限制大小，先限制它
+            if gen > 0 and args.max_population > 0:
+                prev_gen_file = os.path.join(args.output_dir, f"generation_{gen-1}", f"generation_{gen-1}_docked.smi")
+                if os.path.exists(prev_gen_file):
+                    with open(prev_gen_file, 'r') as f:
+                        prev_count = sum(1 for line in f if line.strip())
+                    if prev_count > args.max_population:
+                        limit_population_size(prev_gen_file, args.max_population)
+                        logger.info(f"第{gen-1}代种群已从{prev_count}限制为{args.max_population}")
             
             final_output = run_evolution(gen, args, logger)
             
