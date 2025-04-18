@@ -18,7 +18,7 @@ PARSER = argparse.ArgumentParser()
 
 PARSER = argparse.ArgumentParser(description='GA crossover parameters')
 PARSER.add_argument("--source_compound_file", "-s",type=str, required=True,help="萘衍生物数据集路径")
-PARSER.add_argument("--llm_generation_file", "-l",type=str, default="/data1/ytg/GA_llm/fragment_GPT/output/test0/nap_frags_new_0.smi")
+PARSER.add_argument("--llm_generation_file", "-l",type=str, default="/data1/ytg/GA_llm/fragment_GPT/output/test0/crossovered0_frags_new_0.smi")
 PARSER.add_argument("--output_file", "-o",type=str, default="/data1/ytg/GA_llm/output/generation_crossover_0.smi")
 PARSER.add_argument("--crossover_rate", type=float, default=0.8)
 #ARSER.add_argument("--max_crossover_attempts", type=int, default=1000)
