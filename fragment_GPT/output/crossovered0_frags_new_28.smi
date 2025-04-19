@@ -1,0 +1,6 @@
+CC(=O)n1c(=O)n(C)n(C(=O)c2ccc(-c3cc4ccccc4cc3OCCn3ccnc3)cc2)c1=O
+N#Cc1cc2ccccc2cc1-c1ccc(C(=O)N2NNNC2Cc2cccs2)cc1
+O=C(c1ccc(-c2cc3ccccc3cc2OCc2ccccc2)cc1)N1NNNC1c1ccccc1Cl
+N#Cc1cc2ccccc2cc1-c1ccc(C(=O)N2NNNC2c2c(Cl)cccc2Cl)cc1
+N#Cc1cc2ccccc2cc1-c1ccc(C(=O)N2NNNC2C(=O)O)cc1
+O=C(c1ccc(-c2cc3ccccc3cc2Oc2ccc(C(F)(F)F)nc2)cc1)N1NNNC1N1C(=O)CCC1=O

@@ -1,0 +1,4 @@
+[BOS]*c1cc2ccccc2cc1C#N[SEP]*c1ccc(*)cc1[SEP]*C(=O)N1NNNC1*[SEP]
+[BOS]*C(=O)n1c(=O)n(C(C)=O)c(=O)n1C[SEP]*c1ccc(*)cc1[SEP]*c1cc2ccccc2cc1*[SEP]
+[BOS]*c1cc2ccccc2cc1C#N[SEP]*c1ccc(*)cc1[SEP]*C(=O)N1NNNC1*[SEP]
+[BOS]*C(=O)N1NNNC1c1ccc(F)cc1[SEP]*c1ccc(*)cc1[SEP]*c1cc2ccccc2cc1*[SEP]

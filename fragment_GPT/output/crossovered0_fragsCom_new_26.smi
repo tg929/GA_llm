@@ -1,0 +1,6 @@
+['*c1cc2ccccc2cc1C#N', '*c1ccc(*)cc1', '*C(=O)N1NNNC1*', '*N1CCCC1']
+['*C(=O)n1c(=O)n(C(C)=O)c(=O)n1C', '*c1ccc(*)cc1', '*c1cc2ccccc2cc1*', '*c1ccccc1']
+['*c1cc2ccccc2cc1C#N', '*c1ccc(*)cc1', '*C(=O)N1NNNC1*', '*CN*', '*C*', '*C1CCCCC1']
+['*c1cc2ccccc2cc1C#N', '*c1ccc(*)cc1', '*C(=O)N1NNNC1*', '*c1ccccc1*', '*OC(F)(F)F']
+['*C(=O)n1c(=O)n(C(C)=O)c(=O)n1C', '*c1ccc(*)cc1', '*c1cc2ccccc2cc1*', '*C(*)=O', '*O*', '*CC*', '*N1CCN(*)CC1', '*c1cccc(*)c1', '*C(F)(F)F']
+['*c1cc2ccccc2cc1C#N', '*c1ccc(*)cc1', '*C(=O)N1NNNC1*', '*CN*', '*C*', '*c1ccccc1']
