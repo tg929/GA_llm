@@ -151,7 +151,6 @@ class MGLToolsConversion(ParentPDBQTConverter):
         :returns: str smile_name: name of the SMILES string from a pdb file
             None if its the param file
         """
-        assert pdb_file is not None 
         smile_name = self.get_smile_name_from_pdb(pdb_file)
 
         ligand4_template = self.vars["prepare_ligand4.py"]
@@ -172,7 +171,11 @@ class MGLToolsConversion(ParentPDBQTConverter):
             if not os.path.exists(pdb_file + "qt"):
                 # FILE FAILED TO CONVERT TO PDBQT DELETE PDB AND RETURN FALSE
                 if self.debug_mode is False:
-                    print("PDBQT not generated: Deleting " + os.path.basename(pdb_file) + "...")
+                    print(
+                        "PDBQT not generated: Deleting "
+                        + os.path.basename(pdb_file)
+                        + "..."
+                    )
 
                     # REMOVED FOR LIGANDS WHICH FAILED TO CONVERT TO PDBQT
                     Delete.delete_all_associated_files(pdb_file)
@@ -218,16 +221,20 @@ class MGLToolsConversion(ParentPDBQTConverter):
             mol = None
 
         temp_file = "{}_temp".format(mol_filename)
-        # print('-----------------------------', mol_filename, 'mol_filename')
         if mol is not None:
             count = 0
             # timeout or gtimeout
             command = (
-                timeout_option + " 10 "
+                timeout_option
+                + " 10 "
                 + mgl_python
-                + " " + prepare_script
-                + " -g -l " + mol_filename
-                + " -o " + mol_filename + "qt"
+                + " "
+                + prepare_script
+                + " -g -l "
+                + mol_filename
+                + " -o "
+                + mol_filename
+                + "qt"
             )
 
             while not os.path.exists(mol_filename + "qt"):
@@ -351,7 +358,6 @@ class MGLToolsConversion(ParentPDBQTConverter):
                         compound_name = line_stripped
 
             # line_stripped is now the name of the smile for this compound
-            #我做了else语句的修改：原缩进并列路径。
-                    else:
-                        line_stripped = "unknown"
+        else:
+            line_stripped = "unknown"
         return line_stripped

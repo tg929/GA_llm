@@ -724,25 +724,25 @@ def main():
     
     # 过滤器参数
     parser.add_argument('--LipinskiStrictFilter', action='store_true', default=False,
-                        help='严格版Lipinski五规则过滤器，筛选口服可用药物。评估分子量、logP、氢键供体和受体数量。要求必须通过所有条件。')
+                        help='严格版Lipinski五规则过滤器,筛选口服可用药物。评估分子量、logP、氢键供体和受体数量。要求必须通过所有条件。')
     parser.add_argument('--LipinskiLenientFilter', action='store_true', default=False,
-                        help='宽松版Lipinski五规则过滤器，筛选口服可用药物。评估分子量、logP、氢键供体和受体数量。允许一个条件不满足。')
+                        help='宽松版Lipinski五规则过滤器,筛选口服可用药物。评估分子量、logP、氢键供体和受体数量。允许一个条件不满足。')
     parser.add_argument('--GhoseFilter', action='store_true', default=False,
-                        help='Ghose药物相似性过滤器，通过分子量、logP和原子数量进行筛选。')
+                        help='Ghose药物相似性过滤器,通过分子量、logP和原子数量进行筛选。')
     parser.add_argument('--GhoseModifiedFilter', action='store_true', default=False,
-                        help='修改版Ghose过滤器，将分子量上限从480Da放宽到500Da。设计用于与Lipinski过滤器配合使用。')
+                        help='修改版Ghose过滤器,将分子量上限从480Da放宽到500Da。设计用于与Lipinski过滤器配合使用。')
     parser.add_argument('--MozziconacciFilter', action='store_true', default=False,
-                        help='Mozziconacci药物相似性过滤器，评估可旋转键、环、氧原子和卤素原子的数量。')
+                        help='Mozziconacci药物相似性过滤器,评估可旋转键、环、氧原子和卤素原子的数量。')
     parser.add_argument('--VandeWaterbeemdFilter', action='store_true', default=False,
                         help='筛选可能透过血脑屏障的药物，基于分子量和极性表面积(PSA)。')
     parser.add_argument('--PAINSFilter', action='store_true', default=False,
-                        help='PAINS过滤器，用于过滤泛测试干扰化合物，使用子结构搜索。')
+                        help='PAINS过滤器,用于过滤泛测试干扰化合物，使用子结构搜索。')
     parser.add_argument('--NIHFilter', action='store_true', default=False,
-                        help='NIH过滤器，过滤含有不良功能团的分子，使用子结构搜索。')
+                        help='NIH过滤器,过滤含有不良功能团的分子,使用子结构搜索。')
     parser.add_argument('--BRENKFilter', action='store_true', default=False,
-                        help='BRENK前导物相似性过滤器，排除常见假阳性分子。')
+                        help='BRENK前导物相似性过滤器,排除常见假阳性分子。')
     parser.add_argument('--No_Filters', action='store_true', default=False,
-                        help='设置为True时，不应用任何过滤器。')
+                        help='设置为True时,不应用任何过滤器。')
     parser.add_argument('--alternative_filter', action='append',
                         help='添加自定义过滤器，需要提供列表格式：[[过滤器1名称, 过滤器1路径], [过滤器2名称, 过滤器2路径]]')
     

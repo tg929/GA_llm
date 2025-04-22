@@ -163035,3 +163035,517 @@ Processing mutations: 100%|██████████| 126319/126319 [1:28:2
 Processing mutations: 100%|██████████| 126319/126319 [1:28:28<00:00, 23.80it/s, success_rate=112439/126319]
 
 2025-04-18 10:17:10,103 - ERROR - 第 5 代进化失败: 分子变异失败
+2025-04-21 15:30:37,733 - INFO - 开始第0代(对初始种群进行交叉变异后对接)
+2025-04-21 15:30:37,733 - INFO - 第0代将执行 50 次交叉和 50 次变异
+2025-04-21 15:30:37,733 - INFO - 开始第 0 代进化
+2025-04-21 15:30:37,733 - INFO - Generation 0: 对初始文件进行交叉和变异操作后进行对接
+2025-04-21 15:30:37,733 - INFO - 第0代交叉次数: 50, 变异次数: 50
+2025-04-21 15:30:37,733 - INFO - 开始分子分解: /data1/tgy/GA_llm/datasets/source_compounds/naphthalene_smiles.smi
+2025-04-21 15:30:38,037 - INFO - 分子分解完成，生成文件: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_crossover0.smi
+2025-04-21 15:30:38,037 - INFO - 开始GPT生成: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_crossover0.smi
+2025-04-21 15:30:58,625 - INFO - GPT生成完成,输出文件: /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_0.smi
+2025-04-21 15:30:58,626 - INFO - 开始分子交叉: 源文件 /data1/tgy/GA_llm/datasets/source_compounds/naphthalene_smiles.smi, LLM生成文件 /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_0.smi, 交叉次数 50
+2025-04-21 15:31:02,098 - INFO - 分子交叉完成，生成文件: /data1/tgy/GA_llm/output/generation_0/generation_0_crossover.smi
+2025-04-21 15:31:02,099 - INFO - 开始分子分解: /data1/tgy/GA_llm/output/generation_0/generation_0_crossover.smi
+2025-04-21 15:31:02,593 - INFO - 分子分解完成，生成文件: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_mutation0.smi
+2025-04-21 15:31:02,593 - INFO - 开始GPT生成: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_mutation0.smi
+2025-04-21 15:31:30,180 - INFO - GPT生成完成,输出文件: /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_0.smi
+2025-04-21 15:31:30,180 - INFO - 开始分子变异: 输入文件 /data1/tgy/GA_llm/output/generation_0/generation_0_crossover.smi, LLM生成文件 /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_0.smi, 变异次数 50
+2025-04-21 15:31:45,627 - INFO - 分子变异完成，生成文件: /data1/tgy/GA_llm/output/generation_0/generation_0_mutation.smi
+2025-04-21 15:31:45,628 - INFO - 开始分子过滤: /data1/tgy/GA_llm/output/generation_0/generation_0_mutation.smi
+2025-04-21 15:31:45,628 - INFO - 执行过滤命令: python /data1/tgy/GA_llm/operations/filter/filter_demo.py --input /data1/tgy/GA_llm/output/generation_0/generation_0_mutation.smi --output /data1/tgy/GA_llm/output/generation_0/generation_0_filtered.smi --LipinskiStrictFilter
+2025-04-21 15:31:49,709 - INFO - 分子过滤完成，生成文件: /data1/tgy/GA_llm/output/generation_0/generation_0_filtered.smi
+2025-04-21 15:31:49,710 - INFO - 开始分子对接: /data1/tgy/GA_llm/output/generation_0/generation_0_filtered.smi, 处理器数量: -1, 模式: multithreading
+2025-04-21 15:31:49,710 - INFO - 自动设置使用所有可用的CPU核心: 128
+2025-04-21 15:31:49,710 - INFO - 使用并行模式进行对接，处理器数量: 128
+2025-04-21 15:31:49,711 - INFO - 共有 467 个分子需要对接
+2025-04-21 15:31:49,712 - INFO - 将 467 个分子分为 156 批进行处理，每批大约 3 个分子
+2025-04-21 15:31:49,712 - INFO - 使用多线程模式，线程数: 128
+2025-04-21 15:32:28,644 - INFO - 已完成: 23/467 (4.9%), 成功: 23/23 (100.0% 成功率), 耗时: 38.9秒, 预计剩余: 751.6秒
+2025-04-21 15:32:34,046 - INFO - 已完成: 46/467 (9.9%), 成功: 46/46 (100.0% 成功率), 耗时: 44.3秒, 预计剩余: 405.8秒
+2025-04-21 15:32:42,698 - INFO - 已完成: 69/467 (14.8%), 成功: 69/69 (100.0% 成功率), 耗时: 53.0秒, 预计剩余: 305.6秒
+2025-04-21 15:32:58,804 - INFO - 已完成: 92/467 (19.7%), 成功: 92/92 (100.0% 成功率), 耗时: 69.1秒, 预计剩余: 281.6秒
+2025-04-21 15:33:11,138 - INFO - 已完成: 115/467 (24.6%), 成功: 115/115 (100.0% 成功率), 耗时: 81.4秒, 预计剩余: 249.2秒
+2025-04-21 15:33:24,685 - INFO - 已完成: 138/467 (29.6%), 成功: 138/138 (100.0% 成功率), 耗时: 95.0秒, 预计剩余: 226.4秒
+2025-04-21 15:33:44,684 - INFO - 已完成: 161/467 (34.5%), 成功: 161/161 (100.0% 成功率), 耗时: 115.0秒, 预计剩余: 218.5秒
+2025-04-21 15:33:53,090 - INFO - 已完成: 184/467 (39.4%), 成功: 172/184 (93.5% 成功率), 耗时: 123.4秒, 预计剩余: 189.8秒
+2025-04-21 15:34:16,619 - INFO - 已完成: 207/467 (44.3%), 成功: 193/207 (93.2% 成功率), 耗时: 146.9秒, 预计剩余: 184.5秒
+2025-04-21 15:34:31,807 - INFO - 已完成: 230/467 (49.3%), 成功: 211/230 (91.7% 成功率), 耗时: 162.1秒, 预计剩余: 167.0秒
+2025-04-21 15:34:50,932 - INFO - 已完成: 253/467 (54.2%), 成功: 225/253 (88.9% 成功率), 耗时: 181.2秒, 预计剩余: 153.3秒
+2025-04-21 15:35:11,443 - INFO - 已完成: 276/467 (59.1%), 成功: 235/276 (85.1% 成功率), 耗时: 201.7秒, 预计剩余: 139.6秒
+2025-04-21 15:35:26,232 - INFO - 已完成: 299/467 (64.0%), 成功: 245/299 (81.9% 成功率), 耗时: 216.5秒, 预计剩余: 121.7秒
+2025-04-21 15:35:50,810 - INFO - 已完成: 322/467 (69.0%), 成功: 255/322 (79.2% 成功率), 耗时: 241.1秒, 预计剩余: 108.6秒
+2025-04-21 15:36:04,594 - INFO - 已完成: 345/467 (73.9%), 成功: 265/345 (76.8% 成功率), 耗时: 254.9秒, 预计剩余: 90.1秒
+2025-04-21 15:36:26,617 - INFO - 已完成: 368/467 (78.8%), 成功: 278/368 (75.5% 成功率), 耗时: 276.9秒, 预计剩余: 74.5秒
+2025-04-21 15:36:46,686 - INFO - 已完成: 391/467 (83.7%), 成功: 289/391 (73.9% 成功率), 耗时: 297.0秒, 预计剩余: 57.7秒
+2025-04-21 15:37:02,558 - INFO - 已完成: 414/467 (88.7%), 成功: 299/414 (72.2% 成功率), 耗时: 312.8秒, 预计剩余: 40.1秒
+2025-04-21 15:37:23,622 - INFO - 已完成: 437/467 (93.6%), 成功: 309/437 (70.7% 成功率), 耗时: 333.9秒, 预计剩余: 22.9秒
+2025-04-21 15:37:52,012 - INFO - 已完成: 460/467 (98.5%), 成功: 317/460 (68.9% 成功率), 耗时: 362.3秒, 预计剩余: 5.5秒
+2025-04-21 15:38:07,153 - INFO - 已完成: 467/467 (100.0%), 成功: 317/467 (67.9% 成功率), 耗时: 377.4秒, 预计剩余: 0.0秒
+2025-04-21 15:38:07,163 - INFO - 对接计算完成，总耗时: 377.45秒，平均每个分子: 0.81秒，总成功率: 67.9%
+2025-04-21 15:38:07,163 - INFO - 并行对接完成，成功对接 317/467 个分子，结果保存至: /data1/tgy/GA_llm/output/generation_0/generation_0_docked.smi
+2025-04-21 15:38:07,210 - INFO - 开始对接结果分析: /data1/tgy/GA_llm/output/generation_0/generation_0_docked.smi
+2025-04-21 15:38:07,341 - INFO - 对接结果分析完成，结果保存至: /data1/tgy/GA_llm/output/generation_0/generation_0_stats.txt
+2025-04-21 15:38:07,343 - INFO - 
+==================== Generation 0 统计信息 ====================
+总分子数: 317
+所有分子得分均值: -7.9599
+Top1得分: -11.0000
+Top10得分均值: -10.7100
+Top20得分均值: -10.3350
+Top50得分均值: -9.6940
+Top100得分均值: -9.1740
+========================================================================
+
+2025-04-21 15:38:07,343 - INFO - 第 0 代完成
+2025-04-21 15:38:07,344 - INFO - 第0代完成,耗时: 449.61秒
+2025-04-21 15:38:07,344 - INFO - 开始第 1 代进化
+2025-04-21 15:38:07,344 - INFO - 开始第 1 代进化
+2025-04-21 15:38:07,345 - INFO - 开始分子分解: /data1/tgy/GA_llm/output/generation_0/generation_0_docked.smi
+2025-04-21 15:38:08,025 - INFO - 分子分解完成，生成文件: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_crossover1.smi
+2025-04-21 15:38:08,025 - INFO - 开始GPT生成: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_crossover1.smi
+2025-04-21 15:38:51,737 - WARNING - 警告: 预期的输出文件 /data1/tgy/GA_llm/fragment_GPT/output/crossovered1_frags_new_1.smi 不存在，尝试查找替代文件...
+2025-04-21 15:38:51,738 - INFO - 找到最新生成的文件: /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_1.smi
+2025-04-21 15:38:51,738 - INFO - GPT生成完成,输出文件: /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_1.smi
+2025-04-21 15:38:51,738 - INFO - 开始分子交叉: 源文件 /data1/tgy/GA_llm/output/generation_0/generation_0_docked.smi, LLM生成文件 /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_1.smi, 交叉次数 50
+2025-04-21 15:39:01,422 - INFO - 分子交叉完成，生成文件: /data1/tgy/GA_llm/output/generation_1/generation_1_crossover.smi
+2025-04-21 15:39:01,423 - INFO - 开始分子分解: /data1/tgy/GA_llm/output/generation_1/generation_1_crossover.smi
+2025-04-21 15:39:02,681 - INFO - 分子分解完成，生成文件: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_mutation1.smi
+2025-04-21 15:39:02,682 - INFO - 开始GPT生成: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_mutation1.smi
+2025-04-21 15:40:21,096 - WARNING - 警告: 预期的输出文件 /data1/tgy/GA_llm/fragment_GPT/output/crossovered1_frags_new_1.smi 不存在，尝试查找替代文件...
+2025-04-21 15:40:21,096 - INFO - 找到最新生成的文件: /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_1.smi
+2025-04-21 15:40:21,097 - INFO - GPT生成完成,输出文件: /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_1.smi
+2025-04-21 15:40:21,097 - INFO - 开始分子变异: 输入文件 /data1/tgy/GA_llm/output/generation_1/generation_1_crossover.smi, LLM生成文件 /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_1.smi, 变异次数 50
+2025-04-21 15:41:10,298 - INFO - 分子变异完成，生成文件: /data1/tgy/GA_llm/output/generation_1/generation_1_mutation.smi
+2025-04-21 15:41:10,299 - INFO - 开始分子过滤: /data1/tgy/GA_llm/output/generation_1/generation_1_mutation.smi
+2025-04-21 15:41:10,299 - INFO - 执行过滤命令: python /data1/tgy/GA_llm/operations/filter/filter_demo.py --input /data1/tgy/GA_llm/output/generation_1/generation_1_mutation.smi --output /data1/tgy/GA_llm/output/generation_1/generation_1_filtered.smi --LipinskiStrictFilter
+2025-04-21 15:41:19,732 - INFO - 分子过滤完成，生成文件: /data1/tgy/GA_llm/output/generation_1/generation_1_filtered.smi
+2025-04-21 15:41:19,732 - INFO - 开始分子对接: /data1/tgy/GA_llm/output/generation_1/generation_1_filtered.smi, 处理器数量: -1, 模式: multithreading
+2025-04-21 15:41:19,733 - INFO - 自动设置使用所有可用的CPU核心: 128
+2025-04-21 15:41:19,733 - INFO - 使用并行模式进行对接，处理器数量: 128
+2025-04-21 15:41:19,734 - INFO - 共有 1386 个分子需要对接
+2025-04-21 15:41:19,735 - INFO - 将 1386 个分子分为 139 批进行处理，每批大约 10 个分子
+2025-04-21 15:41:19,735 - INFO - 使用多线程模式，线程数: 128
+2025-04-21 15:42:08,082 - INFO - 已完成: 69/1386 (5.0%), 成功: 69/69 (100.0% 成功率), 耗时: 48.3秒, 预计剩余: 922.8秒
+2025-04-21 15:42:41,996 - INFO - 已完成: 138/1386 (10.0%), 成功: 138/138 (100.0% 成功率), 耗时: 82.3秒, 预计剩余: 743.9秒
+2025-04-21 15:43:26,415 - INFO - 已完成: 207/1386 (14.9%), 成功: 207/207 (100.0% 成功率), 耗时: 126.7秒, 预计剩余: 721.5秒
+2025-04-21 15:44:18,640 - INFO - 已完成: 276/1386 (19.9%), 成功: 276/276 (100.0% 成功率), 耗时: 178.9秒, 预计剩余: 719.5秒
+2025-04-21 15:45:04,344 - INFO - 已完成: 345/1386 (24.9%), 成功: 336/345 (97.4% 成功率), 耗时: 224.6秒, 预计剩余: 677.7秒
+2025-04-21 15:45:50,639 - INFO - 已完成: 414/1386 (29.9%), 成功: 378/414 (91.3% 成功率), 耗时: 270.9秒, 预计剩余: 636.0秒
+2025-04-21 15:46:32,504 - INFO - 已完成: 483/1386 (34.8%), 成功: 435/483 (90.1% 成功率), 耗时: 312.8秒, 预计剩余: 584.7秒
+2025-04-21 15:47:14,852 - INFO - 已完成: 552/1386 (39.8%), 成功: 485/552 (87.9% 成功率), 耗时: 355.1秒, 预计剩余: 536.5秒
+2025-04-21 15:48:06,899 - INFO - 已完成: 621/1386 (44.8%), 成功: 535/621 (86.2% 成功率), 耗时: 407.2秒, 预计剩余: 501.6秒
+2025-04-21 15:48:56,794 - INFO - 已完成: 690/1386 (49.8%), 成功: 584/690 (84.6% 成功率), 耗时: 457.1秒, 预计剩余: 461.0秒
+2025-04-21 15:49:48,102 - INFO - 已完成: 759/1386 (54.8%), 成功: 630/759 (83.0% 成功率), 耗时: 508.4秒, 预计剩余: 420.0秒
+2025-04-21 15:50:46,609 - INFO - 已完成: 828/1386 (59.7%), 成功: 670/828 (80.9% 成功率), 耗时: 566.9秒, 预计剩余: 382.0秒
+2025-04-21 15:51:44,787 - INFO - 已完成: 897/1386 (64.7%), 成功: 710/897 (79.2% 成功率), 耗时: 625.1秒, 预计剩余: 340.7秒
+2025-04-21 15:52:39,591 - INFO - 已完成: 966/1386 (69.7%), 成功: 735/966 (76.1% 成功率), 耗时: 679.9秒, 预计剩余: 295.6秒
+2025-04-21 15:53:45,459 - INFO - 已完成: 1035/1386 (74.7%), 成功: 752/1035 (72.7% 成功率), 耗时: 745.7秒, 预计剩余: 252.9秒
+2025-04-21 15:54:40,860 - INFO - 已完成: 1104/1386 (79.7%), 成功: 773/1104 (70.0% 成功率), 耗时: 801.1秒, 预计剩余: 204.6秒
+2025-04-21 15:55:41,407 - INFO - 已完成: 1173/1386 (84.6%), 成功: 792/1173 (67.5% 成功率), 耗时: 861.7秒, 预计剩余: 156.5秒
+2025-04-21 15:56:41,708 - INFO - 已完成: 1242/1386 (89.6%), 成功: 816/1242 (65.7% 成功率), 耗时: 922.0秒, 预计剩余: 106.9秒
+2025-04-21 15:57:40,067 - INFO - 已完成: 1311/1386 (94.6%), 成功: 837/1311 (63.8% 成功率), 耗时: 980.3秒, 预计剩余: 56.1秒
+2025-04-21 15:58:42,394 - INFO - 已完成: 1380/1386 (99.6%), 成功: 859/1380 (62.2% 成功率), 耗时: 1042.7秒, 预计剩余: 4.5秒
+2025-04-21 15:59:02,964 - INFO - 已完成: 1386/1386 (100.0%), 成功: 860/1386 (62.0% 成功率), 耗时: 1063.2秒, 预计剩余: 0.0秒
+2025-04-21 15:59:02,977 - INFO - 对接计算完成，总耗时: 1063.24秒，平均每个分子: 0.77秒，总成功率: 62.0%
+2025-04-21 15:59:02,978 - INFO - 并行对接完成，成功对接 860/1386 个分子，结果保存至: /data1/tgy/GA_llm/output/generation_1/generation_1_docked.smi
+2025-04-21 15:59:03,077 - INFO - 开始对接结果分析: /data1/tgy/GA_llm/output/generation_1/generation_1_docked.smi
+2025-04-21 15:59:03,204 - INFO - 对接结果分析完成，结果保存至: /data1/tgy/GA_llm/output/generation_1/generation_1_stats.txt
+2025-04-21 15:59:03,205 - INFO - 
+==================== Generation 1 统计信息 ====================
+总分子数: 860
+所有分子得分均值: -7.6631
+Top1得分: -11.3000
+Top10得分均值: -11.0600
+Top20得分均值: -10.8550
+Top50得分均值: -10.4500
+Top100得分均值: -10.0640
+========================================================================
+
+2025-04-21 15:59:03,206 - INFO - 第 1 代进化完成
+2025-04-21 15:59:03,206 - INFO - 第 1 代进化完成，耗时: 1255.86秒
+2025-04-21 15:59:03,206 - INFO - 结果保存至: /data1/tgy/GA_llm/output/generation_1/generation_1_sorted.smi
+2025-04-21 16:02:09,065 - INFO - 开始第0代(对初始种群进行交叉变异后对接)
+2025-04-21 16:02:09,065 - INFO - 第0代将执行 50 次交叉和 50 次变异
+2025-04-21 16:02:09,065 - INFO - 开始第 0 代进化
+2025-04-21 16:02:09,065 - INFO - Generation 0: 对初始文件进行交叉和变异操作后进行对接
+2025-04-21 16:02:09,065 - INFO - 第0代交叉次数: 50, 变异次数: 50
+2025-04-21 16:02:09,065 - INFO - 开始分子分解: /data1/tgy/GA_llm/datasets/source_compounds/naphthalene_smiles.smi
+2025-04-21 16:02:09,366 - INFO - 分子分解完成，生成文件: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_crossover0.smi
+2025-04-21 16:02:09,366 - INFO - 开始GPT生成: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_crossover0.smi
+2025-04-21 16:02:29,926 - INFO - GPT生成完成,输出文件: /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_0.smi
+2025-04-21 16:02:29,927 - INFO - 开始分子交叉: 源文件 /data1/tgy/GA_llm/datasets/source_compounds/naphthalene_smiles.smi, LLM生成文件 /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_0.smi, 交叉次数 50
+2025-04-21 16:02:34,056 - INFO - 分子交叉完成，生成文件: /data1/tgy/GA_llm/output/generation_0/generation_0_crossover.smi
+2025-04-21 16:02:34,057 - INFO - 开始分子分解: /data1/tgy/GA_llm/output/generation_0/generation_0_crossover.smi
+2025-04-21 16:02:34,564 - INFO - 分子分解完成，生成文件: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_mutation0.smi
+2025-04-21 16:02:34,564 - INFO - 开始GPT生成: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_mutation0.smi
+2025-04-21 16:03:02,726 - INFO - GPT生成完成,输出文件: /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_0.smi
+2025-04-21 16:03:02,726 - INFO - 开始分子变异: 输入文件 /data1/tgy/GA_llm/output/generation_0/generation_0_crossover.smi, LLM生成文件 /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_0.smi, 变异次数 50
+2025-04-21 16:03:18,263 - INFO - 分子变异完成，生成文件: /data1/tgy/GA_llm/output/generation_0/generation_0_mutation.smi
+2025-04-21 16:03:18,264 - INFO - 开始分子过滤: /data1/tgy/GA_llm/output/generation_0/generation_0_mutation.smi
+2025-04-21 16:03:18,264 - INFO - 执行过滤命令: python /data1/tgy/GA_llm/operations/filter/filter_demo.py --input /data1/tgy/GA_llm/output/generation_0/generation_0_mutation.smi --output /data1/tgy/GA_llm/output/generation_0/generation_0_filtered.smi --LipinskiStrictFilter
+2025-04-21 16:03:22,370 - INFO - 分子过滤完成，生成文件: /data1/tgy/GA_llm/output/generation_0/generation_0_filtered.smi
+2025-04-21 16:03:22,370 - INFO - 开始分子对接: /data1/tgy/GA_llm/output/generation_0/generation_0_filtered.smi, 处理器数量: -1, 模式: multithreading
+2025-04-21 16:03:22,370 - INFO - 自动设置使用所有可用的CPU核心: 128
+2025-04-21 16:03:22,371 - INFO - 使用并行模式进行对接，处理器数量: 128
+2025-04-21 16:03:22,371 - INFO - 共有 467 个分子需要对接
+2025-04-21 16:03:22,372 - INFO - 将 467 个分子分为 156 批进行处理，每批大约 3 个分子
+2025-04-21 16:03:22,372 - INFO - 使用多线程模式，线程数: 128
+2025-04-21 16:04:01,092 - INFO - 已完成: 23/467 (4.9%), 成功: 23/23 (100.0% 成功率), 耗时: 38.7秒, 预计剩余: 747.5秒
+2025-04-21 16:04:06,325 - INFO - 已完成: 46/467 (9.9%), 成功: 46/46 (100.0% 成功率), 耗时: 44.0秒, 预计剩余: 402.3秒
+2025-04-21 16:04:16,493 - INFO - 已完成: 69/467 (14.8%), 成功: 69/69 (100.0% 成功率), 耗时: 54.1秒, 预计剩余: 312.2秒
+2025-04-21 16:04:30,460 - INFO - 已完成: 92/467 (19.7%), 成功: 92/92 (100.0% 成功率), 耗时: 68.1秒, 预计剩余: 277.5秒
+2025-04-21 16:04:42,336 - INFO - 已完成: 115/467 (24.6%), 成功: 115/115 (100.0% 成功率), 耗时: 80.0秒, 预计剩余: 244.8秒
+2025-04-21 16:04:54,838 - INFO - 已完成: 138/467 (29.6%), 成功: 138/138 (100.0% 成功率), 耗时: 92.5秒, 预计剩余: 220.4秒
+2025-04-21 16:05:18,021 - INFO - 已完成: 161/467 (34.5%), 成功: 161/161 (100.0% 成功率), 耗时: 115.6秒, 预计剩余: 219.8秒
+2025-04-21 16:05:25,905 - INFO - 已完成: 184/467 (39.4%), 成功: 172/184 (93.5% 成功率), 耗时: 123.5秒, 预计剩余: 190.0秒
+2025-04-21 16:05:50,914 - INFO - 已完成: 207/467 (44.3%), 成功: 192/207 (92.8% 成功率), 耗时: 148.5秒, 预计剩余: 186.6秒
+2025-04-21 16:06:04,723 - INFO - 已完成: 230/467 (49.3%), 成功: 210/230 (91.3% 成功率), 耗时: 162.4秒, 预计剩余: 167.3秒
+2025-04-21 16:06:29,008 - INFO - 已完成: 253/467 (54.2%), 成功: 223/253 (88.1% 成功率), 耗时: 186.6秒, 预计剩余: 157.9秒
+2025-04-21 16:06:47,554 - INFO - 已完成: 276/467 (59.1%), 成功: 234/276 (84.8% 成功率), 耗时: 205.2秒, 预计剩余: 142.0秒
+2025-04-21 16:06:58,776 - INFO - 已完成: 299/467 (64.0%), 成功: 246/299 (82.3% 成功率), 耗时: 216.4秒, 预计剩余: 121.6秒
+2025-04-21 16:07:21,498 - INFO - 已完成: 322/467 (69.0%), 成功: 258/322 (80.1% 成功率), 耗时: 239.1秒, 预计剩余: 107.7秒
+2025-04-21 16:07:39,306 - INFO - 已完成: 345/467 (73.9%), 成功: 268/345 (77.7% 成功率), 耗时: 256.9秒, 预计剩余: 90.9秒
+2025-04-21 16:08:04,223 - INFO - 已完成: 368/467 (78.8%), 成功: 279/368 (75.8% 成功率), 耗时: 281.9秒, 预计剩余: 75.8秒
+2025-04-21 16:08:24,331 - INFO - 已完成: 391/467 (83.7%), 成功: 288/391 (73.7% 成功率), 耗时: 302.0秒, 预计剩余: 58.7秒
+2025-04-21 16:08:39,354 - INFO - 已完成: 414/467 (88.7%), 成功: 292/414 (70.5% 成功率), 耗时: 317.0秒, 预计剩余: 40.6秒
+2025-04-21 16:08:57,741 - INFO - 已完成: 437/467 (93.6%), 成功: 301/437 (68.9% 成功率), 耗时: 335.4秒, 预计剩余: 23.0秒
+2025-04-21 16:09:22,989 - INFO - 已完成: 460/467 (98.5%), 成功: 311/460 (67.6% 成功率), 耗时: 360.6秒, 预计剩余: 5.5秒
+2025-04-21 16:09:34,654 - INFO - 已完成: 467/467 (100.0%), 成功: 312/467 (66.8% 成功率), 耗时: 372.3秒, 预计剩余: 0.0秒
+2025-04-21 16:09:34,668 - INFO - 对接计算完成，总耗时: 372.30秒，平均每个分子: 0.80秒，总成功率: 66.8%
+2025-04-21 16:09:34,669 - INFO - 并行对接完成，成功对接 312/467 个分子，结果保存至: /data1/tgy/GA_llm/output/generation_0/generation_0_docked.smi
+2025-04-21 16:09:34,715 - INFO - 开始对接结果分析: /data1/tgy/GA_llm/output/generation_0/generation_0_docked.smi
+2025-04-21 16:09:34,846 - INFO - 对接结果分析完成，结果保存至: /data1/tgy/GA_llm/output/generation_0/generation_0_stats.txt
+2025-04-21 16:09:34,849 - INFO - 
+==================== Generation 0 统计信息 ====================
+总分子数: 312
+所有分子得分均值: -7.9532
+Top1得分: -11.0000
+Top10得分均值: -10.4100
+Top20得分均值: -10.1650
+Top50得分均值: -9.6980
+Top100得分均值: -9.1810
+========================================================================
+
+2025-04-21 16:09:34,849 - INFO - 第 0 代完成
+2025-04-21 16:09:34,849 - INFO - 第0代完成,耗时: 445.78秒
+2025-04-21 16:09:34,850 - INFO - 开始第 1 代进化
+2025-04-21 16:09:34,850 - INFO - 开始第 1 代进化
+2025-04-21 16:09:34,850 - INFO - 开始分子分解: /data1/tgy/GA_llm/output/generation_0/generation_0_docked.smi
+2025-04-21 16:09:35,530 - INFO - 分子分解完成，生成文件: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_crossover1.smi
+2025-04-21 16:09:35,530 - INFO - 开始GPT生成: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_crossover1.smi
+2025-04-21 16:10:26,043 - WARNING - 警告: 预期的输出文件 /data1/tgy/GA_llm/fragment_GPT/output/crossovered1_frags_new_1.smi 不存在，尝试查找替代文件...
+2025-04-21 16:10:26,044 - INFO - 找到最新生成的文件: /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_1.smi
+2025-04-21 16:10:26,044 - INFO - GPT生成完成,输出文件: /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_1.smi
+2025-04-21 16:10:26,044 - INFO - 开始分子交叉: 源文件 /data1/tgy/GA_llm/output/generation_0/generation_0_docked.smi, LLM生成文件 /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_1.smi, 交叉次数 50
+2025-04-21 16:10:31,907 - INFO - 分子交叉完成，生成文件: /data1/tgy/GA_llm/output/generation_1/generation_1_crossover.smi
+2025-04-21 16:10:31,908 - INFO - 开始分子分解: /data1/tgy/GA_llm/output/generation_1/generation_1_crossover.smi
+2025-04-21 16:10:33,239 - INFO - 分子分解完成，生成文件: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_mutation1.smi
+2025-04-21 16:10:33,239 - INFO - 开始GPT生成: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_mutation1.smi
+2025-04-21 16:11:52,916 - WARNING - 警告: 预期的输出文件 /data1/tgy/GA_llm/fragment_GPT/output/crossovered1_frags_new_1.smi 不存在，尝试查找替代文件...
+2025-04-21 16:11:52,917 - INFO - 找到最新生成的文件: /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_1.smi
+2025-04-21 16:11:52,917 - INFO - GPT生成完成,输出文件: /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_1.smi
+2025-04-21 16:11:52,917 - INFO - 开始分子变异: 输入文件 /data1/tgy/GA_llm/output/generation_1/generation_1_crossover.smi, LLM生成文件 /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_1.smi, 变异次数 50
+2025-04-21 16:12:41,968 - INFO - 分子变异完成，生成文件: /data1/tgy/GA_llm/output/generation_1/generation_1_mutation.smi
+2025-04-21 16:12:41,969 - INFO - 开始分子过滤: /data1/tgy/GA_llm/output/generation_1/generation_1_mutation.smi
+2025-04-21 16:12:41,970 - INFO - 执行过滤命令: python /data1/tgy/GA_llm/operations/filter/filter_demo.py --input /data1/tgy/GA_llm/output/generation_1/generation_1_mutation.smi --output /data1/tgy/GA_llm/output/generation_1/generation_1_filtered.smi --LipinskiStrictFilter
+2025-04-21 16:12:51,409 - INFO - 分子过滤完成，生成文件: /data1/tgy/GA_llm/output/generation_1/generation_1_filtered.smi
+2025-04-21 16:12:51,410 - INFO - 开始分子对接: /data1/tgy/GA_llm/output/generation_1/generation_1_filtered.smi, 处理器数量: -1, 模式: multithreading
+2025-04-21 16:12:51,410 - INFO - 自动设置使用所有可用的CPU核心: 128
+2025-04-21 16:12:51,410 - INFO - 使用并行模式进行对接，处理器数量: 128
+2025-04-21 16:12:51,411 - INFO - 共有 1316 个分子需要对接
+2025-04-21 16:12:51,412 - INFO - 将 1316 个分子分为 132 批进行处理，每批大约 10 个分子
+2025-04-21 16:12:51,412 - INFO - 使用多线程模式，线程数: 128
+2025-04-21 16:13:37,719 - INFO - 已完成: 65/1316 (4.9%), 成功: 65/65 (100.0% 成功率), 耗时: 46.3秒, 预计剩余: 891.2秒
+2025-04-21 16:14:06,370 - INFO - 已完成: 130/1316 (9.9%), 成功: 130/130 (100.0% 成功率), 耗时: 75.0秒, 预计剩余: 683.8秒
+2025-04-21 16:14:52,954 - INFO - 已完成: 195/1316 (14.8%), 成功: 195/195 (100.0% 成功率), 耗时: 121.5秒, 预计剩余: 698.7秒
+2025-04-21 16:15:38,541 - INFO - 已完成: 260/1316 (19.8%), 成功: 260/260 (100.0% 成功率), 耗时: 167.1秒, 预计剩余: 678.8秒
+2025-04-21 16:16:25,620 - INFO - 已完成: 325/1316 (24.7%), 成功: 322/325 (99.1% 成功率), 耗时: 214.2秒, 预计剩余: 653.2秒
+2025-04-21 16:17:08,627 - INFO - 已完成: 390/1316 (29.6%), 成功: 361/390 (92.6% 成功率), 耗时: 257.2秒, 预计剩余: 610.7秒
+2025-04-21 16:17:59,016 - INFO - 已完成: 455/1316 (34.6%), 成功: 411/455 (90.3% 成功率), 耗时: 307.6秒, 预计剩余: 582.1秒
+2025-04-21 16:18:40,625 - INFO - 已完成: 520/1316 (39.5%), 成功: 454/520 (87.3% 成功率), 耗时: 349.2秒, 预计剩余: 534.6秒
+2025-04-21 16:19:23,116 - INFO - 已完成: 585/1316 (44.5%), 成功: 503/585 (86.0% 成功率), 耗时: 391.7秒, 预计剩余: 489.5秒
+2025-04-21 16:20:16,918 - INFO - 已完成: 650/1316 (49.4%), 成功: 549/650 (84.5% 成功率), 耗时: 445.5秒, 预计剩余: 456.5秒
+2025-04-21 16:21:06,094 - INFO - 已完成: 715/1316 (54.3%), 成功: 597/715 (83.5% 成功率), 耗时: 494.7秒, 预计剩余: 415.8秒
+2025-04-21 16:21:58,436 - INFO - 已完成: 780/1316 (59.3%), 成功: 633/780 (81.2% 成功率), 耗时: 547.0秒, 预计剩余: 375.9秒
+2025-04-21 16:22:50,150 - INFO - 已完成: 845/1316 (64.2%), 成功: 672/845 (79.5% 成功率), 耗时: 598.7秒, 预计剩余: 333.7秒
+2025-04-21 16:23:40,730 - INFO - 已完成: 910/1316 (69.1%), 成功: 705/910 (77.5% 成功率), 耗时: 649.3秒, 预计剩余: 289.7秒
+2025-04-21 16:24:39,570 - INFO - 已完成: 975/1316 (74.1%), 成功: 729/975 (74.8% 成功率), 耗时: 708.2秒, 预计剩余: 247.7秒
+2025-04-21 16:25:36,067 - INFO - 已完成: 1040/1316 (79.0%), 成功: 742/1040 (71.3% 成功率), 耗时: 764.7秒, 预计剩余: 202.9秒
+2025-04-21 16:26:33,515 - INFO - 已完成: 1105/1316 (84.0%), 成功: 757/1105 (68.5% 成功率), 耗时: 822.1秒, 预计剩余: 157.0秒
+2025-04-21 16:27:34,162 - INFO - 已完成: 1170/1316 (88.9%), 成功: 774/1170 (66.2% 成功率), 耗时: 882.8秒, 预计剩余: 110.2秒
+2025-04-21 16:28:26,749 - INFO - 已完成: 1235/1316 (93.8%), 成功: 792/1235 (64.1% 成功率), 耗时: 935.3秒, 预计剩余: 61.3秒
+2025-04-21 16:29:29,046 - INFO - 已完成: 1300/1316 (98.8%), 成功: 811/1300 (62.4% 成功率), 耗时: 997.6秒, 预计剩余: 12.3秒
+2025-04-21 16:29:45,374 - INFO - 已完成: 1316/1316 (100.0%), 成功: 813/1316 (61.8% 成功率), 耗时: 1014.0秒, 预计剩余: 0.0秒
+2025-04-21 16:29:45,387 - INFO - 对接计算完成，总耗时: 1013.98秒，平均每个分子: 0.77秒，总成功率: 61.8%
+2025-04-21 16:29:45,389 - INFO - 并行对接完成，成功对接 813/1316 个分子，结果保存至: /data1/tgy/GA_llm/output/generation_1/generation_1_docked.smi
+2025-04-21 16:29:45,484 - INFO - 开始对接结果分析: /data1/tgy/GA_llm/output/generation_1/generation_1_docked.smi
+2025-04-21 16:29:45,648 - INFO - 对接结果分析完成，结果保存至: /data1/tgy/GA_llm/output/generation_1/generation_1_stats.txt
+2025-04-21 16:29:45,649 - INFO - 
+==================== Generation 1 统计信息 ====================
+总分子数: 813
+所有分子得分均值: -7.8050
+Top1得分: -11.5000
+Top10得分均值: -11.0000
+Top20得分均值: -10.7650
+Top50得分均值: -10.3260
+Top100得分均值: -9.9440
+========================================================================
+
+2025-04-21 16:29:45,650 - INFO - 第 1 代进化完成
+2025-04-21 16:29:45,650 - INFO - 第 1 代进化完成，耗时: 1210.80秒
+2025-04-21 16:29:45,650 - INFO - 结果保存至: /data1/tgy/GA_llm/output/generation_1/generation_1_sorted.smi
+2025-04-21 16:29:45,650 - INFO - 开始第 2 代进化
+2025-04-21 16:29:45,650 - INFO - 开始第 2 代进化
+2025-04-21 16:29:45,650 - INFO - 开始分子分解: /data1/tgy/GA_llm/output/generation_1/generation_1_docked.smi
+2025-04-21 16:29:47,407 - INFO - 分子分解完成，生成文件: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_crossover2.smi
+2025-04-21 16:29:47,408 - INFO - 开始GPT生成: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_crossover2.smi
+2025-04-21 16:32:05,915 - WARNING - 警告: 预期的输出文件 /data1/tgy/GA_llm/fragment_GPT/output/crossovered2_frags_new_2.smi 不存在，尝试查找替代文件...
+2025-04-21 16:32:05,916 - INFO - 找到最新生成的文件: /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_2.smi
+2025-04-21 16:32:05,917 - INFO - GPT生成完成,输出文件: /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_2.smi
+2025-04-21 16:32:05,917 - INFO - 开始分子交叉: 源文件 /data1/tgy/GA_llm/output/generation_1/generation_1_docked.smi, LLM生成文件 /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_2.smi, 交叉次数 50
+2025-04-21 16:32:18,310 - INFO - 分子交叉完成，生成文件: /data1/tgy/GA_llm/output/generation_2/generation_2_crossover.smi
+2025-04-21 16:32:18,311 - INFO - 开始分子分解: /data1/tgy/GA_llm/output/generation_2/generation_2_crossover.smi
+2025-04-21 16:32:22,059 - INFO - 分子分解完成，生成文件: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_mutation2.smi
+2025-04-21 16:32:22,059 - INFO - 开始GPT生成: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_mutation2.smi
+2025-04-21 16:36:11,530 - WARNING - 警告: 预期的输出文件 /data1/tgy/GA_llm/fragment_GPT/output/crossovered2_frags_new_2.smi 不存在，尝试查找替代文件...
+2025-04-21 16:36:11,531 - INFO - 找到最新生成的文件: /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_2.smi
+2025-04-21 16:36:11,531 - INFO - GPT生成完成,输出文件: /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_2.smi
+2025-04-21 16:36:11,531 - INFO - 开始分子变异: 输入文件 /data1/tgy/GA_llm/output/generation_2/generation_2_crossover.smi, LLM生成文件 /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_2.smi, 变异次数 50
+2025-04-21 16:38:46,996 - INFO - 分子变异完成，生成文件: /data1/tgy/GA_llm/output/generation_2/generation_2_mutation.smi
+2025-04-21 16:38:46,997 - INFO - 开始分子过滤: /data1/tgy/GA_llm/output/generation_2/generation_2_mutation.smi
+2025-04-21 16:38:46,997 - INFO - 执行过滤命令: python /data1/tgy/GA_llm/operations/filter/filter_demo.py --input /data1/tgy/GA_llm/output/generation_2/generation_2_mutation.smi --output /data1/tgy/GA_llm/output/generation_2/generation_2_filtered.smi --LipinskiStrictFilter
+2025-04-21 16:39:11,480 - INFO - 分子过滤完成，生成文件: /data1/tgy/GA_llm/output/generation_2/generation_2_filtered.smi
+2025-04-21 16:39:11,481 - INFO - 开始分子对接: /data1/tgy/GA_llm/output/generation_2/generation_2_filtered.smi, 处理器数量: -1, 模式: multithreading
+2025-04-21 16:39:11,481 - INFO - 自动设置使用所有可用的CPU核心: 128
+2025-04-21 16:39:11,481 - INFO - 使用并行模式进行对接，处理器数量: 128
+2025-04-21 16:39:11,484 - INFO - 共有 3825 个分子需要对接
+2025-04-21 16:39:11,485 - INFO - 将 3825 个分子分为 132 批进行处理，每批大约 29 个分子
+2025-04-21 16:39:11,485 - INFO - 使用多线程模式，线程数: 128
+2025-04-21 16:41:03,480 - INFO - 已完成: 191/3825 (5.0%), 成功: 191/191 (100.0% 成功率), 耗时: 112.0秒, 预计剩余: 2130.8秒
+2025-04-21 16:42:58,588 - INFO - 已完成: 382/3825 (10.0%), 成功: 381/382 (99.7% 成功率), 耗时: 227.1秒, 预计剩余: 2046.9秒
+2025-04-21 16:45:08,018 - INFO - 已完成: 573/3825 (15.0%), 成功: 569/573 (99.3% 成功率), 耗时: 356.5秒, 预计剩余: 2023.5秒
+2025-04-21 16:47:08,934 - INFO - 已完成: 764/3825 (20.0%), 成功: 757/764 (99.1% 成功率), 耗时: 477.4秒, 预计剩余: 1912.9秒
+2025-04-21 16:49:22,144 - INFO - 已完成: 955/3825 (25.0%), 成功: 908/955 (95.1% 成功率), 耗时: 610.7秒, 预计剩余: 1835.2秒
+2025-04-21 16:51:39,119 - INFO - 已完成: 1146/3825 (30.0%), 成功: 1044/1146 (91.1% 成功率), 耗时: 747.6秒, 预计剩余: 1747.7秒
+2025-04-21 16:53:54,844 - INFO - 已完成: 1337/3825 (35.0%), 成功: 1186/1337 (88.7% 成功率), 耗时: 883.4秒, 预计剩余: 1643.8秒
+2025-04-21 16:55:58,743 - INFO - 已完成: 1528/3825 (39.9%), 成功: 1330/1528 (87.0% 成功率), 耗时: 1007.3秒, 预计剩余: 1514.2秒
+2025-04-21 16:58:13,866 - INFO - 已完成: 1719/3825 (44.9%), 成功: 1469/1719 (85.5% 成功率), 耗时: 1142.4秒, 预计剩余: 1399.6秒
+2025-04-21 17:00:32,188 - INFO - 已完成: 1910/3825 (49.9%), 成功: 1613/1910 (84.5% 成功率), 耗时: 1280.7秒, 预计剩余: 1284.1秒
+2025-04-21 17:02:51,603 - INFO - 已完成: 2101/3825 (54.9%), 成功: 1740/2101 (82.8% 成功率), 耗时: 1420.1秒, 预计剩余: 1165.3秒
+2025-04-21 17:05:16,094 - INFO - 已完成: 2292/3825 (59.9%), 成功: 1873/2292 (81.7% 成功率), 耗时: 1564.6秒, 预计剩余: 1046.5秒
+2025-04-21 17:07:50,550 - INFO - 已完成: 2483/3825 (64.9%), 成功: 1985/2483 (79.9% 成功率), 耗时: 1719.1秒, 预计剩余: 929.1秒
+2025-04-21 17:10:40,958 - INFO - 已完成: 2674/3825 (69.9%), 成功: 2037/2674 (76.2% 成功率), 耗时: 1889.5秒, 预计剩余: 813.3秒
+2025-04-21 17:13:27,967 - INFO - 已完成: 2865/3825 (74.9%), 成功: 2093/2865 (73.1% 成功率), 耗时: 2056.5秒, 预计剩余: 689.1秒
+2025-04-21 17:16:10,378 - INFO - 已完成: 3056/3825 (79.9%), 成功: 2138/3056 (70.0% 成功率), 耗时: 2218.9秒, 预计剩余: 558.4秒
+2025-04-21 17:18:55,675 - INFO - 已完成: 3247/3825 (84.9%), 成功: 2187/3247 (67.4% 成功率), 耗时: 2384.2秒, 预计剩余: 424.4秒
+2025-04-21 17:21:42,152 - INFO - 已完成: 3438/3825 (89.9%), 成功: 2246/3438 (65.3% 成功率), 耗时: 2550.7秒, 预计剩余: 287.1秒
+2025-04-21 17:24:33,403 - INFO - 已完成: 3629/3825 (94.9%), 成功: 2293/3629 (63.2% 成功率), 耗时: 2721.9秒, 预计剩余: 147.0秒
+2025-04-21 17:27:23,144 - INFO - 已完成: 3820/3825 (99.9%), 成功: 2346/3820 (61.4% 成功率), 耗时: 2891.7秒, 预计剩余: 3.8秒
+2025-04-21 17:27:56,249 - INFO - 已完成: 3825/3825 (100.0%), 成功: 2346/3825 (61.3% 成功率), 耗时: 2924.8秒, 预计剩余: 0.0秒
+2025-04-21 17:27:56,263 - INFO - 对接计算完成，总耗时: 2924.78秒，平均每个分子: 0.76秒，总成功率: 61.3%
+2025-04-21 17:27:56,265 - INFO - 并行对接完成，成功对接 2346/3825 个分子，结果保存至: /data1/tgy/GA_llm/output/generation_2/generation_2_docked.smi
+2025-04-21 17:27:56,514 - INFO - 开始对接结果分析: /data1/tgy/GA_llm/output/generation_2/generation_2_docked.smi
+2025-04-21 17:27:56,651 - INFO - 对接结果分析完成，结果保存至: /data1/tgy/GA_llm/output/generation_2/generation_2_stats.txt
+2025-04-21 17:27:56,654 - INFO - 
+==================== Generation 2 统计信息 ====================
+总分子数: 2346
+所有分子得分均值: -7.6819
+Top1得分: -12.2000
+Top10得分均值: -11.4300
+Top20得分均值: -11.1300
+Top50得分均值: -10.7640
+Top100得分均值: -10.4340
+========================================================================
+
+2025-04-21 17:27:56,654 - INFO - 第 2 代进化完成
+2025-04-21 17:27:56,654 - INFO - 第 2 代进化完成，耗时: 3491.00秒
+2025-04-21 17:27:56,654 - INFO - 结果保存至: /data1/tgy/GA_llm/output/generation_2/generation_2_sorted.smi
+2025-04-21 17:27:56,655 - INFO - 开始第 3 代进化
+2025-04-21 17:27:56,655 - INFO - 开始第 3 代进化
+2025-04-21 17:27:56,655 - INFO - 开始分子分解: /data1/tgy/GA_llm/output/generation_2/generation_2_docked.smi
+2025-04-21 17:28:01,792 - INFO - 分子分解完成，生成文件: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_crossover3.smi
+2025-04-21 17:28:01,792 - INFO - 开始GPT生成: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_crossover3.smi
+2025-04-21 17:34:17,798 - WARNING - 警告: 预期的输出文件 /data1/tgy/GA_llm/fragment_GPT/output/crossovered3_frags_new_3.smi 不存在，尝试查找替代文件...
+2025-04-21 17:34:17,799 - INFO - 找到最新生成的文件: /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_3.smi
+2025-04-21 17:34:17,799 - INFO - GPT生成完成,输出文件: /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_3.smi
+2025-04-21 17:34:17,799 - INFO - 开始分子交叉: 源文件 /data1/tgy/GA_llm/output/generation_2/generation_2_docked.smi, LLM生成文件 /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_3.smi, 交叉次数 50
+2025-04-21 17:34:59,568 - INFO - 分子交叉完成，生成文件: /data1/tgy/GA_llm/output/generation_3/generation_3_crossover.smi
+2025-04-21 17:34:59,568 - INFO - 开始分子分解: /data1/tgy/GA_llm/output/generation_3/generation_3_crossover.smi
+2025-04-21 17:35:10,222 - INFO - 分子分解完成，生成文件: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_mutation3.smi
+2025-04-21 17:35:10,223 - INFO - 开始GPT生成: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_mutation3.smi
+2025-04-21 17:47:02,001 - WARNING - 警告: 预期的输出文件 /data1/tgy/GA_llm/fragment_GPT/output/crossovered3_frags_new_3.smi 不存在，尝试查找替代文件...
+2025-04-21 17:47:02,002 - INFO - 找到最新生成的文件: /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_3.smi
+2025-04-21 17:47:02,002 - INFO - GPT生成完成,输出文件: /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_3.smi
+2025-04-21 17:47:02,002 - INFO - 开始分子变异: 输入文件 /data1/tgy/GA_llm/output/generation_3/generation_3_crossover.smi, LLM生成文件 /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_3.smi, 变异次数 50
+2025-04-21 17:57:21,047 - INFO - 分子变异完成，生成文件: /data1/tgy/GA_llm/output/generation_3/generation_3_mutation.smi
+2025-04-21 17:57:21,048 - INFO - 开始分子过滤: /data1/tgy/GA_llm/output/generation_3/generation_3_mutation.smi
+2025-04-21 17:57:21,048 - INFO - 执行过滤命令: python /data1/tgy/GA_llm/operations/filter/filter_demo.py --input /data1/tgy/GA_llm/output/generation_3/generation_3_mutation.smi --output /data1/tgy/GA_llm/output/generation_3/generation_3_filtered.smi --LipinskiStrictFilter
+2025-04-21 17:58:34,126 - INFO - 分子过滤完成，生成文件: /data1/tgy/GA_llm/output/generation_3/generation_3_filtered.smi
+2025-04-21 17:58:34,127 - INFO - 开始分子对接: /data1/tgy/GA_llm/output/generation_3/generation_3_filtered.smi, 处理器数量: -1, 模式: multithreading
+2025-04-21 17:58:34,127 - INFO - 自动设置使用所有可用的CPU核心: 128
+2025-04-21 17:58:34,127 - INFO - 使用并行模式进行对接，处理器数量: 128
+2025-04-21 17:58:34,134 - INFO - 共有 12184 个分子需要对接
+2025-04-21 17:58:34,136 - INFO - 将 12184 个分子分为 129 批进行处理，每批大约 95 个分子
+2025-04-21 17:58:34,136 - INFO - 使用多线程模式，线程数: 128
+2025-04-21 18:04:41,615 - INFO - 已完成: 609/12184 (5.0%), 成功: 606/609 (99.5% 成功率), 耗时: 367.5秒, 预计剩余: 6984.5秒
+2025-04-21 18:10:56,727 - INFO - 已完成: 1218/12184 (10.0%), 成功: 1212/1218 (99.5% 成功率), 耗时: 742.6秒, 预计剩余: 6685.8秒
+2025-04-21 18:17:22,888 - INFO - 已完成: 1827/12184 (15.0%), 成功: 1816/1827 (99.4% 成功率), 耗时: 1128.8秒, 预计剩余: 6398.7秒
+2025-04-21 18:24:10,582 - INFO - 已完成: 2436/12184 (20.0%), 成功: 2390/2436 (98.1% 成功率), 耗时: 1536.4秒, 预计剩余: 6148.3秒
+2025-04-21 18:31:12,749 - INFO - 已完成: 3045/12184 (25.0%), 成功: 2857/3045 (93.8% 成功率), 耗时: 1958.6秒, 预计剩余: 5878.4秒
+2025-04-21 18:38:17,023 - INFO - 已完成: 3654/12184 (30.0%), 成功: 3345/3654 (91.5% 成功率), 耗时: 2382.9秒, 预计剩余: 5562.7秒
+2025-04-21 18:45:16,547 - INFO - 已完成: 4263/12184 (35.0%), 成功: 3792/4263 (89.0% 成功率), 耗时: 2802.4秒, 预计剩余: 5207.1秒
+2025-04-21 18:52:19,378 - INFO - 已完成: 4872/12184 (40.0%), 成功: 4261/4872 (87.5% 成功率), 耗时: 3225.2秒, 预计剩余: 4840.5秒
+2025-04-21 18:59:14,985 - INFO - 已完成: 5481/12184 (45.0%), 成功: 4744/5481 (86.6% 成功率), 耗时: 3640.8秒, 预计剩余: 4452.6秒
+2025-04-21 19:06:33,811 - INFO - 已完成: 6090/12184 (50.0%), 成功: 5184/6090 (85.1% 成功率), 耗时: 4079.7秒, 预计剩余: 4082.4秒
+2025-04-21 19:13:54,972 - INFO - 已完成: 6699/12184 (55.0%), 成功: 5597/6699 (83.5% 成功率), 耗时: 4520.8秒, 预计剩余: 3701.6秒
+2025-04-21 19:21:19,401 - INFO - 已完成: 7308/12184 (60.0%), 成功: 6023/7308 (82.4% 成功率), 耗时: 4965.3秒, 预计剩余: 3312.9秒
+2025-04-21 19:29:39,496 - INFO - 已完成: 7917/12184 (65.0%), 成功: 6306/7917 (79.7% 成功率), 耗时: 5465.4秒, 预计剩余: 2945.6秒
+2025-04-21 19:38:48,909 - INFO - 已完成: 8526/12184 (70.0%), 成功: 6440/8526 (75.5% 成功率), 耗时: 6014.8秒, 预计剩余: 2580.6秒
+2025-04-21 19:47:29,994 - INFO - 已完成: 9135/12184 (75.0%), 成功: 6594/9135 (72.2% 成功率), 耗时: 6535.9秒, 预计剩余: 2181.5秒
+2025-04-21 19:56:36,486 - INFO - 已完成: 9744/12184 (80.0%), 成功: 6744/9744 (69.2% 成功率), 耗时: 7082.4秒, 预计剩余: 1773.5秒
+2025-04-21 20:05:36,278 - INFO - 已完成: 10353/12184 (85.0%), 成功: 6876/10353 (66.4% 成功率), 耗时: 7622.1秒, 预计剩余: 1348.0秒
+2025-04-21 20:14:38,567 - INFO - 已完成: 10962/12184 (90.0%), 成功: 7000/10962 (63.9% 成功率), 耗时: 8164.4秒, 预计剩余: 910.1秒
+2025-04-21 20:23:35,556 - INFO - 已完成: 11571/12184 (95.0%), 成功: 7137/11571 (61.7% 成功率), 耗时: 8701.4秒, 预计剩余: 461.0秒
+2025-04-21 20:32:37,576 - INFO - 已完成: 12180/12184 (100.0%), 成功: 7281/12180 (59.8% 成功率), 耗时: 9243.4秒, 预计剩余: 3.0秒
+2025-04-21 20:34:19,618 - INFO - 已完成: 12184/12184 (100.0%), 成功: 7281/12184 (59.8% 成功率), 耗时: 9345.5秒, 预计剩余: 0.0秒
+2025-04-21 20:34:19,630 - INFO - 对接计算完成，总耗时: 9345.50秒，平均每个分子: 0.77秒，总成功率: 59.8%
+2025-04-21 20:34:19,636 - INFO - 并行对接完成，成功对接 7281/12184 个分子，结果保存至: /data1/tgy/GA_llm/output/generation_3/generation_3_docked.smi
+2025-04-21 20:34:20,156 - INFO - 开始对接结果分析: /data1/tgy/GA_llm/output/generation_3/generation_3_docked.smi
+2025-04-21 20:34:20,328 - INFO - 对接结果分析完成，结果保存至: /data1/tgy/GA_llm/output/generation_3/generation_3_stats.txt
+2025-04-21 20:34:20,335 - INFO - 
+==================== Generation 3 统计信息 ====================
+总分子数: 7281
+所有分子得分均值: -7.5926
+Top1得分: -12.1000
+Top10得分均值: -11.7900
+Top20得分均值: -11.6050
+Top50得分均值: -11.2760
+Top100得分均值: -10.9490
+========================================================================
+
+2025-04-21 20:34:20,335 - INFO - 第 3 代进化完成
+2025-04-21 20:34:20,335 - INFO - 第 3 代进化完成，耗时: 11183.68秒
+2025-04-21 20:34:20,336 - INFO - 结果保存至: /data1/tgy/GA_llm/output/generation_3/generation_3_sorted.smi
+2025-04-21 20:34:20,336 - INFO - 开始第 4 代进化
+2025-04-21 20:34:20,336 - INFO - 开始第 4 代进化
+2025-04-21 20:34:20,336 - INFO - 开始分子分解: /data1/tgy/GA_llm/output/generation_3/generation_3_docked.smi
+2025-04-21 20:34:36,461 - INFO - 分子分解完成，生成文件: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_crossover4.smi
+2025-04-21 20:34:36,462 - INFO - 开始GPT生成: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_crossover4.smi
+2025-04-21 20:54:31,126 - WARNING - 警告: 预期的输出文件 /data1/tgy/GA_llm/fragment_GPT/output/crossovered4_frags_new_4.smi 不存在，尝试查找替代文件...
+2025-04-21 20:54:31,127 - INFO - 找到最新生成的文件: /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_4.smi
+2025-04-21 20:54:31,128 - INFO - GPT生成完成,输出文件: /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_4.smi
+2025-04-21 20:54:31,128 - INFO - 开始分子交叉: 源文件 /data1/tgy/GA_llm/output/generation_3/generation_3_docked.smi, LLM生成文件 /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_4.smi, 交叉次数 50
+2025-04-21 20:57:52,841 - INFO - 分子交叉完成，生成文件: /data1/tgy/GA_llm/output/generation_4/generation_4_crossover.smi
+2025-04-21 20:57:52,842 - INFO - 开始分子分解: /data1/tgy/GA_llm/output/generation_4/generation_4_crossover.smi
+2025-04-21 20:58:27,437 - INFO - 分子分解完成，生成文件: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_mutation4.smi
+2025-04-21 20:58:27,438 - INFO - 开始GPT生成: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_mutation4.smi
+2025-04-21 21:35:11,210 - WARNING - 警告: 预期的输出文件 /data1/tgy/GA_llm/fragment_GPT/output/crossovered4_frags_new_4.smi 不存在，尝试查找替代文件...
+2025-04-21 21:35:11,211 - INFO - 找到最新生成的文件: /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_4.smi
+2025-04-21 21:35:11,211 - INFO - GPT生成完成,输出文件: /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_4.smi
+2025-04-21 21:35:11,212 - INFO - 开始分子变异: 输入文件 /data1/tgy/GA_llm/output/generation_4/generation_4_crossover.smi, LLM生成文件 /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_4.smi, 变异次数 50
+2025-04-21 22:29:14,311 - INFO - 分子变异完成，生成文件: /data1/tgy/GA_llm/output/generation_4/generation_4_mutation.smi
+2025-04-21 22:29:14,313 - INFO - 开始分子过滤: /data1/tgy/GA_llm/output/generation_4/generation_4_mutation.smi
+2025-04-21 22:29:14,313 - INFO - 执行过滤命令: python /data1/tgy/GA_llm/operations/filter/filter_demo.py --input /data1/tgy/GA_llm/output/generation_4/generation_4_mutation.smi --output /data1/tgy/GA_llm/output/generation_4/generation_4_filtered.smi --LipinskiStrictFilter
+2025-04-21 22:33:11,477 - INFO - 分子过滤完成，生成文件: /data1/tgy/GA_llm/output/generation_4/generation_4_filtered.smi
+2025-04-21 22:33:11,478 - INFO - 开始分子对接: /data1/tgy/GA_llm/output/generation_4/generation_4_filtered.smi, 处理器数量: -1, 模式: multithreading
+2025-04-21 22:33:11,478 - INFO - 自动设置使用所有可用的CPU核心: 128
+2025-04-21 22:33:11,478 - INFO - 使用并行模式进行对接，处理器数量: 128
+2025-04-21 22:33:11,503 - INFO - 共有 39930 个分子需要对接
+2025-04-21 22:33:11,506 - INFO - 将 39930 个分子分为 400 批进行处理，每批大约 100 个分子
+2025-04-21 22:33:11,506 - INFO - 使用多线程模式，线程数: 128
+2025-04-21 22:54:05,026 - INFO - 已完成: 1996/39930 (5.0%), 成功: 1940/1996 (97.2% 成功率), 耗时: 1253.5秒, 预计剩余: 23823.2秒
+2025-04-21 23:15:15,496 - INFO - 已完成: 3992/39930 (10.0%), 成功: 3874/3992 (97.0% 成功率), 耗时: 2524.0秒, 预计剩余: 22722.3秒
+2025-04-21 23:36:24,066 - INFO - 已完成: 5988/39930 (15.0%), 成功: 5806/5988 (97.0% 成功率), 耗时: 3792.6秒, 预计剩余: 21497.5秒
+2025-04-21 23:59:00,256 - INFO - 已完成: 7984/39930 (20.0%), 成功: 7602/7984 (95.2% 成功率), 耗时: 5148.8秒, 预计剩余: 20601.5秒
+2025-04-22 00:22:10,376 - INFO - 已完成: 9980/39930 (25.0%), 成功: 9153/9980 (91.7% 成功率), 耗时: 6538.9秒, 预计剩余: 19623.2秒
+2025-04-22 00:45:13,932 - INFO - 已完成: 11976/39930 (30.0%), 成功: 10739/11976 (89.7% 成功率), 耗时: 7922.4秒, 预计剩余: 18492.3秒
+2025-04-22 01:08:49,697 - INFO - 已完成: 13972/39930 (35.0%), 成功: 12217/13972 (87.4% 成功率), 耗时: 9338.2秒, 预计剩余: 17349.0秒
+2025-04-22 01:32:04,263 - INFO - 已完成: 15968/39930 (40.0%), 成功: 13769/15968 (86.2% 成功率), 耗时: 10732.8秒, 预计剩余: 16105.9秒
+2025-04-22 01:55:01,290 - INFO - 已完成: 17964/39930 (45.0%), 成功: 15359/17964 (85.5% 成功率), 耗时: 12109.8秒, 预计剩余: 14807.6秒
+2025-04-22 02:19:04,733 - INFO - 已完成: 19960/39930 (50.0%), 成功: 16814/19960 (84.2% 成功率), 耗时: 13553.2秒, 预计剩余: 13560.0秒
+2025-04-22 02:43:28,604 - INFO - 已完成: 21956/39930 (55.0%), 成功: 18184/21956 (82.8% 成功率), 耗时: 15017.1秒, 预计剩余: 12293.6秒
+2025-04-22 03:07:40,232 - INFO - 已完成: 23952/39930 (60.0%), 成功: 19629/23952 (82.0% 成功率), 耗时: 16468.7秒, 预计剩余: 10986.0秒
+2025-04-22 03:35:18,445 - INFO - 已完成: 25948/39930 (65.0%), 成功: 20523/25948 (79.1% 成功率), 耗时: 18126.9秒, 预计剩余: 9767.6秒
+2025-04-22 04:04:57,031 - INFO - 已完成: 27944/39930 (70.0%), 成功: 20968/27944 (75.0% 成功率), 耗时: 19905.5秒, 预计剩余: 8538.1秒
+2025-04-22 04:34:03,198 - INFO - 已完成: 29940/39930 (75.0%), 成功: 21455/29940 (71.7% 成功率), 耗时: 21651.7秒, 预计剩余: 7224.5秒
+2025-04-22 05:03:34,506 - INFO - 已完成: 31936/39930 (80.0%), 成功: 21920/31936 (68.6% 成功率), 耗时: 23423.0秒, 预计剩余: 5863.1秒
+2025-04-22 05:33:08,370 - INFO - 已完成: 33932/39930 (85.0%), 成功: 22375/33932 (65.9% 成功率), 耗时: 25196.9秒, 预计剩余: 4453.9秒
+2025-04-22 06:02:56,856 - INFO - 已完成: 35928/39930 (90.0%), 成功: 22801/35928 (63.5% 成功率), 耗时: 26985.4秒, 预计剩余: 3005.9秒
+2025-04-22 06:32:20,055 - INFO - 已完成: 37924/39930 (95.0%), 成功: 23265/37924 (61.3% 成功率), 耗时: 28748.6秒, 预计剩余: 1520.7秒
+2025-04-22 07:02:02,450 - INFO - 已完成: 39920/39930 (100.0%), 成功: 23689/39920 (59.3% 成功率), 耗时: 30530.9秒, 预计剩余: 7.6秒
+2025-04-22 07:03:11,699 - INFO - 已完成: 39930/39930 (100.0%), 成功: 23689/39930 (59.3% 成功率), 耗时: 30600.2秒, 预计剩余: 0.0秒
+2025-04-22 07:03:11,712 - INFO - 对接计算完成，总耗时: 30600.21秒，平均每个分子: 0.77秒，总成功率: 59.3%
+2025-04-22 07:03:11,728 - INFO - 并行对接完成，成功对接 23689/39930 个分子，结果保存至: /data1/tgy/GA_llm/output/generation_4/generation_4_docked.smi
+2025-04-22 07:03:13,532 - INFO - 开始对接结果分析: /data1/tgy/GA_llm/output/generation_4/generation_4_docked.smi
+2025-04-22 07:03:13,738 - INFO - 对接结果分析完成，结果保存至: /data1/tgy/GA_llm/output/generation_4/generation_4_stats.txt
+2025-04-22 07:03:13,760 - INFO - 
+==================== Generation 4 统计信息 ====================
+总分子数: 23689
+所有分子得分均值: -7.5276
+Top1得分: -12.5000
+Top10得分均值: -11.9400
+Top20得分均值: -11.8300
+Top50得分均值: -11.5960
+Top100得分均值: -11.4190
+========================================================================
+
+2025-04-22 07:03:13,761 - INFO - 第 4 代进化完成
+2025-04-22 07:03:13,761 - INFO - 第 4 代进化完成，耗时: 37733.43秒
+2025-04-22 07:03:13,761 - INFO - 结果保存至: /data1/tgy/GA_llm/output/generation_4/generation_4_sorted.smi
+2025-04-22 07:03:13,761 - INFO - 开始第 5 代进化
+2025-04-22 07:03:13,761 - INFO - 开始第 5 代进化
+2025-04-22 07:03:13,761 - INFO - 开始分子分解: /data1/tgy/GA_llm/output/generation_4/generation_4_docked.smi
+2025-04-22 07:04:06,093 - INFO - 分子分解完成，生成文件: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_crossover5.smi
+2025-04-22 07:04:06,094 - INFO - 开始GPT生成: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_crossover5.smi
+2025-04-22 08:06:47,162 - WARNING - 警告: 预期的输出文件 /data1/tgy/GA_llm/fragment_GPT/output/crossovered5_frags_new_5.smi 不存在，尝试查找替代文件...
+2025-04-22 08:06:47,163 - INFO - 找到最新生成的文件: /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_5.smi
+2025-04-22 08:06:47,163 - INFO - GPT生成完成,输出文件: /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_5.smi
+2025-04-22 08:06:47,163 - INFO - 开始分子交叉: 源文件 /data1/tgy/GA_llm/output/generation_4/generation_4_docked.smi, LLM生成文件 /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_5.smi, 交叉次数 50
+2025-04-22 08:28:31,079 - INFO - 分子交叉完成，生成文件: /data1/tgy/GA_llm/output/generation_5/generation_5_crossover.smi
+2025-04-22 08:28:31,080 - INFO - 开始分子分解: /data1/tgy/GA_llm/output/generation_5/generation_5_crossover.smi
+2025-04-22 08:30:24,527 - INFO - 分子分解完成，生成文件: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_mutation5.smi
+2025-04-22 08:30:24,527 - INFO - 开始GPT生成: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_mutation5.smi
+2025-04-22 10:28:22,580 - WARNING - 警告: 预期的输出文件 /data1/tgy/GA_llm/fragment_GPT/output/crossovered5_frags_new_5.smi 不存在，尝试查找替代文件...
+2025-04-22 10:28:22,581 - INFO - 找到最新生成的文件: /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_5.smi
+2025-04-22 10:28:22,581 - INFO - GPT生成完成,输出文件: /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_5.smi
+2025-04-22 10:28:22,581 - INFO - 开始分子变异: 输入文件 /data1/tgy/GA_llm/output/generation_5/generation_5_crossover.smi, LLM生成文件 /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_5.smi, 变异次数 50
+2025-04-22 17:19:35,965 - INFO - 分子变异完成，生成文件: /data1/tgy/GA_llm/output/generation_5/generation_5_mutation.smi
+2025-04-22 17:19:35,967 - INFO - 开始分子过滤: /data1/tgy/GA_llm/output/generation_5/generation_5_mutation.smi
+2025-04-22 17:19:35,967 - INFO - 执行过滤命令: python /data1/tgy/GA_llm/operations/filter/filter_demo.py --input /data1/tgy/GA_llm/output/generation_5/generation_5_mutation.smi --output /data1/tgy/GA_llm/output/generation_5/generation_5_filtered.smi --LipinskiStrictFilter
+2025-04-22 17:32:43,174 - INFO - 分子过滤完成，生成文件: /data1/tgy/GA_llm/output/generation_5/generation_5_filtered.smi
+2025-04-22 17:32:43,175 - INFO - 开始分子对接: /data1/tgy/GA_llm/output/generation_5/generation_5_filtered.smi, 处理器数量: -1, 模式: multithreading
+2025-04-22 17:32:43,175 - INFO - 自动设置使用所有可用的CPU核心: 128
+2025-04-22 17:32:43,175 - INFO - 使用并行模式进行对接，处理器数量: 128
+2025-04-22 17:32:43,221 - INFO - 共有 134735 个分子需要对接
+2025-04-22 17:32:43,225 - INFO - 将 134735 个分子分为 1348 批进行处理，每批大约 100 个分子
+2025-04-22 17:32:43,226 - INFO - 使用多线程模式，线程数: 128
+2025-04-22 18:19:09,906 - INFO - 已完成: 6736/134735 (5.0%), 成功: 0/6736 (0.0% 成功率), 耗时: 2786.7秒, 预计剩余: 52953.2秒
+2025-04-22 18:19:12,611 - INFO - 已完成: 13472/134735 (10.0%), 成功: 0/13472 (0.0% 成功率), 耗时: 2789.4秒, 预计剩余: 25107.6秒
+2025-04-22 18:19:14,927 - INFO - 已完成: 20208/134735 (15.0%), 成功: 0/20208 (0.0% 成功率), 耗时: 2791.7秒, 预计剩余: 15821.7秒
+2025-04-22 18:19:16,753 - INFO - 已完成: 26944/134735 (20.0%), 成功: 0/26944 (0.0% 成功率), 耗时: 2793.5秒, 预计剩余: 11175.7秒
+2025-04-22 18:19:18,999 - INFO - 已完成: 33680/134735 (25.0%), 成功: 0/33680 (0.0% 成功率), 耗时: 2795.3秒, 预计剩余: 8387.1秒
+2025-04-22 18:19:22,598 - INFO - 已完成: 40416/134735 (30.0%), 成功: 0/40416 (0.0% 成功率), 耗时: 2799.4秒, 预计剩余: 6532.9秒
+2025-04-22 18:19:25,403 - INFO - 已完成: 47152/134735 (35.0%), 成功: 0/47152 (0.0% 成功率), 耗时: 2802.2秒, 预计剩余: 5204.9秒
+2025-04-22 18:19:26,978 - INFO - 已完成: 53888/134735 (40.0%), 成功: 0/53888 (0.0% 成功率), 耗时: 2803.8秒, 预计剩余: 4206.4秒
+2025-04-22 18:19:30,469 - INFO - 已完成: 60624/134735 (45.0%), 成功: 0/60624 (0.0% 成功率), 耗时: 2807.2秒, 预计剩余: 3431.8秒
+2025-04-22 18:19:33,235 - INFO - 已完成: 67360/134735 (50.0%), 成功: 0/67360 (0.0% 成功率), 耗时: 2810.0秒, 预计剩余: 2810.6秒
+2025-04-22 18:19:36,833 - INFO - 已完成: 74096/134735 (55.0%), 成功: 0/74096 (0.0% 成功率), 耗时: 2813.6秒, 预计剩余: 2302.6秒
+2025-04-22 18:19:39,061 - INFO - 已完成: 80832/134735 (60.0%), 成功: 0/80832 (0.0% 成功率), 耗时: 2815.8秒, 预计剩余: 1877.7秒
+2025-04-22 18:19:42,251 - INFO - 已完成: 87568/134735 (65.0%), 成功: 0/87568 (0.0% 成功率), 耗时: 2819.0秒, 预计剩余: 1518.4秒
+2025-04-22 18:22:38,732 - INFO - 已完成: 94304/134735 (70.0%), 成功: 0/94304 (0.0% 成功率), 耗时: 2995.5秒, 预计剩余: 1284.3秒
+2025-04-22 18:29:30,868 - INFO - 已完成: 101040/134735 (75.0%), 成功: 0/101040 (0.0% 成功率), 耗时: 3407.6秒, 预计剩余: 1136.4秒
+2025-04-22 18:35:28,416 - INFO - 已完成: 107776/134735 (80.0%), 成功: 0/107776 (0.0% 成功率), 耗时: 3765.2秒, 预计剩余: 941.8秒
+2025-04-22 18:42:10,947 - INFO - 已完成: 114512/134735 (85.0%), 成功: 0/114512 (0.0% 成功率), 耗时: 4167.7秒, 预计剩余: 736.0秒
+2025-04-22 18:48:28,956 - INFO - 已完成: 121248/134735 (90.0%), 成功: 0/121248 (0.0% 成功率), 耗时: 4545.7秒, 预计剩余: 505.6秒
+2025-04-22 18:54:28,889 - INFO - 已完成: 127984/134735 (95.0%), 成功: 0/127984 (0.0% 成功率), 耗时: 4905.7秒, 预计剩余: 258.8秒
+2025-04-22 19:03:06,732 - INFO - 已完成: 134720/134735 (100.0%), 成功: 0/134720 (0.0% 成功率), 耗时: 5423.5秒, 预计剩余: 0.6秒
+2025-04-22 19:05:24,293 - INFO - 已完成: 134735/134735 (100.0%), 成功: 0/134735 (0.0% 成功率), 耗时: 5561.1秒, 预计剩余: 0.0秒
+2025-04-22 19:05:24,308 - INFO - 对接计算完成，总耗时: 5561.09秒，平均每个分子: 0.04秒，总成功率: 0.0%
+2025-04-22 19:05:24,309 - INFO - 并行对接完成，成功对接 0/134735 个分子，结果保存至: /data1/tgy/GA_llm/output/generation_5/generation_5_docked.smi
+2025-04-22 19:05:29,143 - INFO - 开始对接结果分析: /data1/tgy/GA_llm/output/generation_5/generation_5_docked.smi
+2025-04-22 19:05:29,311 - INFO - 对接结果分析完成，结果保存至: /data1/tgy/GA_llm/output/generation_5/generation_5_stats.txt
+2025-04-22 19:05:29,312 - WARNING - 对接结果中没有发现有效分数
+2025-04-22 19:05:29,312 - INFO - 第 5 代进化完成
+2025-04-22 19:05:29,312 - INFO - 第 5 代进化完成，耗时: 43335.55秒
+2025-04-22 19:05:29,312 - INFO - 结果保存至: /data1/tgy/GA_llm/output/generation_5/generation_5_sorted.smi

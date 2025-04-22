@@ -10,7 +10,8 @@ from rdkit import Chem
 from rdkit.Chem import AllChem
 from autogrow.docking.docking_class.docking_class_children.vina_docking import VinaDocking
 from autogrow.docking.docking_class.docking_file_conversion.convert_with_mgltools import MGLToolsConversion
-
+import autogrow.operators.convert_files.gypsum_dl.gypsum_dl.Parallelizer
+import autogrow.operators.convert_files.conversion_to_3d as conversion_to_3d
 # 配置日志
 def setup_logging(output_dir):
     logging.basicConfig(
@@ -36,7 +37,7 @@ class DockingExecutor:
             'center_y': 21.82,
             'center_z': 28.33,
             'size_x': 25.0,       # 对接盒尺寸
-            'size_y': 20.0,
+            'size_y': 16.0,
             'size_z': 25.0,
             'exhaustiveness': 8,
             'num_modes': 9,
@@ -77,10 +78,10 @@ class DockingExecutor:
             'center_y': 21.82,
             'center_z': 28.33,
             'size_x': 25.0,       # 对接盒尺寸
-            'size_y': 20.0,
+            'size_y': 16.0,
             'size_z': 25.0,
-            'docking_exhaustiveness': 8,  # 添加这个参数
-            'docking_num_modes': 9,       # 添加这个参数
+            'docking_exhaustiveness': 8,  # 添加这个参数 针对AutoDock Vina
+            'docking_num_modes': 9,       # 添加这个参数 针对AutoDock Vina
             'environment': {                   
                 'MGLPY': os.path.join(self.mgltools_path, "bin/python"),
                 'PYTHONPATH': os.path.join(self.mgltools_path, "MGLToolsPckgs")

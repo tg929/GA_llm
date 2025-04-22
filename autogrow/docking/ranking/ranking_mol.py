@@ -326,15 +326,24 @@ def score_and_append_diversity_scores(molecules_list):
                 mol = None
 
             if mol is None:
-                raise AssertionError("mol in list failed to sanitize. Issue in Ranking.py def score_and_append_diversity_scores")
+                raise AssertionError(
+                    "mol in list failed to sanitize. Issue in Ranking.py \
+                                    def score_and_append_diversity_scores"
+                )
 
             mol = MOH.check_sanitization(mol)
             if mol is None:
-                raise AssertionError("mol in list failed to sanitize. Issue in Ranking.py def score_and_append_diversity_scores")
+                raise AssertionError(
+                    "mol in list failed to sanitize. Issue in Ranking.py \
+                                        def score_and_append_diversity_scores"
+                )
 
             mol = MOH.try_deprotanation(mol)
             if mol is None:
-                raise AssertionError("mol in list failed to sanitize. Issue in Ranking.py def score_and_append_diversity_scores")
+                raise AssertionError(
+                    "mol in list failed to sanitize. Issue in Ranking.py \
+                                        def score_and_append_diversity_scores"
+                )
 
             temp = [x for x in pair]
             temp.append(mol)
@@ -370,13 +379,12 @@ def score_and_append_diversity_scores(molecules_list):
         temp.append(str(diversity_score))
         fps_list_w_div_score.append(temp)
 
-    # take the diversity score and append to the last column in the original list
+    # take the diversity score and append to the last column in the original
+    # list
 
     for i in range(0, len(molecules_list)):
         if molecules_list[i][0] == fps_list_w_div_score[i][0]:
+
             molecules_list[i].append(fps_list_w_div_score[i][-1])
+
     return molecules_list
-
-
-
-

@@ -14,29 +14,25 @@ import autogrow.operators.mutation.smiles_click_chem.smiles_click_chem as SmileC
 #######################################
 # Functions for creating molecular models
 ##########################################
-def make_mutants(vars, generation_num, 
-                 number_of_processors,
-                 num_mutants_to_make, 
-                 ligands_list, ###   ************************************* has been random.shuffled. 
+def make_mutants(vars, generation_num, number_of_processors,
+                 num_mutants_to_make, ligands_list,
                  new_mutation_smiles_list,
-                 rxn_library_variables, 
-                 mutate_ligand_select_policy_net, 
-                 mutate_reaction_select_policy_net, ):
+                 rxn_library_variables):
     """
     Make mutant compounds in a list to be returned
 
-    This runs SmileClick and returns a list of new molecules (smiles, ligand_id)
+    This runs SmileClick and returns a list of new molecules
 
     Inputs:
     :param dict vars: a dictionary of all user variables
     :param int generation_num: generation number
-    :param int number_of_processors: number of processors as specified by the user
+    :param int number_of_processors: number of processors as specified by the
+        user
     :param int num_mutants_to_make: number of mutants to return
-    ***************************************************************************************************************
-    :param list ligands_list: list of ligand/name pairs which are the order in which to be sampled 
-    ***************************************************************************************************************
-    :param list new_mutation_smiles_list: is the list of mutants made for the current generation being populated but in a previous
-                iteration of the loop in Operations
+    :param list ligands_list: list of ligand/name pairs which are the order in
+        which to be sampled :param list new_mutation_smiles_list: is the list of
+        mutants made for the current generation being populated but in a previous
+        iteration of the loop in Operations
     :param list rxn_library_variables: a list of user variables which define
         the rxn_library, rxn_library_file, and function_group_library. ie.
         rxn_library_variables = [vars['rxn_library'], vars['rxn_library_file'],
@@ -57,7 +53,9 @@ def make_mutants(vars, generation_num,
     number_of_processors = int(vars["parallelizer"].return_node())
 
     # initialize the smileclickclass
-    a_smiles_click_chem_object = SmileClickClass.SmilesClickChem(rxn_library_variables, new_mutation_smiles_list, vars["filter_object_dict"])
+    a_smiles_click_chem_object = SmileClickClass.SmilesClickChem(
+        rxn_library_variables, new_mutation_smiles_list, vars["filter_object_dict"]
+    )
 
     while loop_counter < 2000 and len(new_ligands_list) < num_mutants_to_make:
 
@@ -86,11 +84,9 @@ def make_mutants(vars, generation_num,
                 [tuple([smile, a_smiles_click_chem_object]) for smile in smile_inputs]
             )
 
-
-            #####################################
-            ########### main mutation ###########  
-            #####################################
-            results = vars["parallelizer"].run(job_input, run_smiles_click_for_multithread)
+            results = vars["parallelizer"].run(
+                job_input, run_smiles_click_for_multithread
+            )
 
             for index, i in enumerate(results):
                 if i is not None:

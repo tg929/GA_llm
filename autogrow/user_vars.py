@@ -769,8 +769,10 @@ def define_defaults():
     if timeout_option in  ["timeout", "gtimeout"]:
         vars["timeout_vs_gtimeout"] = timeout_option
     else:
-        raise Exception("Something is very wrong. This OS may not be supported by \
-                        Autogrow or you may need to execute through Bash.")
+        raise Exception(
+            "Something is very wrong. This OS may not be supported by \
+             Autogrow or you may need to execute through Bash."
+        )
 
     return vars
 

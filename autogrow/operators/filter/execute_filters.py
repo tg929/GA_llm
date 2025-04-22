@@ -204,24 +204,11 @@ def run_all_selected_filters(mol, child_dict):
     mol = MOH.check_sanitization(mol)
     if mol is None:
         return False
-    # for child in list(child_dict.keys()):
-    #     mol_copy = copy.deepcopy(mol)
-    #     filter_function = child_dict[child].run_filter
-    #     if filter_function(mol_copy) is False:
-    #         filters_failed = filters_failed + 1
-
-    #我修改的：
     for child in list(child_dict.keys()):
         mol_copy = copy.deepcopy(mol)
-        # 添加类型检查确保是过滤器对象
-        if isinstance(child_dict[child], ParentFilter):
-            filter_function = child_dict[child].run_filter
-        else:
-            # 兼容函数型过滤器
-            filter_function = child_dict[child]
-        
+        filter_function = child_dict[child].run_filter
         if filter_function(mol_copy) is False:
-            filters_failed += 1
+            filters_failed = filters_failed + 1
 
     if filters_failed == 0:
         return True

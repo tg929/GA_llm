@@ -93,5 +93,3 @@
 [BOS]*CC(=[N+]=[N+]=N)[N+](=O)[O-][SEP]*N*[SEP]*c1ccccc1[EOS]
 [BOS]*CC#C[SEP]*[N+](*)(C)C[SEP]*C*[SEP]*c1cccc(*)c1[SEP]*O*[SEP]*CC(=O)O[EOS]
 [BOS]*C(C)=O[SEP]*N*[SEP]*C(=O)C(*)C(C)(C)C[SEP]*N*[SEP]*C*[SEP]*C1CCN(*)C1c1cccnc1[SEP]*C(*)=O[SEP]*c1ccnc2c1OCO2[EOS]
-Invalid
-Invalid

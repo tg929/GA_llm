@@ -22,8 +22,7 @@ class VinaDocking(ParentDocking):
     """
 
     def __init__(self, vars=None, receptor_file=None,
-                 file_conversion_class_object=None, test_boot=False):
-                 #更改了test_boot的值（原默认为True:测试的时候跳过参数初始化，轻量级）
+                 file_conversion_class_object=None, test_boot=True):
         """
         get the specifications for Vina/QuickVina2 from vars load them into
         the self variables we will need and convert the receptor to the proper
@@ -75,7 +74,10 @@ class VinaDocking(ParentDocking):
 
         # convert ligands to pdbqt format
         # log("\nConverting ligand PDB files to PDBQT format...")
-        did_it_convert, smile_name = self.file_conversion_class_object.convert_ligand_pdb_file_to_pdbqt(pdb_file)
+        did_it_convert, smile_name = \
+            self.file_conversion_class_object.convert_ligand_pdb_file_to_pdbqt(
+                pdb_file
+            )
 
         if did_it_convert is False:
             # conversion failed
@@ -98,7 +100,7 @@ class VinaDocking(ParentDocking):
             None if it docked properly
         """
 
-        # print(" -------- Docking compounds using AutoDock Vina...")
+        # log("Docking compounds using AutoDock Vina...")
         self.dock_ligand(pdbqt_filename)
 
         # check that it docked
@@ -110,8 +112,7 @@ class VinaDocking(ParentDocking):
             # Docking failed
 
             if smile_name is None:
-                # print("Missing pdb and pdbqt files for : ", pdbqt_filename)
-                pass 
+                print("Missing pdb and pdbqt files for : ", pdbqt_filename)
 
             return smile_name
 
@@ -243,7 +244,9 @@ class VinaDocking(ParentDocking):
         # Default setting is 5 minutes. This is excessive as most things run
         # within 30seconds This will prevent stalling out. timeout or gtimeout
         torun = (
-            "{} {} {}".format(timeout_option, docking_timeout_limit, vars["docking_executable"])
+            "{} {} {}".format(
+                timeout_option, docking_timeout_limit, vars["docking_executable"]
+            )
             + " --center_x "
             + str(vars["center_x"])
             + " --center_y "
@@ -297,7 +300,7 @@ class VinaDocking(ParentDocking):
             + "_docking_output.txt"
         )
 
-        # print("\tDocking: {}".format(lig_pdbqt_filename))
+        print("\tDocking: {}".format(lig_pdbqt_filename))
         results = self.execute_docking_vina(torun)
 
         if results is None or results is None or results == 256:
@@ -307,18 +310,15 @@ class VinaDocking(ParentDocking):
             if made_changes is True:
                 results = self.execute_docking_vina(torun)
                 if results == 256 or results is None:
-                    # print(
-                    #     "\nLigand failed to dock after corrections: {}\n".format(
-                    #         lig_pdbqt_filename
-                    #     )
-                    # )
-                    pass 
+                    print(
+                        "\nLigand failed to dock after corrections: {}\n".format(
+                            lig_pdbqt_filename
+                        )
+                    )
             else:
-                # print("\tFinished Docking: {}".format(lig_pdbqt_filename))
-                pass 
+                print("\tFinished Docking: {}".format(lig_pdbqt_filename))
         else:
-            pass 
-            # print("\tFinished Docking: {}".format(lig_pdbqt_filename))
+            print("\tFinished Docking: {}".format(lig_pdbqt_filename))
 
     def replace_atoms_not_handled_by_forcefield(self, lig_pdbqt_filename):
         """
@@ -430,8 +430,11 @@ class VinaDocking(ParentDocking):
         if not os.path.exists(pdb_file + "qt.vina"):
         # so this pdbqt.vina file didn't exist
             if self.debug_mode is False:
-                # print("Docking unsuccessful: Deleting "
-                #         + os.path.basename(pdb_file) + "...")
+                print(
+                    "Docking unsuccessful: Deleting "
+                    + os.path.basename(pdb_file)
+                    + "..."
+                )
 
                 # REMOVE Failed molecules. Delete ones that were not docked
                 # successfully
@@ -443,7 +446,7 @@ class VinaDocking(ParentDocking):
                 return False, smile_name
 
             # Failed to dock but in debug mode
-            # print("Docking unsuccessful: " + os.path.basename(pdb_file) + "...")
+            print("Docking unsuccessful: " + os.path.basename(pdb_file) + "...")
             return False, smile_name
 
         # Successfully docked

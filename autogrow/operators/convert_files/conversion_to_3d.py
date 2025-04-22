@@ -90,10 +90,13 @@ def convert_to_3d(vars, smi_file, smile_file_directory):
 
     print("CONVERTING SMILES TO SDF")
     # convert smiles in an .SMI file to sdfs using gypsum
-    gypsum_output_folder_path = convert_smi_to_sdfs_with_gypsum(vars, smi_file, smile_file_directory)
+    gypsum_output_folder_path = convert_smi_to_sdfs_with_gypsum(
+        vars, smi_file, smile_file_directory
+    )
     print("CONVERTING SMILES TO SDF COMPLETED")
 
-    print("CONVERTING SDF TO PDB")  ### using rdkit
+    print("CONVERTING SDF TO PDB")
+    # convert sdf files to PDBs using rdkit
     convert_sdf_to_pdbs(vars, smile_file_directory, gypsum_output_folder_path)
     print("CONVERTING SDF TO PDB COMPLETED")
 
@@ -155,8 +158,16 @@ def convert_smi_to_sdfs_with_gypsum(vars, gen_smiles_file, smile_file_directory)
 
     # create a the job_inputs to run gypsum in multithread
     job_input = tuple(
-        [tuple([gypsum_log_path, gypsum_params, gypsum_timeout_limit,])
-            for gypsum_params in list_of_gypsum_params]
+        [
+            tuple(
+                [
+                    gypsum_log_path,
+                    gypsum_params,
+                    gypsum_timeout_limit,
+                ]
+            )
+            for gypsum_params in list_of_gypsum_params
+        ]
     )
 
 
@@ -166,10 +177,7 @@ def convert_smi_to_sdfs_with_gypsum(vars, gen_smiles_file, smile_file_directory)
     )
     sys.stdout.flush()
 
-    '''
-        fail: return smiles 
-        success: return None 
-    '''
+
     lig_failed_to_convert = [x for x in failed_to_convert if x is not None]
     lig_failed_to_convert = list(set(lig_failed_to_convert))
     if len(lig_failed_to_convert) > 0:
@@ -317,7 +325,9 @@ def run_gypsum_multiprocessing(gypsum_log_path, gypsum_params,
         successfully converted to 3D sdf.
     """
     current_dir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
-    gypsum_dir = str(current_dir) + os.sep + "convert_files" + os.sep + "gypsum_dl" + os.sep
+    gypsum_dir = (
+        str(current_dir) + os.sep + "convert_files" + os.sep + "gypsum_dl" + os.sep
+    )
     gypsum_gypsum_dir = str(gypsum_dir) + os.sep + "gypsum_dl" + os.sep
     sys.path.extend([current_dir, gypsum_dir, gypsum_gypsum_dir])
 
@@ -422,7 +432,7 @@ def convert_sdf_to_pdbs(vars, gen_folder_path, sdfs_folder_path):
     # create a new subfolder if one doesn't already exist. folder will be with
     # the generation and will be titled PDBs pdb_subfolder_path will become
     # the the output folder
-    pdb_subfolder_path = gen_folder_path + "_PDB" + os.sep
+    pdb_subfolder_path = gen_folder_path + "PDBs" + os.sep
     if not os.path.isdir(pdb_subfolder_path):
         os.makedirs(pdb_subfolder_path)
 
@@ -465,7 +475,9 @@ def convert_single_sdf_to_pdb(pdb_subfolder_path, sdf_file_path):
         file_output_name = "{}{}_".format(pdb_subfolder_path, file_basename)
 
         try:
-            mols = Chem.SDMolSupplier(sdf_file_path, sanitize=False, removeHs=False, strictParsing=False)
+            mols = Chem.SDMolSupplier(
+                sdf_file_path, sanitize=False, removeHs=False, strictParsing=False
+            )
         except:
             mols = None
 

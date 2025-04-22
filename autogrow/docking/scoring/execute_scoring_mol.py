@@ -67,7 +67,7 @@ def run_scoring_common(vars, smile_file, folder_to_search):
     # shortened name of the ligand id and the item is the SMILES string and
     # the ligand id full name
     smiles_dict = make_dict_of_smiles(smile_file)
-    # print('------------ smiles_dict', smiles_dict)
+
     # Use a temp vars dict so you don't put mpi multiprocess info through
     # itself...
     temp_vars = {}
@@ -82,7 +82,7 @@ def run_scoring_common(vars, smile_file, folder_to_search):
     # Find all the files that need to be scored. Because this depends on the
     # scoring function these may be different file types
     files_to_score = scoring_object.find_files_to_score(folder_to_search)
-    # print('---------- files_to_score', files_to_score)
+
     # Run Rescoring If applicable (All classes should have this even if its
     # just returning None)
     files_to_score = run_rescoring(vars, scoring_object, files_to_score)
@@ -189,9 +189,9 @@ def run_rescoring(vars, scoring_object, files_to_score):
     if len(failed_to_rescore) != 0:
         print("The following files failed to be rescored: ")
         print(failed_to_rescore)
+        print("")
     else:
         print("All rescoring attempts were successful")
-        pass 
 
     if len(completed_rescore) == 0:
         printout = (
@@ -200,7 +200,8 @@ def run_rescoring(vars, scoring_object, files_to_score):
         raise Exception(printout)
 
     print("Finished rescoring")
-    print("######################\n")
+    print("######################")
+    print("")
 
     return completed_rescore
 
@@ -323,11 +324,11 @@ def make_dict_of_smiles(smile_file):
         # index for this for-loop is zero based indexing while ligand naming
         # index is one-based-indexing so we will use index = index+1
         for index, line in enumerate(smi.readlines()):
-            # split_line = line.replace("\n", "").split("\t")
-            # ligand_name = line.replace("\n", "").split("\t")[1]  
-            split_line = line.replace("\n", "").split()
-            ligand_name = line.replace("\n", "").split()[1] 
-            # ligand_name should be something like: ['CCC', '(ZINC123+ZINC345)Gen_0_Cross_99571'] or ['CCC', 'ZINC123']
+
+            split_line = line.replace("\n", "").split("\t")
+            ligand_name = line.replace("\n", "").split("\t")[1]
+            # ligand_name should be something like: ['CCC',
+            # '(ZINC123+ZINC345)Gen_0_Cross_99571'] or ['CCC', 'ZINC123']
 
             if len(ligand_name.split(")")) == 2:
                 lig_name_short = ligand_name.split(")")[1]

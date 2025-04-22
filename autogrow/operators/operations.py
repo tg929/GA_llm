@@ -14,7 +14,7 @@ import rdkit.Chem as Chem
 
 # Disable the unnecessary RDKit warnings
 rdkit.RDLogger.DisableLog("rdApp.*")
-#其他模块
+
 import autogrow.operators.filter.execute_filters as Filter
 import autogrow.docking.ranking.ranking_mol as Ranking
 import autogrow.operators.mutation.execute_mutations as Mutation
@@ -34,7 +34,7 @@ def populate_generation(vars, generation_num):
 
     Inputs:
     :param dict vars: a dictionary of all user variables
-    :param int generation_num: the generation number, 1,2,3,4,...,
+    :param int generation_num: the generation number
 
     Returns:
     :returns: str full_generation_smiles_file: the name of the .smi file
@@ -50,17 +50,21 @@ def populate_generation(vars, generation_num):
     # to make
     if generation_num == 1:
         # If 1st generation
-        num_crossovers = vars["number_of_crossovers_first_generation"]  #交叉
-        num_mutations = vars["number_of_mutants_first_generation"]      #变异
+        num_crossovers = vars["number_of_crossovers_first_generation"]
+        num_mutations = vars["number_of_mutants_first_generation"]
 
         # How many advance from previous generation to the next generation
         # directly This will be done later but we are unpacking vars here
-        num_elite_to_advance_from_previous_gen = vars["number_elitism_advance_from_previous_gen_first_generation"]  #选择
+        num_elite_to_advance_from_previous_gen = vars[
+            "number_elitism_advance_from_previous_gen_first_generation"
+        ]
     else:
         # Later generations
         num_crossovers = vars["number_of_crossovers"]
         num_mutations = vars["number_of_mutants"]
-        num_elite_to_advance_from_previous_gen = vars["number_elitism_advance_from_previous_gen"]
+        num_elite_to_advance_from_previous_gen = vars[
+            "number_elitism_advance_from_previous_gen"
+        ]
 
     # Get the Source compound list. This list is the full population from
     # either the previous generations or if its Generation 1 than the its the
@@ -80,11 +84,6 @@ def populate_generation(vars, generation_num):
         num_crossovers + num_mutations + num_elite_to_advance_from_previous_gen
     )
 
-    ###################################################################
-    ###################################################################
-    # A. Making Mutations
-    ###################################################################
-    ###################################################################
     # Get starting compounds for Mutations
     seed_list_mutations = make_seed_list(
         vars,
@@ -102,8 +101,9 @@ def populate_generation(vars, generation_num):
         "Mutation_Seed_List",
     )
     sys.stdout.flush()
-    print("MAKE MUTATIONS")
 
+    print("MAKE MUTATIONS")
+    # Making Mutations
 
     # Package user vars specifying the Reaction library to use for mutation
     rxn_library_variables = [
@@ -113,7 +113,8 @@ def populate_generation(vars, generation_num):
         vars["complementary_mol_directory"],
     ]
 
-    new_mutation_smiles_list = [] # List of SMILES from mutation
+    # List of SMILES from mutation
+    new_mutation_smiles_list = []
 
     # Make all the required ligands by mutations
     while len(new_mutation_smiles_list) < num_mutations:
@@ -121,9 +122,7 @@ def populate_generation(vars, generation_num):
 
         num_mutants_to_make = num_mutations - len(new_mutation_smiles_list)
 
-        ##################################
-        # Make all mutants -------- main 
-        ##################################
+        # Make all mutants
         new_mutants = Mutation.make_mutants(
             vars,
             generation_num,
@@ -183,14 +182,6 @@ def populate_generation(vars, generation_num):
 
     print("FINISHED MAKING MUTATIONS")
 
-
-    ###################################################################
-    ###################################################################
-    # B. Making Crossovers
-    # List of smiles from crossover
-    ###################################################################
-    ###################################################################
-
     # Get starting compounds to seed Crossovers
     seed_list_crossovers = make_seed_list(
         vars,
@@ -211,6 +202,8 @@ def populate_generation(vars, generation_num):
     print("MAKE CROSSOVERS")
     sys.stdout.flush()
 
+    # Making Crossovers
+    # List of smiles from crossover
     new_crossover_smiles_list = []
 
     # Make all the required ligands by Crossover

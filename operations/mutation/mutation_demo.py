@@ -43,17 +43,14 @@ def evaluate_population(smiles_list, div_eval, nov_eval, qed_eval, sa_eval, ref_
             'avg_qed': 0.0,
             'avg_sa': 0.0,
             'num_valid': 0
-        }
-        
+        }        
     # 计算多样性时需要至少2个样本
-    diversity = div_eval(smiles_list) if len(smiles_list)>=2 else 0.0
-    
+    diversity = div_eval(smiles_list) if len(smiles_list)>=2 else 0.0    
     # 计算新颖性时处理分母为零的情况
     try:
         novelty = nov_eval(smiles_list, ref_smiles)
     except ZeroDivisionError:
-        novelty = 0.0
-    
+        novelty = 0.0    
     results = {
         'diversity': diversity,
         'novelty': novelty,
@@ -62,8 +59,7 @@ def evaluate_population(smiles_list, div_eval, nov_eval, qed_eval, sa_eval, ref_
         'num_valid': len(smiles_list)
     }
     return results
-def main():
-    
+def main():    
     args = PARSER.parse_args()
      # 加载初始数据集
     base_smiles = []

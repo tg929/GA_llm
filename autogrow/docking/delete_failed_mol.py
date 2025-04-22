@@ -33,7 +33,7 @@ def delete_all_associated_files(pdb_filename):
     # Remove any redundancy
     toremove = list(set(toremove))
 
-    # print("DELETING FOLLOWING!:", toremove)
+    print("DELETING FOLLOWING!:", toremove)
     for todel in toremove:
         if os.path.exists(todel):
             os.remove(todel)

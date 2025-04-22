@@ -1,0 +1,55 @@
+{
+    
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "Python Debugger: RunAutogrow",
+            "type": "debugpy",  
+            "request": "launch",
+            "python": "/home/ytg/anaconda3/envs/rga/bin/python3",
+            "program": "/data1/tgy/GA_llm/run_GA.py",
+            
+            "console": "integratedTerminal",
+            "env":{
+                "CUDA_VISIBLE_DEVICES": "0,1,4,5,6",
+            },
+            "args": [
+                "--filename_of_receptor","/data1/tgy/GA_llm/tutorial/PARP/4r6eA_PARP1_prepared.pdb",
+                "--center_x", "-70.76",
+                "--center_y","21.82",
+                "--center_z", "28.33",
+                "--size_x", "25.0",
+                "--size_y", "16.0",
+                "--size_z", "25.0",
+                "--source_compound_file", "/data1/tgy/GA_llm/source_compounds/naphthalene_smiles.smi",
+                "--root_output_folder", "/data1/tgy/GA_llm/output_GA_llm",
+                "--number_of_mutants_first_generation", "50",
+                "--number_of_crossovers_first_generation", "50",
+                "--number_of_mutants", "50",
+                "--number_of_crossovers", "50",
+                "--top_mols_to_seed_next_generation", "50",
+                //"--number_elitism_advance_from_previous_gen", "50",
+                //"--number_elitism_advance_from_previous_gen_first_generation", "10",
+                "--diversity_mols_to_seed_first_generation", "10",
+                "--diversity_seed_depreciation_per_gen","10",
+                "--num_generations", "5",
+                "--mgltools_directory", "/data1/tgy/GA_llm/mgltools_x86_64Linux2_1.5.6/",
+                "--number_of_processors", "-1",
+                "--scoring_choice", "VINA",
+                "--LipinskiLenientFilter",   
+                "--start_a_new_run",
+                "--rxn_library","all_rxns",
+                "--selector_choice", "Rank_Selector",
+                "--dock_choice", "VinaDocking",
+                "--max_variants_per_compound", "5",
+                "--gypsum_thoroughness", "3",
+                "--gypsum_timeout_limit", "30",
+                //"--redock_elite_from_previous_gen", "False",
+                "--generate_plot", "True",
+                "--reduce_files_sizes", "True",
+                "--use_docked_source_compounds", "True"
+            ]
+        }
+    ]
+}

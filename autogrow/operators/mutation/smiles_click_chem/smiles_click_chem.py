@@ -612,11 +612,6 @@ class SmilesClickChem(object):
 
     def run_smiles_click(self, ligand_smiles_string):
         """
-        ###################################
-        ############### main ##############
-        ###################################
-
-
         This will take the shuffled list of reaction names
         (self.shuffled_reaction_list) and test the Ligand to see if it is
         capable of being used in the reaction. If the ligand is unable to be
@@ -661,14 +656,20 @@ class SmilesClickChem(object):
             return None
 
         # Determine which functional groups are within a ligand
-        list_subs_within_mol = self.determine_functional_groups_in_mol(mol_deprotanated, mol_reprotanated)
+        list_subs_within_mol = self.determine_functional_groups_in_mol(
+            mol_deprotanated, mol_reprotanated
+        )
         if len(list_subs_within_mol) == 0:
-            print("{} had no functional groups to react with.".format(ligand_smiles_string))
+            print(
+                "{} had no functional groups to react with.".format(
+                    ligand_smiles_string
+                )
+            )
             return None
 
         shuffled_reaction_list = self.rand_key_list(
             self.reaction_dict
-        )  # Randomize the order of the list of reactions  (shuffle)
+        )  # Randomize the order of the list of reactions
 
         tries = 0
         is_rxn_complete = False
@@ -688,6 +689,7 @@ class SmilesClickChem(object):
                     # be used to remember the placement of the molecule later
                     # in the reaction.
                     break
+
                 continue
 
             if contains_group is None:
@@ -749,13 +751,13 @@ class SmilesClickChem(object):
                             else:
                                 # REACTION WORKED!
                                 is_rxn_complete = True
-                                break   #### break while loop 
+                                break
                         if (
                                 reaction_product_smilestring is not None
                                 and is_rxn_complete is True
                         ):
                             # REACTION WORKED!
-                            break  #### break while loop 
+                            break
                         # else:
                         tries = tries + 1
 
@@ -763,8 +765,8 @@ class SmilesClickChem(object):
                     # if reaction fails then lets move on to the next reaction
                     mol_to_use = None
                     tries = tries + 1
-                    break  #### ??? 
-            else:  ### a_reaction_dict['num_reactants'] > 1 
+                    break
+            else:
                 # for each functional group in the reaction, test
                 # if the ligand has that as a substructure
 
@@ -929,260 +931,6 @@ class SmilesClickChem(object):
             return product_info
         # reaction failed
         return None
-
-
-
-
-
-
-    def run_smiles_click2(self, ligand_smiles_string):
-        """This will take the full list of reaction names(self.shuffled_reaction_list) and return all the products smiles 
-
-        Inputs:
-        :param str ligand_smiles_string: SMILES string of a molecule to be reacted (parent smiles)
-
-        Returns:
-            - list of all product smiles
-            - returns None if all reactions failed or input failed to convert to a sanitizable rdkit mol.
-        """
-        try:
-            mol = Chem.MolFromSmiles(ligand_smiles_string, sanitize=False)  # This is the input molecule which serves as the parent molecule
-        except:
-            return None 
-        # try sanitizing, which is necessary later
-        mol = MOH.check_sanitization(mol)
-        if mol is None:
-            return None
-
-        # Is important for some functional groups while being deprotanated are useful for other reaction
-        mol_reprotanated = copy.deepcopy(mol)
-        mol_reprotanated = MOH.try_reprotanation(mol_reprotanated)
-        if mol_reprotanated is None:
-            return None
-
-        mol_deprotanated = copy.deepcopy(mol)
-        mol_deprotanated = MOH.try_deprotanation(mol_deprotanated)
-        if mol_deprotanated is None:
-            return None
-
-        # Determine which functional groups are within a ligand
-        list_subs_within_mol = self.determine_functional_groups_in_mol(mol_deprotanated, mol_reprotanated)
-        if len(list_subs_within_mol) == 0:
-            print("{} had no functional groups to react with.".format(ligand_smiles_string))
-            return None
-
-        shuffled_reaction_list = self.rand_key_list(self.reaction_dict)  # Randomize the order of the list of reactions  (shuffle)
-
-        tries = 0
-        is_rxn_complete = False
-        # go through all possible rxns in dictionary of rxns using the random
-        # order of rxns loop ends when a rxn is successful or when it runs out
-        # of reactions
-        returned_mol_list = [] ##### 
-        #################################  main loop  ########################################
-        while tries < len(shuffled_reaction_list): # and is_rxn_complete is False:
-            reaction_name = shuffled_reaction_list[tries]
-            a_reaction_dict = self.reaction_dict[reaction_name]
-
-            fun_groups_in_rxn = a_reaction_dict["functional_groups"]
-            contains_group = None
-            for i in range(0, len(fun_groups_in_rxn)):
-                if fun_groups_in_rxn[i] in list_subs_within_mol:
-                    contains_group = i
-                    # The number i which contains_group is now equal to will
-                    # be used to remember the placement of the molecule later in the reaction.
-                    break
-                continue
-
-            if contains_group is None: # Reaction doesn't contain a functional group found in the reactant molecule. move on to the next molecule
-                tries = tries + 1
-                continue
-
-            # Determine whether to react using the protanated or deprotanated form of the ligand
-            substructure = Chem.MolFromSmarts(self.functional_group_dict[fun_groups_in_rxn[i]])
-
-            if mol_deprotanated.HasSubstructMatch(substructure) is True:
-                mol_to_use = copy.deepcopy(mol_deprotanated)
-            else:
-                mol_to_use = copy.deepcopy(mol_reprotanated)
-            substructure = None
-
-            rxn = AllChem.ReactionFromSmarts(str(a_reaction_dict["reaction_string"]))
-            rxn.Initialize()
-
-            # if the reaction requires only a single reactant we will attempt to run the reaction
-            if a_reaction_dict["num_reactants"] == 1:
-                # "Try reaction"
-                zinc_database_comp_mol_name = None
-                comp_mol_id = None
-                try:
-                    # if reaction works keep it
-                    reaction_products_list = [x[0] for x in rxn.RunReactants((mol_to_use,))]
-
-                    # randomly shuffle the lists of products so that we don't
-                    # bias a single product type. ie ClickChem Reactions
-                    # 5_Alkyne_and_Azide produces two products: a 1,5 isomer
-                    # and a 1,4 isomer; This will shuffle the list and try each option
-                    random.shuffle(reaction_products_list)
-
-                    if not (reaction_products_list in [(), []] or len(reaction_products_list) == 0):
-                        is_rxn_complete = False
-                        for reaction_product in reaction_products_list:
-                            # Filter and check the product is valid
-                            reaction_product_smilestring = self.check_if_product_is_good(reaction_product)
-                            if reaction_product_smilestring is not None: 
-                                returned_mol_list.append(reaction_product)
-
-                except:  # if reaction fails then lets move on to the next reaction
-                    mol_to_use = None
-                tries = tries + 1 
-            else:  ### a_reaction_dict['num_reactants'] > 1 
-                # for each functional group in the reaction, test if the ligand has that as a substructure
-                list_reactant_mols = [] 
-                comp_mol_id = []
-                for i in range(0, len(fun_groups_in_rxn)):
-                    if i == contains_group:
-                        # This is where the molecule goes
-                        list_reactant_mols.append(mol_to_use)
-
-                    else:
-                        # for reactants which need to be taken from the
-                        # complementary dictionary. Find the reactants functional group
-                        functional_group_name = str(a_reaction_dict["functional_groups"][i])
-
-                        # Determine whether to react using the protanated or deprotanated form of the ligand
-                        substructure = Chem.MolFromSmarts(self.functional_group_dict[fun_groups_in_rxn[i]])
-
-                        # lets give up to 100 tries to find a comp molecule which is viable
-                        for find_mol_tries in range(0, 100):
-
-                            # find that group in the complementary dictionary.  comp_molecule = ["cccc", "ZINC123"]
-                            comp_molecule = self.get_random_complementary_mol(functional_group_name)
-
-                            # zinc_database name
-                            zinc_database_comp_mol_name = comp_molecule[1]
-
-                            # Smiles String of complementary molecule
-                            comp_smiles_string = comp_molecule[0]
-
-                            # check this is a santizable molecule
-                            comp_mol = Chem.MolFromSmiles(comp_smiles_string, sanitize=False)
-                            # try sanitizing, which is necessary later
-                            comp_mol = MOH.check_sanitization(comp_mol)
-
-                            # Try with deprotanated molecule rdkit to recognize for the reaction
-                            comp_mol = MOH.try_deprotanation(comp_mol)
-                            if comp_mol is None:
-                                continue
-
-                            if comp_mol.HasSubstructMatch(substructure) is True:
-                                comp_mol = comp_mol
-                                # append to ordered list
-                                list_reactant_mols.append(comp_mol)
-                                comp_mol_id.append(zinc_database_comp_mol_name)
-                                break
-
-                            # Try with deprotanated molecule rdkit to recognize for the reaction
-                            comp_mol = MOH.try_deprotanation(comp_mol)
-                            if comp_mol is None:
-                                continue
-
-                            if comp_mol.HasSubstructMatch(substructure) is True:
-                                comp_mol = comp_mol
-                                # append to ordered list
-                                list_reactant_mols.append(comp_mol)
-                                comp_mol_id.append(zinc_database_comp_mol_name)
-                                break
-
-                            comp_mol = None
-                            continue
-
-                # we will make a tuple of the molecules as rdkit mol objects
-                # 1st we generate a list of reactant mol objects then we
-                # convert to tuple
-                tuple_reactant_mols = tuple(list_reactant_mols)
-
-                # Run the reaction: We use a try/except statement incase an
-                # error occurs and rdkit is unable to complete the reaction.
-                # without this a failure to complete the reaction would result
-                # in the terminating. 
-
-                try:
-                    # if reaction works keep it
-                    reaction_products_list = [x[0] for x in rxn.RunReactants(tuple_reactant_mols)]
-
-                    # randomly shuffle the lists of products so that we don't
-                    # bias a single product type. ie ClickChem Reactions
-                    # 5_Alkyne_and_Azide produces two products: a 1,5 isomer
-                    # and a 1,4 isomer; This will shuffle the list and try each option
-                    random.shuffle(reaction_products_list)
-
-                except:
-                    reaction_product = None
-                    tries = tries + 1
-                    continue
-
-                if reaction_products_list in [(), []] or len(reaction_products_list) == 0:
-                    reaction_id_number = a_reaction_dict["RXN_NUM"]
-                    tries = tries + 1
-                    continue
-                else:
-                    is_rxn_complete = False
-                    for reaction_product in reaction_products_list:
-                        # Filter and check the product is valid
-                        reaction_product_smilestring = self.check_if_product_is_good(reaction_product)
-                        if reaction_product_smilestring is not None:
-                            returned_mol_list.append(reaction_product)
-                    tries = tries + 1
-
-        #################################  end of while loop  #########################################
-        # end of the big while loop (while tries < len(shuffled_reaction_list)
-        # and is_rxn_complete is False)
-        ## output is reaction_product & comp_mol_id 
-        returned_smiles_list = []
-        for mol in returned_mol_list:
-            mol = MOH.check_sanitization(mol)
-            if mol is not None:
-                smiles = Chem.MolToSmiles(mol, isomericSmiles = True)
-                returned_smiles_list.append(smiles)
-        return returned_smiles_list 
-
-
-
-        # # check that a reaction was successful
-        # if is_rxn_complete is True:
-        #     reaction_product = MOH.check_sanitization(reaction_product)
-        #     if reaction_product is None:
-        #         return None
-
-        #     reaction_product_smilestring = Chem.MolToSmiles(reaction_product, isomericSmiles=True)
-        #     reaction_id_number = a_reaction_dict["RXN_NUM"]
-
-        #     # RETURNS THE NEW PRODUCTS SMILESTRING, THE REACTION ID NUMBER (SO
-        #     # ONE CAN TRACK THE MOLS LINEAGE). THE COMP_MOL ZINC DATABASE ID
-        #     # NUMBER (IF IT WAS A RXN WITH ONLY 1 REACTANT THIS IS None)
-        #     if comp_mol_id is None:
-        #         zinc_database_comp_mol_names = None
-        #     elif len(comp_mol_id) == 1:
-        #         zinc_database_comp_mol_names = comp_mol_id[0]
-        #     else:
-        #         zinc_database_comp_mol_names = "+".join(comp_mol_id)
-        #     product_info = [
-        #         reaction_product_smilestring,
-        #         reaction_id_number,
-        #         zinc_database_comp_mol_names,
-        #     ]
-        #     return product_info
-        # # reaction failed
-        # return None
-
-
-
-
-
-
-
-
 
     def check_if_product_is_good(self, reaction_product):
         """

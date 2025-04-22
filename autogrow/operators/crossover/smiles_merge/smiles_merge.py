@@ -148,9 +148,3 @@ def run_main_smiles_merge(vars, lig_string_1, lig_string_2):
     ligand_new_smiles = process_ligand_new_mol(ligand_new_mol)
 
     return ligand_new_smiles
-
-
-
-
-
-

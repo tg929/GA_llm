@@ -55,18 +55,18 @@ def main():
     base_smiles = []
     with open(args.source_compound_file, 'r') as f:
         base_smiles = [line.split()[0].strip() for line in f]
-        print(len(base_smiles))
+        #print(len(base_smiles))
     # 加载GPT生成分子数据集
     with open(args.llm_generation_file, 'r') as f:
         base_smiles_tol = base_smiles + [line.strip() for line in f if line.strip()]  # 并且合并第二个数据集
-        print(len(base_smiles_tol))
+        #print(len(base_smiles_tol))
                       
     
     initial_population = list(base_smiles_tol)  # 合并初始种群   
-    print(len(initial_population))
+    #print(len(initial_population))
     # #初始种群0(只有base_smiles)
-    initial_population_0 = list(base_smiles)#只有原始数据集合
-    print(len(initial_population_0))
+    #initial_population_0 = list(base_smiles)#只有原始数据集合
+    #print(len(initial_population_0))
     
     
     # 初始化评估器(四个计算量)
@@ -90,27 +90,23 @@ def main():
     'max_time_mcs_prescreen': 1, #MCS预筛选最大时间（秒）
     'max_time_mcs_thorough': 1,#MCS详细计算阶段最大时间（秒）
 
-    'protanate_step': True,  #是否执行质子化步骤
+    'protanate_step': False,  #是否执行质子化步骤
     'number_of_crossovers': args.crossover_attempts,
-    #'convert_glucose':False,#是否将葡萄糖转换为葡萄糖酸（线性表示）
-
         #在smiles_merge.run_main_smiles_merge()中用到
-    'filter_object_dict': {},#过滤对象字典
-    #'rxn_library': 'click_chem_rxns',  # 反应库参数
-    'max_variants_per_compound': 1,    # 每个化合物最大变体数 
-     
+    'filter_object_dict': {},#过滤对象字典     
     # 'parallelizer': None,     
     # 'printers': None,
     'debug_mode': False,
 
     #构象生成
         #在Filter.run_filter_on_just_smiles()中用到
-    'gypsum_timeout_limit': 120.0, #分子构象生成超时时间限制（秒）
-    'gypsum_thoroughness': 3, #构象生成尝试次数
+    'gypsum_timeout_limit': 15.0, #分子构象生成超时时间限制（秒）
+    #'gypsum_thoroughness': 3, 
+    "--max_variants_per_compound":3,#number of conformers made per ligand.
     #物化参数
-    # 'min_ph': 6.4,  #最小pH值（用于质子化状态）
-    # 'max_ph': 8.4, #最大pH值
-    # 'pka_precision': 1.0    #pKa精度    
+    'min_ph': 6.4,  #最小pH值（用于质子化状态）
+    'max_ph': 8.4, #最大pH值
+    'pka_precision': 1.0    #pKa精度    
     }
 
     with tqdm(total=args.crossover_attempts, desc="Performing crossovers") as pbar:

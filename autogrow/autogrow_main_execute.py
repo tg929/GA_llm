@@ -13,7 +13,6 @@ import shutil
 import autogrow.docking.execute_docking as DockingClass
 import autogrow.operators.operations as operations
 import autogrow.docking.concatenate_files as concatenate_files
-from autogrow.model import Ligand2D
 
 def main_execute(vars):
     """
@@ -49,20 +48,6 @@ def main_execute(vars):
         raise Exception("This simulation has already been completed to the user defined number \
                 of generations. Please check your user variables.")
 
-    ##########################################################################################
-    ##########################################################################################
-    ### policy network 
-    mutate_ligand_select_policy_net = Ligand2D() 
-    mutate_reaction_select_policy_net = Ligand2D()
-    crossover_ligand1_policy_net = Ligand2D() 
-    crossover_ligand2_policy_net = Ligand2D()
-
-    opt1 = torch.optim.Adam(mutate_ligand_select_policy_net.parameters(), lr=1e-3)
-    opt2 = torch.optim.Adam(mutate_reaction_select_policy_net.parameters(), lr=1e-3)
-    opt3 = torch.optim.Adam(crossover_ligand1_policy_net.parameters(), lr=1e-3)
-    opt4 = torch.optim.Adam(crossover_ligand2_policy_net.parameters(), lr=1e-3)
-    ##########################################################################################
-    ##########################################################################################
     # This is the main loop which will control and execute all commands This
     # is broken into 3 main sections:
     # 1)  operations which populating the new generation with ligands which
@@ -79,16 +64,10 @@ def main_execute(vars):
         print(current_generation_dir)
         sys.stdout.flush()
 
-
-        ##### 0-th generation 
         if current_generation_number == 0 and vars["use_docked_source_compounds"] is True:
             if os.path.exists(current_generation_dir + os.sep + "generation_0_ranked.smi") is True:
                 continue
 
-            ##################################################
-            #################### main  #######################
-            ##################################################
-            ##### A. populate_generation 
             already_docked, smile_file_new_gen, new_gen_ligands_list = operations.populate_generation_zero(vars, generation_num=0)
             sys.stdout.flush()
 
@@ -96,23 +75,14 @@ def main_execute(vars):
                 # Run file conversions of PDB to docking specific file type
                 # and Begin Docking unweighted_ranked_smile_file is the file
                 # name where the unweighted ranked but score .smi file resides
-                ##########################################
-                ##### B. docking 
-                ##########################################
                 unweighted_ranked_smile_file = DockingClass.run_docking_common(
                     vars, current_generation_number,
                     current_generation_dir, smile_file_new_gen)
 
         else:
-            ##################################################
-            #################### main  #######################
-            ##################################################
-            ##### A. populate_generation 
-            smile_file_new_gen, new_gen_ligands_list = operations.populate_generation(vars, current_generation_number, 
-                                                                                    mutate_ligand_select_policy_net, mutate_reaction_select_policy_net, 
-                                                                                    crossover_ligand1_policy_net, crossover_ligand2_policy_net, )
-            ## smiles -> sdf -> pdb 
+            smile_file_new_gen, new_gen_ligands_list = operations.populate_generation(vars, current_generation_number)
             sys.stdout.flush()
+
             if new_gen_ligands_list is None:
                 raise ValueError("Population failed to make enough mutants or crossovers... \
                                     Errors could include not enough diversity, too few seeds to the generation, \
@@ -122,10 +92,6 @@ def main_execute(vars):
             # Run file conversions of PDB to docking specific file type and
             # Begin Docking unweighted_ranked_smile_file is the file name
             # where the unweighted ranked but score .smi file resides
-            ##########################################
-            ##### B. docking 
-            ##########################################
-            ## pdb -> pdbqt 
             unweighted_ranked_smile_file = DockingClass.run_docking_common(vars, current_generation_number, current_generation_dir, smile_file_new_gen)
 
         # Delete all temporary files; Skip if in Debugging Mode
@@ -253,15 +219,7 @@ def determine_current_gen(output_directory):
         printout = "Renaming folder: {} \
                     to: {}".format(folder_path, failed_folder_rename)
         print(printout)
-
-###################################
-### main 
-###################################
-
-
-
-
-
+#
 
 def find_last_generation(folder_path_string_no_gen):
     """

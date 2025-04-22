@@ -2,6 +2,7 @@
 This script handles the docking and file conversion for docking.
 """
 import __future__
+
 import os
 
 from autogrow.docking.docking_class.get_child_class import get_all_subclasses
@@ -67,14 +68,6 @@ def pick_run_conversion_class_dict(conversion_choice):
 def run_docking_common(vars, current_gen_int, current_generation_dir,
                        smile_file_new_gen):
     """
-    where is SMILES -> pdb 
-    
-    A. pdb -> pdbqt
-
-    B. run docking 
-
-    ---------------------
-
     This section runs the functions common to all Docking programs.
 
     IF ONE INCORPORATES A NEW DOCKING SOFTWARE, CONFIRM THAT ITS INPUT/OUTPUTS
@@ -112,69 +105,92 @@ def run_docking_common(vars, current_gen_int, current_generation_dir,
         temp_vars[key] = vars[key]
 
     file_conversion_class_object = pick_run_conversion_class_dict(conversion_choice)
-    file_conversion_class_object = file_conversion_class_object(temp_vars, receptor, test_boot=False)
+    file_conversion_class_object = file_conversion_class_object(
+        temp_vars, receptor, test_boot=False
+    )
 
     dock_class = pick_docking_class_dict(dock_choice)
-    docking_object = dock_class(temp_vars, receptor, file_conversion_class_object, test_boot=False)
+    docking_object = dock_class(
+        temp_vars, receptor, file_conversion_class_object, test_boot=False
+    )
 
     if vars["docking_executable"] is None:
         docking_executable = docking_object.get_docking_executable_file(temp_vars)
         vars["docking_executable"] = docking_executable
-    ##### vina or Qvina 
 
     # Find PDB's
     pdbs_in_folder = docking_object.find_pdb_ligands(current_generation_pdb_dir)
-    job_input_convert_lig = tuple([tuple([docking_object, pdb]) for pdb in pdbs_in_folder])
+    job_input_convert_lig = tuple(
+        [tuple([docking_object, pdb]) for pdb in pdbs_in_folder]
+    )
 
-    ##############################################################
-    ##### part A. ########
-    # print("####################")
-    # print("Convert Ligand from PDB to PDBQT format")
-    smiles_names_failed_to_convert = vars["parallelizer"].run(job_input_convert_lig, lig_convert_multithread)
+    print("####################")
+    print("Convert Ligand to PDBQT format Begun")
+    smiles_names_failed_to_convert = vars["parallelizer"].run(
+        job_input_convert_lig, lig_convert_multithread
+    )
 
-    ########### print #############
-    # deleted_smiles_names_list_convert = [x for x in smiles_names_failed_to_convert if x is not None]
-    # deleted_smiles_names_list_convert = list(set(deleted_smiles_names_list_convert))
-    # if len(deleted_smiles_names_list_convert) != 0:
-    #     print("THE FOLLOWING LIGANDS WHICH FAILED TO CONVERT:")
-    #     print(deleted_smiles_names_list_convert)
-    # print("####################")
+    print("Convert Ligand to PDBQT format Completed")
+    deleted_smiles_names_list_convert = [
+        x for x in smiles_names_failed_to_convert if x is not None
+    ]
+    deleted_smiles_names_list_convert = list(set(deleted_smiles_names_list_convert))
 
+    if len(deleted_smiles_names_list_convert) != 0:
+        print("THE FOLLOWING LIGANDS WHICH FAILED TO CONVERT:")
+        print(deleted_smiles_names_list_convert)
+    print("####################")
 
     # Docking the ligands which converted to PDBQT Find PDBQT's
     pdbqts_in_folder = docking_object.find_converted_ligands(current_generation_pdb_dir)
 
-    job_input_dock_lig = tuple([tuple([docking_object, pdbqt]) for pdbqt in pdbqts_in_folder])
-    #############################################################
-    ###### part B. #######
-    # print("####################")
-    # print("Docking Begun")
-    #############################
-    ########### main ############
-    #############################
-    smiles_names_failed_to_dock = vars["parallelizer"].run(job_input_dock_lig, run_dock_multithread)
-    # print("Docking Completed")
-    # print("####################")
+    job_input_dock_lig = tuple(
+        [tuple([docking_object, pdbqt]) for pdbqt in pdbqts_in_folder]
+    )
+    print("####################")
+    print("Docking Begun")
+    smiles_names_failed_to_dock = vars["parallelizer"].run(
+        job_input_dock_lig, run_dock_multithread
+    )
 
+    print("")
+    # print("")
+    # print("")
+    print("Docking Completed")
+    print("####################")
 
-    ######################################
-    ############### print ##############
-    deleted_smiles_names_list_dock = [x for x in smiles_names_failed_to_dock if x is not None]
+    deleted_smiles_names_list_dock = [
+        x for x in smiles_names_failed_to_dock if x is not None
+    ]
     deleted_smiles_names_list_dock = list(set(deleted_smiles_names_list_dock))
-    # print("THE FOLLOWING LIGANDS WHICH FAILED TO DOCK:", deleted_smiles_names_list_dock)
-    # print("####################")
-    deleted_smiles_names_list = deleted_smiles_names_list_convert + deleted_smiles_names_list_dock
-    if len(deleted_smiles_names_list) != 0:
-        pass 
-        # print("\nTHE FOLLOWING LIGANDS WHERE DELETED FOR FAILURE TO CONVERT OR DOCK:")
-        # print(deleted_smiles_names_list)
 
-    ###################################################
-    ############## part B2. retrieve the results 
-    # print("#################### save results #####################")
-    # print("\nBegin Ranking and Saving results")
-    unweighted_ranked_smile_file = docking_object.rank_and_save_output_smi(vars, current_generation_dir, current_gen_int, smile_file_new_gen, deleted_smiles_names_list)
-    # print("\nCompleted Ranking and Saving results")
+    if len(deleted_smiles_names_list_dock) != 0:
+        print("THE FOLLOWING LIGANDS WHICH FAILED TO DOCK:")
+        print(deleted_smiles_names_list_dock)
+
+    print("####################")
+    deleted_smiles_names_list = (
+        deleted_smiles_names_list_convert + deleted_smiles_names_list_dock
+    )
+
+    if len(deleted_smiles_names_list) != 0:
+        print("")
+        print("THE FOLLOWING LIGANDS WHERE DELETED FOR FAILURE TO CONVERT OR DOCK:")
+        print(deleted_smiles_names_list)
+
+    print("#################### ")
+    print("")
+    print("Begin Ranking and Saving results")
+    unweighted_ranked_smile_file = docking_object.rank_and_save_output_smi(
+        vars,
+        current_generation_dir,
+        current_gen_int,
+        smile_file_new_gen,
+        deleted_smiles_names_list,
+    )
+    print("")
+    print("Completed Ranking and Saving results")
+    print("")
 
     return unweighted_ranked_smile_file
 
@@ -213,10 +229,6 @@ def run_dock_multithread(docking_object, pdb):
         docking failed)
     """
 
-    # print("Attempt to Dock: ", pdb)
+    print("Attempt to Dock complete: ", pdb)
     failed_smiles_names = docking_object.run_dock(pdb)
-    # print('------------- run_dock_multithread in execute_docking.py -----------')
     return failed_smiles_names
-
-
-

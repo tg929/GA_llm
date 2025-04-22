@@ -23,12 +23,12 @@ from rdkit.Chem import rdFMCS
 # Disable the unnecessary RDKit warnings
 rdkit.RDLogger.DisableLog("rdApp.*")
 
-#其他模块
-import autogrow.operators.filter.execute_filters as Filter  
-import autogrow.operators.crossover.smiles_merge.smiles_merge as smiles_merge  
+
+import autogrow.operators.filter.execute_filters as Filter
+import autogrow.operators.crossover.smiles_merge.smiles_merge as smiles_merge
 import autogrow.operators.convert_files.gypsum_dl.gypsum_dl.MolObjectHandling as MOH
 
-## __all__ = ['make_crossovers'] 
+
 
 
 def test_for_mcs(vars, mol_1, mol_2):
@@ -119,14 +119,13 @@ def find_random_lig2(vars, ligands_list, ligand1_pair):
 
     while count < len(ligands_list) - 1:
         rand_num = shuffled_num_list[count]
-        mol2_pair = ligands_list[rand_num]#随机选择，与lig_1交叉
+        mol2_pair = ligands_list[rand_num]
 
-        if mol2_pair[0] == lig_1_string:#防止自己和自己交叉
+        if mol2_pair[0] == lig_1_string:
             count = count + 1
             continue
 
-        # Convert lig_2 into an RDkit mol
-        #lig_2是随机选择的（在种群中），lig_1是来自种群，但是交叉之前是确定好的，来自输入的ligand1_pair[0]
+        # Convert lig_1 into an RDkit mol
         lig_2_string = mol2_pair[0]
         lig2_mol = convert_mol_from_smiles(lig_2_string)
 
@@ -134,7 +133,8 @@ def find_random_lig2(vars, ligands_list, ligand1_pair):
             count = count + 1
             continue
 
-        # it converts and it is not Ligand1. now lets test for a common substructure
+        # it converts and it is not Ligand1. now lets test for a common
+        # substructure
         if test_for_mcs(vars, lig1_mol, lig2_mol) is None:
             count = count + 1
             continue
@@ -176,7 +176,6 @@ def convert_mol_from_smiles(smiles_string):
 #########################
 #### RUN MAIN PARTS #####
 #########################
-# __all__ = ['make_crossovers']  
 def make_crossovers(vars, generation_num, number_of_processors,
     num_crossovers_to_make, list_previous_gen_smiles, new_crossover_smiles_list):
     """
@@ -236,7 +235,9 @@ def make_crossovers(vars, generation_num, number_of_processors,
             if num_to_make < number_of_processors:
                 num_to_make = number_of_processors
 
-            smile_pairs = [react_list.pop() for x in range(num_to_make) if len(react_list) > 0]
+            smile_pairs = [
+                react_list.pop() for x in range(num_to_make) if len(react_list) > 0
+            ]
 
             # smile_inputs = [x[0] for x in smile_pairs]
             # smile_names = [x[1] for x in smile_pairs]
@@ -256,11 +257,7 @@ def make_crossovers(vars, generation_num, number_of_processors,
             # Lig2_smile_pair = ["NCCCO","zinc456"]
             # Lig1 and lig 2 were used to generate the ligand_new_smiles
 
-
-            #######################################
-            #########  main crossover  ############
-            #######################################
-            results = vars["parallelizer"].run(job_input, do_crossovers_smiles_merge)   #################### main crossover ################
+            results = vars["parallelizer"].run(job_input, do_crossovers_smiles_merge)
             results = [x for x in results if x is not None]
 
             for index, i in enumerate(results):
@@ -413,21 +410,20 @@ def do_crossovers_smiles_merge(vars, lig1_smile_pair, ligands_list):
     counter = 0
     while counter < 3:
         # run SmilesMerge
-        ligand_new_smiles = smiles_merge.run_main_smiles_merge(vars, ligand_1_string, ligand_2_string)
+        ligand_new_smiles = smiles_merge.run_main_smiles_merge(
+            vars, ligand_1_string, ligand_2_string
+        )
 
         if ligand_new_smiles is None:
             counter = counter + 1
         else:
             # Filter Here
-            pass_or_not = Filter.run_filter_on_just_smiles(ligand_new_smiles, vars["filter_object_dict"])
+            pass_or_not = Filter.run_filter_on_just_smiles(
+                ligand_new_smiles, vars["filter_object_dict"]
+            )
             if pass_or_not is False:
 
                 counter = counter + 1
             else:
                 return [ligand_new_smiles, lig1_smile_pair, lig_2_pair]
     return None
-
-
-
-
-
