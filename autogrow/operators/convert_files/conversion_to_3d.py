@@ -89,6 +89,9 @@ def convert_to_3d(vars, smi_file, smile_file_directory):
     """
 
     print("CONVERTING SMILES TO SDF")
+    print(f"Converting {smi_file} to 3D...")
+    print(f"Gypsum thorougness: {vars.get('gypsum_thoroughness')}")
+    print(f"Max variants: {vars.get('max_variants_per_compound')}")
     # convert smiles in an .SMI file to sdfs using gypsum
     gypsum_output_folder_path = convert_smi_to_sdfs_with_gypsum(
         vars, smi_file, smile_file_directory
@@ -123,6 +126,8 @@ def convert_smi_to_sdfs_with_gypsum(vars, gen_smiles_file, smile_file_directory)
 
     max_variants_per_compound = vars["max_variants_per_compound"]
     gypsum_thoroughness = vars["gypsum_thoroughness"]
+       # 在convert_to_3d函数中
+    print(f"Gypsum thorougness: {vars.get('gypsum_thoroughness')}")
     min_ph = vars["min_ph"]
     max_ph = vars["max_ph"]
     pka_precision = vars["pka_precision"]
@@ -337,6 +342,8 @@ def run_gypsum_multiprocessing(gypsum_log_path, gypsum_params,
 
     try:
         with StdoutRedirection(log_file):
+            if isinstance(gypsum_thoroughness, str):
+                gypsum_thoroughness = int(gypsum_thoroughness)
             func_timeout(gypsum_timeout_limit, prepare_molecules, args=(gypsum_params,))
 
         sys.stdout.flush()
@@ -427,7 +434,16 @@ def convert_sdf_to_pdbs(vars, gen_folder_path, sdfs_folder_path):
     if len(files) == 0:
         printout = "\nThere are no sdf's to convert to PDB's. There may be an issue with Gypsum.\n"
         print(printout)
-        raise Exception(printout)
+        #raise Exception(printout)
+        pdb_subfolder_path = gen_folder_path + "PDBs" + os.sep
+        if not os.path.isdir(pdb_subfolder_path):
+            os.makedirs(pdb_subfolder_path)
+        
+        # 创建一个空白的标记文件表示此目录是故意为空
+        with open(pdb_subfolder_path + "NO_VALID_SDFS.txt", "w") as f:
+            f.write("所有分子在Gypsum-DL处理中超时失败,无SDF生成。")
+            
+        return  # 返回而不是抛出异常
 
     # create a new subfolder if one doesn't already exist. folder will be with
     # the generation and will be titled PDBs pdb_subfolder_path will become

@@ -1,0 +1,4 @@
+[BOS]*c1ccc2cc(C#C)c3ccccc3c2c1F[SEP]*OC[EOS]
+[BOS]*C(=O)N=[N+]=[N-][SEP]*c1ccc(F)cc1F[EOS]
+[BOS]*C(=O)N=[N+]=[N-][SEP]*c1ccc(F)c2ccccc12[EOS]
+[BOS]*CC#C[SEP]*S*[SEP]*c1cccc2ccccc12[EOS]

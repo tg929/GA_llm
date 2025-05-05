@@ -25,7 +25,9 @@ demo_GAoperation.py - 分子进化与生成流程整合脚本
 import os
 os.environ["CUDA_VISIBLE_DEVICES"] = "1,2,3" 
 import __future__
-
+import sys
+PROJECT_ROOT = "/data1/tgy/GA_llm"
+sys.path.insert(0, PROJECT_ROOT)
 import argparse
 import copy
 import datetime
@@ -58,6 +60,7 @@ PARSER.add_argument(
     "--filename_of_receptor",
     "-r",
     metavar="receptor.pdb",
+   
     default="/data1/tgy/GA_llm/tutorial/PARP/4r6eA_PARP1_prepared.pdb",
     help="The path to the receptor file. Should be .pdb file.",
 )
@@ -102,7 +105,7 @@ PARSER.add_argument(
     "--root_output_folder",
     "-o",
     type=str,
-    default="/data1/tgy/GA_llm/tutorial/PARP/output_demoGA",
+    default="/data1/tgy/GA_llm/output_GA_llm",
     help="The Path to the folder which all output files will be placed.",
 )
 #初始种群！记得仔细看下这里！
@@ -110,7 +113,8 @@ PARSER.add_argument(
     "--source_compound_file",
     "-s",
     type=str,
-    default="/data1/tgy/GA_llm/tutorial/PARP/PARP_source_compounds.smi",
+             #/data1/tgy/GA_llm/datasets/source_compounds/naphthalene_smiles.smi
+    default="/data1/tgy/GA_llm/datasets/source_compounds/naphthalene_smiles.smi",
     help="PATH to the file containing the source compounds. It must be \
     tab-delineated .smi file. These ligands will seed the first generation.",
 )
@@ -458,6 +462,7 @@ PARSER.add_argument(
 PARSER.add_argument(
     "--mgltools_directory",
     metavar="mgltools_directory",
+             #/data1/tgy/GA_llm/mgltools_x86_64Linux2_1.5.6
     default="/data1/tgy/GA_llm/mgltools_x86_64Linux2_1.5.6/",
     help="Required if using MGLTools conversion option \
     (conversion_choice=MGLToolsConversion) \
@@ -480,6 +485,7 @@ PARSER.add_argument(
 PARSER.add_argument(
     "--prepare_receptor4.py",
     metavar="prepare_receptor4.py",
+    default="/data1/tgy/GA_llm/mgltools_x86_64Linux2_1.5.6/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_receptor4.py",
     required=False,
     help="/data1/tgy/GA_llm/mgltools_x86_64Linux2_1.5.6/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_receptor4.py",
 )
@@ -586,9 +592,9 @@ PARSER.add_argument(
 PARSER.add_argument(
     "--gypsum_thoroughness",
     "-t",
-    #type=int,  #修改了
-    type=str,
-    default=10,
+    type=int,  #修改了
+    #type=str,
+    default=3,
     help="How widely Gypsum-DL will search for \
     low-energy conformers. Larger values increase \
     run times but can produce better results. \

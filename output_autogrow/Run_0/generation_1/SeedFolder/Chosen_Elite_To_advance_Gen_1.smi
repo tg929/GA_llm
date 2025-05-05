@@ -1,0 +1,10 @@
+C#Cc1cc2ccccc2c2ccccc12	naphthalene_80
+N=[N+]=NCOC(=O)Oc1ccc2ccccc2c1	naphthalene_29
+CC#CCS(=O)(=O)c1ccc2ccccc2c1	naphthalene_92
+[N-]=[N+]=NCC[S](O)c1ccc2ccccc2c1	naphthalene_115
+C#Cc1ccc2cc(OC)ccc2c1	naphthalene_73
+N=[N+]=Nc1c(Cl)c(Cl)c(O)c2ccccc12	naphthalene_13
+N=[N+]=Nc1ccc(N=[N+]=N)c2c(O)cccc12	naphthalene_44
+C#Cc1ccc2ccc3cccc4ccc1c2c34	naphthalene_78
+O=C([O-])C#Cc1ccc2ccccc2c1	naphthalene_85
+N=[N+]=Nc1ccc(F)c2ccccc12	naphthalene_60

@@ -99,14 +99,14 @@ def Test(model, tokenizer, max_seq_len, temperature, top_k, stream, rp, kv_cache
         f"valid ratio:{len(valid_answer_list)}/{len(complete_answer_list)}={len(valid_answer_list) / len(complete_answer_list)}")
     if not os.path.exists(output_file_path):
         os.mkdir(output_file_path)
-    with open(os.path.join(output_file_path, f'crossovered0_fragsCom_new_{seed}.smi'), "w") as w:
+    with open(os.path.join(output_file_path, f'crossovered{seed}_fragsCom_new_{seed}.smi'), "w") as w:
         for j in complete_answer_list:
             if not isinstance(j, str):
                 j = str(j)
             w.write(j)
             w.write("\n")
     w.close()
-    with open(os.path.join(output_file_path, f'crossovered0_frags_new_{seed}.smi'), "w") as w:
+    with open(os.path.join(output_file_path, f'crossovered{seed}_frags_new_{seed}.smi'), "w") as w:
         for j in valid_answer_list:
             w.write(j)
             w.write("\n")
@@ -133,7 +133,7 @@ def main_test(args):
 
     mconf = GPTConfig(vocab_size=tokenizer.vocab_size, n_layer=12, n_head=12, n_embd=768)
     model = GPT(mconf).to(device)
-    checkpoint = torch.load(f'/data1/tgy/GA_llm/fragment_GPT/weights/fragpt.pt', weights_only=True)   
+    checkpoint = torch.load(f'/data1/tgy/GA_llm/fragment_GPT/weights/fragpt.pt')   
     model.load_state_dict(checkpoint)
     start_time = time.time()
     Test(model, tokenizer, max_seq_len=1024, temperature=1.0, top_k=None, stream=False, rp=1., kv_cache=True,

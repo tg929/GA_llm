@@ -1,0 +1,5 @@
+['*c1cc(C#C)c2ccccc2c1Cl', '*c1ccccn1']
+['*c1cc2ccc3cccc4ccc(c1C#C)c2c34', '*CCCC']
+['*c1cc(C#C)ccc1Cl', '*O*', '*C(*)=O', '*c1cnc3c(c1)[C@H]1CC[C@H]3C1']
+['*[C@H](C)[NH+]=[N+]=[N-]', '*[C@@H]1CC[C@H](*)C1', '*C(=O)[O-]']
+['*C(O)(C#C)C(C)(C)C', '*c1ccc(O)c(*)c1', '*OC']

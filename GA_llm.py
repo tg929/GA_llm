@@ -830,3 +830,14 @@ def main():
 
 if __name__ == "__main__":
     main() 
+
+
+
+    '''
+执行命令
+    base
+     python GA_llm.py --output_dir /data1/tgy/GA_llm/output/test/  --LipinskiLenientFilter
+    更改:选择num进行交叉,突变
+     python GA_llm_finetune.py --output_dir /data1/tgy/GA_llm/output_finetune --num_crossovers 50 --num_mutations 50 --top_mols_to_seed_next_generation_first_generation 10  --LipinskiLenientFilter
+    
+    '''

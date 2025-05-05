@@ -1,0 +1,1534 @@
+2025-04-28 19:23:27,298 - INFO - 开始第0代(对初始种群进行处理后对接)
+2025-04-28 19:23:27,298 - INFO - 开始第 0 代进化
+2025-04-28 19:23:27,299 - INFO - Generation 0: 对初始文件进行处理后进行对接
+2025-04-28 19:23:27,299 - INFO - 开始分子分解: /data1/tgy/GA_llm/datasets/source_compounds/naphthalene_smiles.smi
+2025-04-28 19:23:27,993 - INFO - 分子分解完成，生成文件: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_gen0.smi
+2025-04-28 19:23:27,993 - INFO - 开始GPT生成: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_gen0.smi
+2025-04-28 19:24:55,734 - INFO - GPT生成完成,输出文件: /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_0.smi
+2025-04-28 19:24:55,734 - INFO - 开始分子过滤: /data1/tgy/GA_llm/datasets/source_compounds/naphthalene_smiles.smi
+2025-04-28 19:24:55,734 - INFO - 执行过滤命令: python /data1/tgy/GA_llm/operations/filter/filter_demo.py --input /data1/tgy/GA_llm/datasets/source_compounds/naphthalene_smiles.smi --output /data1/tgy/GA_llm/output_optimized/generation_0/generation_0_filtered.smi --No_Filters
+2025-04-28 19:24:59,925 - INFO - 分子过滤完成，生成文件: /data1/tgy/GA_llm/output_optimized/generation_0/generation_0_filtered.smi
+2025-04-28 19:24:59,925 - INFO - 开始分子对接: /data1/tgy/GA_llm/output_optimized/generation_0/generation_0_filtered.smi, 处理器数量: -1, 模式: multithreading
+2025-04-28 19:24:59,925 - INFO - 自动设置使用所有可用的CPU核心: 128
+2025-04-28 19:24:59,925 - INFO - 使用并行模式进行对接，处理器数量: 128
+2025-04-28 19:24:59,926 - INFO - 共有 115 个分子需要对接
+2025-04-28 19:24:59,926 - INFO - 将 115 个分子分为 115 批进行处理，每批大约 1 个分子
+2025-04-28 19:24:59,926 - INFO - 使用多线程模式，线程数: 128
+2025-04-28 19:25:01,003 - WARNING - 分子 17 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:01,225 - WARNING - 分子 3 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:01,404 - WARNING - 分子 38 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:01,405 - WARNING - 分子 0 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:01,502 - WARNING - 分子 9 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:01,569 - WARNING - 分子 32 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:01,748 - WARNING - 分子 7 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:01,750 - WARNING - 分子 5 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:01,755 - WARNING - 分子 39 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:01,855 - WARNING - 分子 23 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:01,888 - WARNING - 分子 16 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:01,890 - WARNING - 分子 1 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:01,941 - WARNING - 分子 36 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:01,942 - WARNING - 分子 27 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:01,943 - WARNING - 分子 22 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:01,944 - WARNING - 分子 19 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:01,944 - WARNING - 分子 8 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,005 - WARNING - 分子 4 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,012 - WARNING - 分子 10 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,019 - WARNING - 分子 35 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,038 - WARNING - 分子 15 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,110 - WARNING - 分子 2 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,143 - WARNING - 分子 28 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,289 - WARNING - 分子 12 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,151 - WARNING - 分子 54 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,156 - WARNING - 分子 46 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,144 - WARNING - 分子 13 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,291 - WARNING - 分子 18 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,295 - WARNING - 分子 6 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,313 - WARNING - 分子 11 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,313 - WARNING - 分子 58 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,314 - WARNING - 分子 49 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,390 - WARNING - 分子 48 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,394 - WARNING - 分子 29 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,484 - WARNING - 分子 40 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,489 - INFO - 已完成: 5/115 (4.3%), 成功: 0/5 (0.0% 成功率), 耗时: 2.6秒, 预计剩余: 56.4秒
+2025-04-28 19:25:02,490 - WARNING - 分子 47 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,526 - WARNING - 分子 26 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,564 - WARNING - 分子 33 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,570 - WARNING - 分子 41 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,570 - WARNING - 分子 14 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,572 - WARNING - 分子 31 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,587 - WARNING - 分子 55 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,588 - WARNING - 分子 21 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,590 - WARNING - 分子 24 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,591 - WARNING - 分子 25 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,591 - WARNING - 分子 30 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,607 - WARNING - 分子 45 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,612 - INFO - 已完成: 10/115 (8.7%), 成功: 0/10 (0.0% 成功率), 耗时: 2.7秒, 预计剩余: 28.2秒
+2025-04-28 19:25:02,614 - INFO - 已完成: 15/115 (13.0%), 成功: 0/15 (0.0% 成功率), 耗时: 2.7秒, 预计剩余: 17.9秒
+2025-04-28 19:25:02,614 - INFO - 已完成: 20/115 (17.4%), 成功: 0/20 (0.0% 成功率), 耗时: 2.7秒, 预计剩余: 12.8秒
+2025-04-28 19:25:02,614 - INFO - 已完成: 25/115 (21.7%), 成功: 0/25 (0.0% 成功率), 耗时: 2.7秒, 预计剩余: 9.7秒
+2025-04-28 19:25:02,615 - INFO - 已完成: 30/115 (26.1%), 成功: 0/30 (0.0% 成功率), 耗时: 2.7秒, 预计剩余: 7.6秒
+2025-04-28 19:25:02,615 - INFO - 已完成: 35/115 (30.4%), 成功: 0/35 (0.0% 成功率), 耗时: 2.7秒, 预计剩余: 6.1秒
+2025-04-28 19:25:02,616 - INFO - 已完成: 40/115 (34.8%), 成功: 0/40 (0.0% 成功率), 耗时: 2.7秒, 预计剩余: 5.0秒
+2025-04-28 19:25:02,616 - INFO - 已完成: 45/115 (39.1%), 成功: 0/45 (0.0% 成功率), 耗时: 2.7秒, 预计剩余: 4.2秒
+2025-04-28 19:25:02,638 - WARNING - 分子 42 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,652 - WARNING - 分子 65 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,669 - WARNING - 分子 80 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,673 - INFO - 已完成: 50/115 (43.5%), 成功: 0/50 (0.0% 成功率), 耗时: 2.7秒, 预计剩余: 3.6秒
+2025-04-28 19:25:02,683 - WARNING - 分子 51 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,729 - WARNING - 分子 69 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,761 - WARNING - 分子 78 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,770 - WARNING - 分子 76 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,799 - WARNING - 分子 63 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,800 - INFO - 已完成: 55/115 (47.8%), 成功: 0/55 (0.0% 成功率), 耗时: 2.9秒, 预计剩余: 3.1秒
+2025-04-28 19:25:02,800 - WARNING - 分子 50 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,801 - WARNING - 分子 20 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,809 - WARNING - 分子 43 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,820 - WARNING - 分子 83 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,821 - WARNING - 分子 72 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,822 - INFO - 已完成: 60/115 (52.2%), 成功: 0/60 (0.0% 成功率), 耗时: 2.9秒, 预计剩余: 2.7秒
+2025-04-28 19:25:02,829 - WARNING - 分子 37 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,830 - WARNING - 分子 90 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,845 - WARNING - 分子 70 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,846 - WARNING - 分子 74 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,853 - WARNING - 分子 77 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,854 - WARNING - 分子 44 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,854 - INFO - 已完成: 65/115 (56.5%), 成功: 0/65 (0.0% 成功率), 耗时: 2.9秒, 预计剩余: 2.3秒
+2025-04-28 19:25:02,857 - WARNING - 分子 81 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,886 - WARNING - 分子 71 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,895 - WARNING - 分子 87 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,905 - WARNING - 分子 66 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,906 - INFO - 已完成: 70/115 (60.9%), 成功: 0/70 (0.0% 成功率), 耗时: 3.0秒, 预计剩余: 1.9秒
+2025-04-28 19:25:02,917 - WARNING - 分子 60 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,925 - WARNING - 分子 75 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,942 - WARNING - 分子 79 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:02,957 - WARNING - 分子 34 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,030 - WARNING - 分子 86 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,031 - WARNING - 分子 88 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,031 - INFO - 已完成: 75/115 (65.2%), 成功: 0/75 (0.0% 成功率), 耗时: 3.1秒, 预计剩余: 1.7秒
+2025-04-28 19:25:03,034 - WARNING - 分子 61 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,035 - WARNING - 分子 91 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,086 - WARNING - 分子 73 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,101 - WARNING - 分子 59 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,105 - INFO - 已完成: 80/115 (69.6%), 成功: 0/80 (0.0% 成功率), 耗时: 3.2秒, 预计剩余: 1.4秒
+2025-04-28 19:25:03,132 - WARNING - 分子 84 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,142 - WARNING - 分子 52 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,180 - WARNING - 分子 85 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,210 - WARNING - 分子 82 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,212 - WARNING - 分子 89 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,212 - INFO - 已完成: 85/115 (73.9%), 成功: 0/85 (0.0% 成功率), 耗时: 3.3秒, 预计剩余: 1.2秒
+2025-04-28 19:25:03,230 - WARNING - 分子 114 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,245 - WARNING - 分子 95 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,256 - WARNING - 分子 56 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,284 - WARNING - 分子 57 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,285 - WARNING - 分子 113 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,285 - INFO - 已完成: 90/115 (78.3%), 成功: 0/90 (0.0% 成功率), 耗时: 3.4秒, 预计剩余: 0.9秒
+2025-04-28 19:25:03,294 - WARNING - 分子 92 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,303 - WARNING - 分子 68 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,306 - WARNING - 分子 53 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,310 - WARNING - 分子 111 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,313 - WARNING - 分子 64 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,313 - INFO - 已完成: 95/115 (82.6%), 成功: 0/95 (0.0% 成功率), 耗时: 3.4秒, 预计剩余: 0.7秒
+2025-04-28 19:25:03,314 - WARNING - 分子 67 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,322 - WARNING - 分子 106 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,329 - WARNING - 分子 62 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,340 - WARNING - 分子 112 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,344 - WARNING - 分子 104 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,345 - INFO - 已完成: 100/115 (87.0%), 成功: 0/100 (0.0% 成功率), 耗时: 3.4秒, 预计剩余: 0.5秒
+2025-04-28 19:25:03,348 - WARNING - 分子 93 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,372 - WARNING - 分子 100 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,418 - WARNING - 分子 96 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,431 - WARNING - 分子 101 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,433 - WARNING - 分子 98 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,434 - INFO - 已完成: 105/115 (91.3%), 成功: 0/105 (0.0% 成功率), 耗时: 3.5秒, 预计剩余: 0.3秒
+2025-04-28 19:25:03,447 - WARNING - 分子 105 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,456 - WARNING - 分子 109 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,483 - WARNING - 分子 99 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,490 - WARNING - 分子 103 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,493 - WARNING - 分子 107 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,493 - INFO - 已完成: 110/115 (95.7%), 成功: 0/110 (0.0% 成功率), 耗时: 3.6秒, 预计剩余: 0.2秒
+2025-04-28 19:25:03,497 - WARNING - 分子 102 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,508 - WARNING - 分子 97 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,528 - WARNING - 分子 94 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,554 - WARNING - 分子 108 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,563 - WARNING - 分子 110 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:25:03,564 - INFO - 已完成: 115/115 (100.0%), 成功: 0/115 (0.0% 成功率), 耗时: 3.6秒, 预计剩余: 0.0秒
+2025-04-28 19:25:03,576 - INFO - 对接计算完成，总耗时: 3.65秒，平均每个分子: 0.03秒，总成功率: 0.0%
+2025-04-28 19:25:03,577 - INFO - 并行对接完成，成功对接 0/115 个分子，结果保存至: /data1/tgy/GA_llm/output_optimized/generation_0/generation_0_docked.smi
+2025-04-28 19:25:03,584 - INFO - 开始对接结果分析: /data1/tgy/GA_llm/output_optimized/generation_0/generation_0_docked.smi
+2025-04-28 19:25:03,877 - INFO - 对接结果分析完成，结果保存至: /data1/tgy/GA_llm/output_optimized/generation_0/generation_0_stats.txt
+2025-04-28 19:25:03,877 - WARNING - 对接结果中没有发现有效分数
+2025-04-28 19:25:03,877 - INFO - 第 0 代完成
+2025-04-28 19:25:03,877 - INFO - 第0代完成,耗时: 96.58秒
+2025-04-28 19:25:03,878 - INFO - 开始第 1 代进化
+2025-04-28 19:25:03,879 - INFO - 开始第 1 代进化
+2025-04-28 19:25:03,879 - ERROR - 上一代没有有效的对接结果，无法继续进化
+2025-04-28 19:25:03,880 - INFO - 第 1 代进化完成，耗时: 0.00秒
+2025-04-28 19:25:03,880 - INFO - 结果保存至: /data1/tgy/GA_llm/output_optimized/generation_1/generation_1_docked.smi
+2025-04-28 19:25:03,881 - INFO - 开始第 2 代进化
+2025-04-28 19:25:03,881 - INFO - 开始第 2 代进化
+2025-04-28 19:25:03,881 - ERROR - 上一代没有有效的对接结果，无法继续进化
+2025-04-28 19:25:03,881 - INFO - 第 2 代进化完成，耗时: 0.00秒
+2025-04-28 19:25:03,882 - INFO - 结果保存至: /data1/tgy/GA_llm/output_optimized/generation_2/generation_2_docked.smi
+2025-04-28 19:25:03,883 - INFO - 开始第 3 代进化
+2025-04-28 19:25:03,883 - INFO - 开始第 3 代进化
+2025-04-28 19:25:03,884 - ERROR - 上一代没有有效的对接结果，无法继续进化
+2025-04-28 19:25:03,884 - INFO - 第 3 代进化完成，耗时: 0.00秒
+2025-04-28 19:25:03,884 - INFO - 结果保存至: /data1/tgy/GA_llm/output_optimized/generation_3/generation_3_docked.smi
+2025-04-28 19:25:03,885 - INFO - 开始第 4 代进化
+2025-04-28 19:25:03,885 - INFO - 开始第 4 代进化
+2025-04-28 19:25:03,885 - ERROR - 上一代没有有效的对接结果，无法继续进化
+2025-04-28 19:25:03,885 - INFO - 第 4 代进化完成，耗时: 0.00秒
+2025-04-28 19:25:03,885 - INFO - 结果保存至: /data1/tgy/GA_llm/output_optimized/generation_4/generation_4_docked.smi
+2025-04-28 19:25:03,885 - INFO - 开始第 5 代进化
+2025-04-28 19:25:03,885 - INFO - 开始第 5 代进化
+2025-04-28 19:25:03,885 - ERROR - 上一代没有有效的对接结果，无法继续进化
+2025-04-28 19:25:03,886 - INFO - 第 5 代进化完成，耗时: 0.00秒
+2025-04-28 19:25:03,886 - INFO - 结果保存至: /data1/tgy/GA_llm/output_optimized/generation_5/generation_5_docked.smi
+2025-04-28 19:26:34,402 - INFO - 开始第0代(对初始种群进行处理后对接)
+2025-04-28 19:26:34,403 - INFO - 开始第 0 代进化
+2025-04-28 19:26:34,403 - INFO - Generation 0: 对初始文件进行处理后进行对接
+2025-04-28 19:26:34,403 - INFO - 开始分子分解: /data1/tgy/GA_llm/datasets/source_compounds/naphthalene_smiles.smi
+2025-04-28 19:26:35,095 - INFO - 分子分解完成，生成文件: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_gen0.smi
+2025-04-28 19:26:35,095 - INFO - 开始GPT生成: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_gen0.smi
+2025-04-28 19:28:02,159 - INFO - GPT生成完成,输出文件: /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_0.smi
+2025-04-28 19:28:02,160 - INFO - 开始分子过滤: /data1/tgy/GA_llm/datasets/source_compounds/naphthalene_smiles.smi
+2025-04-28 19:28:02,160 - WARNING - 没有指定任何过滤器参数，将使用默认过滤器
+2025-04-28 19:28:02,160 - INFO - 执行过滤命令: python /data1/tgy/GA_llm/operations/filter/filter_demo.py --input /data1/tgy/GA_llm/datasets/source_compounds/naphthalene_smiles.smi --output /data1/tgy/GA_llm/output_optimized/generation_0/generation_0_filtered.smi
+2025-04-28 19:28:06,538 - INFO - 分子过滤完成，生成文件: /data1/tgy/GA_llm/output_optimized/generation_0/generation_0_filtered.smi
+2025-04-28 19:28:06,538 - INFO - 开始分子对接: /data1/tgy/GA_llm/output_optimized/generation_0/generation_0_filtered.smi, 处理器数量: -1, 模式: multithreading
+2025-04-28 19:28:06,538 - INFO - 自动设置使用所有可用的CPU核心: 128
+2025-04-28 19:28:06,538 - INFO - 使用并行模式进行对接，处理器数量: 128
+2025-04-28 19:28:06,539 - INFO - 共有 115 个分子需要对接
+2025-04-28 19:28:06,539 - INFO - 将 115 个分子分为 115 批进行处理，每批大约 1 个分子
+2025-04-28 19:28:06,539 - INFO - 使用多线程模式，线程数: 128
+2025-04-28 19:28:07,966 - WARNING - 分子 3 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:08,079 - WARNING - 分子 21 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:08,473 - WARNING - 分子 12 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:08,622 - WARNING - 分子 11 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:08,657 - WARNING - 分子 54 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:08,710 - WARNING - 分子 4 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:08,744 - WARNING - 分子 6 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:08,802 - WARNING - 分子 5 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:08,815 - WARNING - 分子 8 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:08,838 - WARNING - 分子 60 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:08,842 - WARNING - 分子 32 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:08,931 - WARNING - 分子 9 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:08,929 - WARNING - 分子 2 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:08,931 - WARNING - 分子 1 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:08,933 - WARNING - 分子 7 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:08,857 - WARNING - 分子 0 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:08,934 - WARNING - 分子 33 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:08,934 - WARNING - 分子 23 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:08,983 - WARNING - 分子 36 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:08,984 - WARNING - 分子 35 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,316 - WARNING - 分子 49 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,196 - WARNING - 分子 17 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,352 - WARNING - 分子 39 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,258 - INFO - 已完成: 5/115 (4.3%), 成功: 0/5 (0.0% 成功率), 耗时: 2.7秒, 预计剩余: 59.8秒
+2025-04-28 19:28:09,279 - WARNING - 分子 10 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,280 - WARNING - 分子 38 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,315 - WARNING - 分子 22 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,363 - WARNING - 分子 27 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,251 - WARNING - 分子 13 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,358 - INFO - 已完成: 10/115 (8.7%), 成功: 0/10 (0.0% 成功率), 耗时: 2.8秒, 预计剩余: 29.6秒
+2025-04-28 19:28:09,375 - INFO - 已完成: 15/115 (13.0%), 成功: 0/15 (0.0% 成功率), 耗时: 2.8秒, 预计剩余: 18.9秒
+2025-04-28 19:28:09,379 - INFO - 已完成: 20/115 (17.4%), 成功: 0/20 (0.0% 成功率), 耗时: 2.8秒, 预计剩余: 13.5秒
+2025-04-28 19:28:09,379 - INFO - 已完成: 25/115 (21.7%), 成功: 0/25 (0.0% 成功率), 耗时: 2.8秒, 预计剩余: 10.2秒
+2025-04-28 19:28:09,380 - WARNING - 分子 51 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,005 - WARNING - 分子 14 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,380 - INFO - 已完成: 30/115 (26.1%), 成功: 0/30 (0.0% 成功率), 耗时: 2.8秒, 预计剩余: 8.1秒
+2025-04-28 19:28:09,396 - WARNING - 分子 16 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,398 - WARNING - 分子 44 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,422 - WARNING - 分子 25 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,449 - WARNING - 分子 28 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,477 - WARNING - 分子 15 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,479 - INFO - 已完成: 35/115 (30.4%), 成功: 0/35 (0.0% 成功率), 耗时: 2.9秒, 预计剩余: 6.7秒
+2025-04-28 19:28:09,512 - WARNING - 分子 20 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,534 - WARNING - 分子 30 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,561 - WARNING - 分子 56 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,569 - WARNING - 分子 37 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,572 - WARNING - 分子 19 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,572 - INFO - 已完成: 40/115 (34.8%), 成功: 0/40 (0.0% 成功率), 耗时: 3.0秒, 预计剩余: 5.7秒
+2025-04-28 19:28:09,645 - WARNING - 分子 55 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,662 - WARNING - 分子 29 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,796 - WARNING - 分子 31 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,824 - WARNING - 分子 50 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,825 - WARNING - 分子 95 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,826 - INFO - 已完成: 45/115 (39.1%), 成功: 0/45 (0.0% 成功率), 耗时: 3.3秒, 预计剩余: 5.1秒
+2025-04-28 19:28:09,829 - WARNING - 分子 18 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,844 - WARNING - 分子 78 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,847 - WARNING - 分子 34 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,849 - WARNING - 分子 24 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,873 - WARNING - 分子 40 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,873 - INFO - 已完成: 50/115 (43.5%), 成功: 0/50 (0.0% 成功率), 耗时: 3.3秒, 预计剩余: 4.3秒
+2025-04-28 19:28:09,883 - WARNING - 分子 26 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,890 - WARNING - 分子 41 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,892 - WARNING - 分子 47 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,915 - WARNING - 分子 52 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,924 - WARNING - 分子 58 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,925 - INFO - 已完成: 55/115 (47.8%), 成功: 0/55 (0.0% 成功率), 耗时: 3.4秒, 预计剩余: 3.7秒
+2025-04-28 19:28:09,925 - WARNING - 分子 42 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,935 - WARNING - 分子 59 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,960 - WARNING - 分子 46 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,985 - WARNING - 分子 72 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,987 - WARNING - 分子 67 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,989 - WARNING - 分子 61 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,995 - WARNING - 分子 70 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:09,997 - INFO - 已完成: 60/115 (52.2%), 成功: 0/60 (0.0% 成功率), 耗时: 3.5秒, 预计剩余: 3.2秒
+2025-04-28 19:28:10,004 - WARNING - 分子 77 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,004 - WARNING - 分子 73 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,005 - WARNING - 分子 45 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,009 - INFO - 已完成: 65/115 (56.5%), 成功: 0/65 (0.0% 成功率), 耗时: 3.5秒, 预计剩余: 2.7秒
+2025-04-28 19:28:10,018 - WARNING - 分子 64 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,024 - WARNING - 分子 82 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,038 - WARNING - 分子 74 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,040 - WARNING - 分子 76 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,050 - WARNING - 分子 57 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,050 - INFO - 已完成: 70/115 (60.9%), 成功: 0/70 (0.0% 成功率), 耗时: 3.5秒, 预计剩余: 2.3秒
+2025-04-28 19:28:10,054 - WARNING - 分子 53 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,059 - WARNING - 分子 43 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,075 - WARNING - 分子 87 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,085 - WARNING - 分子 63 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,086 - WARNING - 分子 105 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,087 - INFO - 已完成: 75/115 (65.2%), 成功: 0/75 (0.0% 成功率), 耗时: 3.5秒, 预计剩余: 1.9秒
+2025-04-28 19:28:10,091 - WARNING - 分子 108 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,092 - WARNING - 分子 83 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,094 - WARNING - 分子 68 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,096 - WARNING - 分子 62 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,100 - WARNING - 分子 48 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,103 - INFO - 已完成: 80/115 (69.6%), 成功: 0/80 (0.0% 成功率), 耗时: 3.6秒, 预计剩余: 1.6秒
+2025-04-28 19:28:10,107 - WARNING - 分子 66 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,131 - WARNING - 分子 75 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,134 - WARNING - 分子 81 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,146 - WARNING - 分子 69 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,155 - WARNING - 分子 109 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,160 - INFO - 已完成: 85/115 (73.9%), 成功: 0/85 (0.0% 成功率), 耗时: 3.6秒, 预计剩余: 1.3秒
+2025-04-28 19:28:10,164 - WARNING - 分子 90 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,167 - WARNING - 分子 100 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,168 - WARNING - 分子 71 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,172 - WARNING - 分子 79 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,184 - WARNING - 分子 89 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,185 - INFO - 已完成: 90/115 (78.3%), 成功: 0/90 (0.0% 成功率), 耗时: 3.6秒, 预计剩余: 1.0秒
+2025-04-28 19:28:10,190 - WARNING - 分子 84 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,197 - WARNING - 分子 85 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,198 - WARNING - 分子 94 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,199 - WARNING - 分子 113 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,201 - WARNING - 分子 110 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,203 - INFO - 已完成: 95/115 (82.6%), 成功: 0/95 (0.0% 成功率), 耗时: 3.7秒, 预计剩余: 0.8秒
+2025-04-28 19:28:10,207 - WARNING - 分子 86 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,224 - WARNING - 分子 91 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,232 - WARNING - 分子 107 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,236 - WARNING - 分子 97 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,238 - WARNING - 分子 103 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,238 - INFO - 已完成: 100/115 (87.0%), 成功: 0/100 (0.0% 成功率), 耗时: 3.7秒, 预计剩余: 0.6秒
+2025-04-28 19:28:10,242 - WARNING - 分子 65 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,247 - WARNING - 分子 96 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,257 - WARNING - 分子 80 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,265 - WARNING - 分子 101 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,297 - WARNING - 分子 92 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,298 - INFO - 已完成: 105/115 (91.3%), 成功: 0/105 (0.0% 成功率), 耗时: 3.8秒, 预计剩余: 0.4秒
+2025-04-28 19:28:10,300 - WARNING - 分子 93 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,311 - WARNING - 分子 104 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,313 - WARNING - 分子 112 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,314 - WARNING - 分子 99 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,331 - WARNING - 分子 102 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,332 - INFO - 已完成: 110/115 (95.7%), 成功: 0/110 (0.0% 成功率), 耗时: 3.8秒, 预计剩余: 0.2秒
+2025-04-28 19:28:10,345 - WARNING - 分子 88 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,370 - WARNING - 分子 111 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,370 - WARNING - 分子 106 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,373 - WARNING - 分子 114 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,415 - WARNING - 分子 98 对接失败: usage: docking_demo.py [-h] -i INPUT -r RECEPTOR -o OUTPUT -m MGLTOOLS
+                       [--max_failures MAX_FAILURES] [--center_x CENTER_X]
+                       [--center_y CENTER_Y] [--center_z CENTER_Z]
+                       [--size_x SIZE_X] [--size_y SIZE_Y] [--size_z SIZE_Z]
+docking_demo.py: error: unrecognized arguments: --exhaustiveness 12
+
+2025-04-28 19:28:10,416 - INFO - 已完成: 115/115 (100.0%), 成功: 0/115 (0.0% 成功率), 耗时: 3.9秒, 预计剩余: 0.0秒
+2025-04-28 19:28:10,422 - INFO - 对接计算完成，总耗时: 3.88秒，平均每个分子: 0.03秒，总成功率: 0.0%
+2025-04-28 19:28:10,422 - INFO - 并行对接完成，成功对接 0/115 个分子，结果保存至: /data1/tgy/GA_llm/output_optimized/generation_0/generation_0_docked.smi
+2025-04-28 19:28:10,428 - INFO - 开始对接结果分析: /data1/tgy/GA_llm/output_optimized/generation_0/generation_0_docked.smi
+2025-04-28 19:28:10,739 - INFO - 对接结果分析完成，结果保存至: /data1/tgy/GA_llm/output_optimized/generation_0/generation_0_stats.txt
+2025-04-28 19:28:10,739 - WARNING - 对接结果中没有发现有效分数
+2025-04-28 19:28:10,740 - INFO - 第 0 代完成
+2025-04-28 19:28:10,740 - INFO - 第0代完成,耗时: 96.34秒
+2025-04-28 19:28:10,740 - INFO - 开始第 1 代进化
+2025-04-28 19:28:10,740 - INFO - 开始第 1 代进化
+2025-04-28 19:28:10,740 - ERROR - 上一代没有有效的对接结果，无法继续进化
+2025-04-28 19:28:10,740 - INFO - 第 1 代进化完成，耗时: 0.00秒
+2025-04-28 19:28:10,740 - INFO - 结果保存至: /data1/tgy/GA_llm/output_optimized/generation_1/generation_1_docked.smi
+2025-04-28 19:28:10,741 - INFO - 开始第 2 代进化
+2025-04-28 19:28:10,741 - INFO - 开始第 2 代进化
+2025-04-28 19:28:10,741 - ERROR - 上一代没有有效的对接结果，无法继续进化
+2025-04-28 19:28:10,741 - INFO - 第 2 代进化完成，耗时: 0.00秒
+2025-04-28 19:28:10,741 - INFO - 结果保存至: /data1/tgy/GA_llm/output_optimized/generation_2/generation_2_docked.smi
+2025-04-28 19:28:10,741 - INFO - 开始第 3 代进化
+2025-04-28 19:28:10,741 - INFO - 开始第 3 代进化
+2025-04-28 19:28:10,741 - ERROR - 上一代没有有效的对接结果，无法继续进化
+2025-04-28 19:28:10,741 - INFO - 第 3 代进化完成，耗时: 0.00秒
+2025-04-28 19:28:10,741 - INFO - 结果保存至: /data1/tgy/GA_llm/output_optimized/generation_3/generation_3_docked.smi
+2025-04-28 19:28:10,742 - INFO - 开始第 4 代进化
+2025-04-28 19:28:10,742 - INFO - 开始第 4 代进化
+2025-04-28 19:28:10,742 - ERROR - 上一代没有有效的对接结果，无法继续进化
+2025-04-28 19:28:10,742 - INFO - 第 4 代进化完成，耗时: 0.00秒
+2025-04-28 19:28:10,742 - INFO - 结果保存至: /data1/tgy/GA_llm/output_optimized/generation_4/generation_4_docked.smi
+2025-04-28 19:28:10,742 - INFO - 开始第 5 代进化
+2025-04-28 19:28:10,742 - INFO - 开始第 5 代进化
+2025-04-28 19:28:10,742 - ERROR - 上一代没有有效的对接结果，无法继续进化
+2025-04-28 19:28:10,742 - INFO - 第 5 代进化完成，耗时: 0.00秒
+2025-04-28 19:28:10,744 - INFO - 结果保存至: /data1/tgy/GA_llm/output_optimized/generation_5/generation_5_docked.smi
+2025-04-28 19:37:42,967 - INFO - 开始第0代(对初始种群进行处理后对接)
+2025-04-28 19:37:42,968 - INFO - 开始第 0 代进化
+2025-04-28 19:37:42,968 - INFO - 开始分子分解: /data1/tgy/GA_llm/datasets/source_compounds/naphthalene_smiles.smi
+2025-04-28 19:37:43,559 - INFO - 分子分解完成，生成文件: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_gen0.smi
+2025-04-28 19:37:43,559 - INFO - 开始GPT生成: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_gen0.smi
+2025-04-28 19:39:10,852 - INFO - GPT生成完成,输出文件: /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_0.smi
+2025-04-28 19:39:10,852 - ERROR - 第0代失败: local variable 'filter_output' referenced before assignment
+2025-04-28 19:39:10,853 - INFO - 开始第 1 代进化
+2025-04-28 19:39:10,853 - INFO - 开始第 1 代进化
+2025-04-28 19:39:10,853 - INFO - 第 1 代种子设置: 基于适应度选择 60 个, 基于多样性选择 15 个
+2025-04-28 19:39:10,853 - ERROR - 第 1 代进化失败: local variable 'current_population' referenced before assignment

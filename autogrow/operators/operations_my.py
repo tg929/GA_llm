@@ -29,10 +29,10 @@ import autogrow.operators.convert_files.gypsum_dl.gypsum_dl.MolObjectHandling as
 #############
 def populate_generation(vars, generation_num):
     """
-    执行单代种群进化：先交叉后突变，不包含精英选择。
+    执行单代种群进化：先交叉后突变，包含精英选择。
     
     Inputs:
-    :param dict vars: 所有用户变量的字典
+    :param dict vars: 所有变量的字典
     :param int generation_num: 当前代数
     
     Returns:
@@ -44,10 +44,15 @@ def populate_generation(vars, generation_num):
     if generation_num == 1:
         num_crossovers = vars["number_of_crossovers_first_generation"]
         num_mutations = vars["number_of_mutants_first_generation"]
+        if "number_elitism_advance_from_previous_gen_first_generation" in vars:
+            num_elite_to_advance_from_previous_gen = vars["number_elitism_advance_from_previous_gen_first_generation"]
+        else:
+            num_elite_to_advance_from_previous_gen = vars["number_elitism_advance_from_previous_gen"]
     else:
         num_crossovers = vars["number_of_crossovers"]
         num_mutations = vars["number_of_mutants"]
- 
+        num_elite_to_advance_from_previous_gen = vars["number_elitism_advance_from_previous_gen"]
+    
     source_compounds_list = get_complete_list_prev_gen_or_source_compounds(
         vars, generation_num
     )
@@ -56,7 +61,31 @@ def populate_generation(vars, generation_num):
         vars, generation_num
     )
     
-    total_num_desired_new_ligands = num_crossovers + num_mutations
+    total_num_desired_new_ligands = num_crossovers + num_mutations + num_elite_to_advance_from_previous_gen
+
+    # Get unaltered samples from the previous generation
+    print("GET SOME LIGANDS FROM THE LAST GENERATION")
+    chosen_mol_to_pass_through_list = make_pass_through_list(
+        vars, source_compounds_list, num_elite_to_advance_from_previous_gen, generation_num
+    )
+
+    if type(chosen_mol_to_pass_through_list) == str:
+        printout = (
+            chosen_mol_to_pass_through_list
+            + "\nIf this is the 1st generation, it may be due to the starting "
+            + "library has SMILES which could not be converted to "
+            + "sanitizable RDKit Molecules"
+        )
+        raise Exception(printout)
+
+    # save chosen_mol_to_pass_through_list
+    save_ligand_list(
+        vars["output_directory"],
+        generation_num,
+        chosen_mol_to_pass_through_list,
+        "Chosen_Elite_To_advance",
+    )
+    print("GOT LIGANDS FROM THE LAST GENERATION")
 
     ###################################################################
     # A. 先执行交叉操作
@@ -206,9 +235,13 @@ def populate_generation(vars, generation_num):
     # C. 合并结果生成新种群
     ###################################################################
     
-    # 将交叉和突变结果合并为新种群
+    # 将精英选择、交叉和突变结果合并为新种群
     new_generation_smiles_list = []
     full_generation_smiles_list = []
+    
+    # 添加精英选择结果
+    for i in chosen_mol_to_pass_through_list:
+        full_generation_smiles_list.append(i)
     
     # 添加交叉结果
     for i in new_crossover_smiles_list:
@@ -254,49 +287,28 @@ def populate_generation(vars, generation_num):
 
 def populate_generation_zero(vars, generation_num=0):
     """
-    This will handle all that is required for generation 0redock and handle
-    the generation 0
+    处理第0代的初始化，完全不使用精英选择。
 
-    Inputs:
-    :param dict vars: a dictionary of all user variables
-    :param int generation_num: the generation number
+    参数:
+    :param dict vars: 所有用户变量的字典
+    :param int generation_num: 当前代数，默认为0
 
-    Returns:
-    :returns: str full_generation_smiles_file: the name of the .smi file
-        containing the new population
-    :returns: list full_generation_smiles_list: list with the new population
-        of ligands.
-    :returns: bool already_docked: if true we won't redock the source ligands.
-        If False we will dock the source ligands.
-    """
-    number_of_processors = int(vars["number_of_processors"])
-
+    返回:
+    :returns: bool already_docked: 如果为True，不需要重新对接源化合物
+    :returns: str full_generation_smiles_file: 包含新种群的.smi文件名
+    :returns: list full_generation_smiles_list: 包含新种群配体的列表
+    """   
+    number_of_processors = int(vars["number_of_processors"])    
     num_crossovers = 0
-    num_mutations = 0
-
-    # Get the Source compound list. This list is the full population from
-    # either the previous generations or if its Generation 1 than the its the
-    # entire User specified Source compound list If either has a SMILES that
-    # does not sanitize in RDKit it will be excluded and a printout of its
-    # Name and SMILES string will be printed.
+    num_mutations = 0    
     source_compounds_list = get_complete_list_prev_gen_or_source_compounds(
         vars, generation_num
-    )
-    num_elite_to_advance_from_previous_gen = len(source_compounds_list)
-
+    )    
     num_seed_diversity, num_seed_dock_fitness = determine_seed_population_sizes(
         vars, generation_num
-    )
-
-    # Total Population size of this generation
-    total_num_desired_new_ligands = num_crossovers + num_mutations + 1
-
-    # Get unaltered samples from the previous generation
-    print("GET SOME LIGANDS FROM THE LAST GENERATION")
-
-    # Make a list of the ligands chosen to pass through to the next generation
-    # This handles creating a seed list and defining the advance to next
-    # generation final selection
+    )    
+    total_num_desired_new_ligands = num_crossovers + num_mutations + 1   
+    print("GET SOME LIGANDS FROM THE LAST GENERATION") 
     chosen_mol_to_pass_through_list = make_pass_through_list(
         vars, source_compounds_list, 1, 0
     )
@@ -321,28 +333,23 @@ def populate_generation_zero(vars, generation_num=0):
 
     print("GOT LIGANDS FROM THE LAST GENERATION")
 
-    # make a list of all the ligands from mutations, crossovers, and from the
-    # last generation
     new_generation_smiles_list = []
     full_generation_smiles_list = []
 
-    # These will be docked and scored for generation 0
-    for i in chosen_mol_to_pass_through_list:
+    for i in source_compounds_list:
         new_generation_smiles_list.append(i)
         full_generation_smiles_list.append(i)
 
     if len(full_generation_smiles_list) == 0:
-        print(
-            "population failed to import any molecules from the source_compounds_list."
-        )
+        print("无法从源化合物列表导入任何分子")
         return None, None, None
 
-    # Save the Full Generation
+    # 保存完整世代
     full_generation_smiles_file, new_gen_folder_path = save_generation_smi(
         vars["output_directory"], generation_num, full_generation_smiles_list, None
     )
 
-    # Save the File to convert to 3d
+    # 保存需要转换为3D的文件
     smiles_to_convert_file, new_gen_folder_path = save_generation_smi(
         vars["output_directory"],
         generation_num,
@@ -350,7 +357,7 @@ def populate_generation_zero(vars, generation_num=0):
         "_to_convert",
     )
 
-    # order files by -2 of each lig
+    # 检查分子是否已经对接过
     try:
         full_generation_smiles_list.sort(key=lambda x: float(x[-2]), reverse=False)
         full_generation_smiles_list_printout = [
@@ -358,14 +365,11 @@ def populate_generation_zero(vars, generation_num=0):
         ]
         already_docked = True
     except:
-        print(
-            "Not all ligands in source compound list are scored. "
-            + "We will convert and redock them all."
-        )
+        print("源化合物列表中不是所有分子都有评分。将转换并重新对接所有分子。")
         already_docked = False
 
     if already_docked is True:
-        # Write all the ligands to a ranked file
+        # 写入排序后的文件
         full_generation_smiles_list_printout = "\n".join(
             full_generation_smiles_list_printout
         )
@@ -374,19 +378,143 @@ def populate_generation_zero(vars, generation_num=0):
             f.write(full_generation_smiles_list_printout)
         return already_docked, full_generation_smiles_file, full_generation_smiles_list
 
-    # If you are to redock and convert the generation zero you will also need
-    # to do the following:
-
-    # CONVERT SMILES TO .sdf USING GYPSUM and convert .sdf to .pdb with
-    # rdkit This will output sdf files into a folder. The .smi.0.sdf file
-    # is not a valid mol, but all the others will be valid the 1st Smiles
-    # in the original .smi file is saved as .smi.1.sdf and 2nd file is
-    # saved as .smi.2.sdf
+    # 如果需要重新对接，转换SMILES为3D结构
     conversion_to_3d.convert_to_3d(
         vars, smiles_to_convert_file, new_gen_folder_path
     )
 
     return already_docked, full_generation_smiles_file, full_generation_smiles_list
+
+def make_pass_through_list(vars, smiles_from_previous_gen_list,
+                           num_elite_to_advance_from_previous_gen,
+                           generation_num):
+    """
+    This function determines the molecules which elite ligands will advance
+    from the previous generation without being altered into the next
+    generation.
+
+    Inputs:
+    :param dict vars: a dictionary of all user variables
+    :param list smiles_from_previous_gen_list: List of SMILES from the last
+        generation chosen to seed the list of molecules to advance to the next
+        generation without modification via elitism.
+    :param int num_elite_to_advance_from_previous_gen: the number of molecules
+        to advance from the last generation without modifications.
+    :param int generation_num: the interger of the current generation
+
+    Returns:
+    :returns: list list_of_ligands_to_advance: a list of ligands which should
+        advance into the new generation without modifications, via elitism from
+        the last generation. Returns a printout of why it failed if it fails
+    """
+    # this will be a list of lists. Each sublist will be  [SMILES_string, ID]
+    list_of_ligands_to_advance = []
+
+    # If not enough of your previous generation sanitize to make the list
+    # Return None and trigger an Error
+    if (
+            generation_num != 0
+            and len(smiles_from_previous_gen_list) < num_elite_to_advance_from_previous_gen
+    ):
+        printout = "Not enough ligands in initial list the filter to progress"
+        printout = (
+            printout
+            + "\n len(smiles_from_previous_gen_list): {} ; \
+                num_elite_to_advance_from_previous_gen: {}".format(
+                    len(smiles_from_previous_gen_list),
+                    num_elite_to_advance_from_previous_gen)
+        )
+        return printout
+
+    smiles_from_previous_gen_list = [
+        x for x in smiles_from_previous_gen_list if type(x) == list
+    ]
+
+    if generation_num == 0 and vars["filter_source_compounds"] is True:
+        # Run Filters on ligand list
+        ligands_which_passed_filters = Filter.run_filter(
+            vars, smiles_from_previous_gen_list
+        )
+        # Remove Nones:
+        ligands_which_passed_filters = [
+            x for x in ligands_which_passed_filters if x is not None
+        ]
+    else:
+        ligands_which_passed_filters = [
+            x for x in smiles_from_previous_gen_list if x is not None
+        ]
+    # If not enough of your previous generation sanitize to make the list
+    # Return None and trigger an Error
+    if (
+            generation_num != 0
+            and len(ligands_which_passed_filters) < num_elite_to_advance_from_previous_gen
+    ):
+        printout = "Not enough ligands passed the filter to progress"
+        return printout
+
+    # Save seed list of all ligands which passed which will serve as the seed
+    # list.
+    save_ligand_list(
+        vars["output_directory"],
+        generation_num,
+        ligands_which_passed_filters,
+        "Previous_Gen_Elite_Seed_List",
+    )
+
+    # check if ligands_which_passed_filters has docking scores
+    has_dock_score = False
+    try:
+        temp = [float(x[-2]) for x in ligands_which_passed_filters]
+        has_dock_score = True
+    except:
+        has_dock_score = False
+
+    if generation_num == 0 and has_dock_score is False:
+        # Take the 1st num_elite_to_advance_from_previous_gen number of
+        # molecules from ligands_which_passed_filters
+        random.shuffle(ligands_which_passed_filters)
+        list_of_ligands_to_advance = []
+        for x in range(0, len(ligands_which_passed_filters)):
+            selected_mol = ligands_which_passed_filters[x]
+            list_of_ligands_to_advance.append(selected_mol)
+    elif generation_num == 0 and has_dock_score is True:
+        # Use the make_seed_list function to select the list to advance.
+        # This list will be chosen strictly by
+        list_of_ligands_to_advance = make_seed_list(
+            vars,
+            ligands_which_passed_filters,
+            generation_num,
+            len(ligands_which_passed_filters),
+            num_elite_to_advance_from_previous_gen,
+        )
+
+    elif generation_num != 0 and has_dock_score is False:
+        # Take the 1st num_elite_to_advance_from_previous_gen number of
+        # molecules from ligands_which_passed_filters
+        random.shuffle(ligands_which_passed_filters)
+        list_of_ligands_to_advance = []
+        for x in range(0, num_elite_to_advance_from_previous_gen):
+            selected_mol = ligands_which_passed_filters[x]
+            list_of_ligands_to_advance.append(selected_mol)
+
+    elif generation_num != 0 and has_dock_score is True:
+        # Use the make_seed_list function to select the list to advance. This
+        # list will be chosen strictly by
+        list_of_ligands_to_advance = make_seed_list(
+            vars,
+            ligands_which_passed_filters,
+            generation_num,
+            0,
+            num_elite_to_advance_from_previous_gen,
+        )
+
+    if generation_num == 0:
+        return list_of_ligands_to_advance
+    elif len(list_of_ligands_to_advance) >= num_elite_to_advance_from_previous_gen:
+        return list_of_ligands_to_advance
+
+    printout = "Not enough ligands were chosen to advance to the next generation."
+    return printout
 
 
 #############
@@ -773,138 +901,6 @@ def determine_seed_population_sizes(vars, generation_num):
         )
 
     return num_seed_diversity, num_seed_dock_fitness
-
-
-def make_pass_through_list(vars, smiles_from_previous_gen_list,
-                           num_elite_to_advance_from_previous_gen,
-                           generation_num):
-    """
-    This function determines the molecules which elite ligands will advance
-    from the previous generation without being altered into the next
-    generation.
-
-    Inputs:
-    :param dict vars: a dictionary of all user variables
-    :param list smiles_from_previous_gen_list: List of SMILES from the last
-        generation chosen to seed the list of molecules to advance to the next
-        generation without modification via elitism.
-    :param int num_elite_to_advance_from_previous_gen: the number of molecules
-        to advance from the last generation without modifications.
-    :param int generation_num: the interger of the current generation
-
-    Returns:
-    :returns: list list_of_ligands_to_advance: a list of ligands which should
-        advance into the new generation without modifications, via elitism from
-        the last generation. Returns a printout of why it failed if it fails
-    """
-    # this will be a list of lists. Each sublist will be  [SMILES_string, ID]
-    list_of_ligands_to_advance = []
-
-    # If not enough of your previous generation sanitize to make the list
-    # Return None and trigger an Error
-    if (
-            generation_num != 0
-            and len(smiles_from_previous_gen_list) < num_elite_to_advance_from_previous_gen
-    ):
-        printout = "Not enough ligands in initial list the filter to progress"
-        printout = (
-            printout
-            + "\n len(smiles_from_previous_gen_list): {} ; \
-                num_elite_to_advance_from_previous_gen: {}".format(
-                    len(smiles_from_previous_gen_list),
-                    num_elite_to_advance_from_previous_gen)
-        )
-        return printout
-
-    smiles_from_previous_gen_list = [
-        x for x in smiles_from_previous_gen_list if type(x) == list
-    ]
-
-    if generation_num == 0 and vars["filter_source_compounds"] is True:
-        # Run Filters on ligand list
-        ligands_which_passed_filters = Filter.run_filter(
-            vars, smiles_from_previous_gen_list
-        )
-        # Remove Nones:
-        ligands_which_passed_filters = [
-            x for x in ligands_which_passed_filters if x is not None
-        ]
-    else:
-        ligands_which_passed_filters = [
-            x for x in smiles_from_previous_gen_list if x is not None
-        ]
-    # If not enough of your previous generation sanitize to make the list
-    # Return None and trigger an Error
-    if (
-            generation_num != 0
-            and len(ligands_which_passed_filters) < num_elite_to_advance_from_previous_gen
-    ):
-        printout = "Not enough ligands passed the filter to progress"
-        return printout
-
-    # Save seed list of all ligands which passed which will serve as the seed
-    # list.
-    save_ligand_list(
-        vars["output_directory"],
-        generation_num,
-        ligands_which_passed_filters,
-        "Previous_Gen_Elite_Seed_List",
-    )
-
-    # check if ligands_which_passed_filters has docking scores
-    has_dock_score = False
-    try:
-        temp = [float(x[-2]) for x in ligands_which_passed_filters]
-        has_dock_score = True
-    except:
-        has_dock_score = False
-
-    if generation_num == 0 and has_dock_score is False:
-        # Take the 1st num_elite_to_advance_from_previous_gen number of
-        # molecules from ligands_which_passed_filters
-        random.shuffle(ligands_which_passed_filters)
-        list_of_ligands_to_advance = []
-        for x in range(0, len(ligands_which_passed_filters)):
-            selected_mol = ligands_which_passed_filters[x]
-            list_of_ligands_to_advance.append(selected_mol)
-    elif generation_num == 0 and has_dock_score is True:
-        # Use the make_seed_list function to select the list to advance.
-        # This list will be chosen strictly by
-        list_of_ligands_to_advance = make_seed_list(
-            vars,
-            ligands_which_passed_filters,
-            generation_num,
-            len(ligands_which_passed_filters),
-            num_elite_to_advance_from_previous_gen,
-        )
-
-    elif generation_num != 0 and has_dock_score is False:
-        # Take the 1st num_elite_to_advance_from_previous_gen number of
-        # molecules from ligands_which_passed_filters
-        random.shuffle(ligands_which_passed_filters)
-        list_of_ligands_to_advance = []
-        for x in range(0, num_elite_to_advance_from_previous_gen):
-            selected_mol = ligands_which_passed_filters[x]
-            list_of_ligands_to_advance.append(selected_mol)
-
-    elif generation_num != 0 and has_dock_score is True:
-        # Use the make_seed_list function to select the list to advance. This
-        # list will be chosen strictly by
-        list_of_ligands_to_advance = make_seed_list(
-            vars,
-            ligands_which_passed_filters,
-            generation_num,
-            0,
-            num_elite_to_advance_from_previous_gen,
-        )
-
-    if generation_num == 0:
-        return list_of_ligands_to_advance
-    elif len(list_of_ligands_to_advance) >= num_elite_to_advance_from_previous_gen:
-        return list_of_ligands_to_advance
-
-    printout = "Not enough ligands were chosen to advance to the next generation."
-    return printout
 
 
 #############

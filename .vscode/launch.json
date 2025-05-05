@@ -22,7 +22,7 @@
                 "--size_x", "25.0",
                 "--size_y", "16.0",
                 "--size_z", "25.0",
-                "--source_compound_file", "/data1/tgy/GA_llm/source_compounds/naphthalene_smiles.smi",
+                "--source_compound_file", "/data1/tgy/GA_llm/datasets/source_compounds/naphthalene_smiles.smi",
                 "--root_output_folder", "/data1/tgy/GA_llm/output_GA_llm",
                 "--number_of_mutants_first_generation", "50",
                 "--number_of_crossovers_first_generation", "50",
