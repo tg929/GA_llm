@@ -850,7 +850,7 @@ def run_evolution(generation_num, args, logger):
     try:
         gpt_output = run_gpt_generation(decompose_output, f"{generation_num}", generation_num, logger)
     except Exception as e:
-        logger.warning(f"GPT生成失败，使用种子文件作为替代: {str(e)}")
+        logger.warning(f"GPT生成失败,使用种子文件作为替代: {str(e)}")
         gpt_output = seed_file
     
     # 5. 分子交叉

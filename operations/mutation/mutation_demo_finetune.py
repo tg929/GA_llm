@@ -105,8 +105,8 @@ def main():
         'function_group_library': '/data1/tgy/GA_llm/autogrow/operators/mutation/smiles_click_chem/reaction_libraries/all_rxns/All_Rxns_functional_groups.json',
         'complementary_mol_directory':'/data1/tgy/GA_llm/autogrow/operators/mutation/smiles_click_chem/reaction_libraries/all_rxns/complementary_mol_dir',
         'filter_object_dict': {
-            # 简单的结构检查
-            'Structure_check': lambda mol: mol is not None
+            # 使用 autogrow 的过滤器类
+            'Structure_check': LipinskiStrictFilter()
         },
         'max_time_mcs_thorough': 1,
         'gypsum_thoroughness': 3
@@ -138,7 +138,7 @@ def main():
             
             success = False
             for attempt in range(args.max_mutations):
-                result = click_chem.run_smiles_click2(parent)
+                result = click_chem.run_smiles_click(parent)
                 if not result:
                     continue               
                 
