@@ -19,9 +19,9 @@ sys.path.insert(0, PROJECT_ROOT)
 def setup_logging(output_dir):
     os.makedirs(output_dir, exist_ok=True)
     logging.basicConfig(level=logging.INFO, 
-        format='%(asctime)s - %(levelname)s - %(message)s',
-        handlers=[logging.FileHandler(os.path.join(output_dir, "docking.log")),
-                 logging.StreamHandler()])
+                       format='%(asctime)s - %(levelname)s - %(message)s',
+                       handlers=[logging.FileHandler(os.path.join(output_dir, "docking.log")),
+                                logging.StreamHandler()])
     return logging.getLogger("docking")
 
 def convert_smile_to_3d(smile):

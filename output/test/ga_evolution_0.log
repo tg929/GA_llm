@@ -146,3 +146,37 @@ FileNotFoundError: [Errno 2] No such file or directory: '/data1/tgy/GA_llm/outpu
 2025-05-06 16:04:18,896 - INFO - 开始分子分解: /data1/tgy/GA_llm/output/test/generation_0/generation_0_crossover.smi
 2025-05-06 16:04:19,748 - INFO - 分子分解完成，生成文件: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_mutation0.smi
 2025-05-06 16:04:19,749 - INFO - 开始GPT生成: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_mutation0.smi
+2025-05-06 16:06:57,680 - INFO - GPT生成完成,输出文件: /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_0.smi
+2025-05-06 16:06:57,681 - INFO - 开始分子变异: 输入文件 /data1/tgy/GA_llm/output/test/generation_0/generation_0_crossover.smi, LLM生成文件 /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_0.smi, 变异次数 50
+2025-05-06 16:07:01,693 - ERROR - 分子变异失败: Found local copy...
+
+Processing mutations:   0%|          | 0/349 [00:00<?, ?it/s]
+Processing mutations:   0%|          | 1/349 [00:00<00:05, 65.12it/s, success_rate=0/1]
+Processing mutations:   0%|          | 1/349 [00:00<00:09, 37.86it/s, success_rate=0/1]
+Traceback (most recent call last):
+  File "/data1/tgy/GA_llm/operations/mutation/mutation_demo.py", line 184, in <module>
+    main()
+  File "/data1/tgy/GA_llm/operations/mutation/mutation_demo.py", line 133, in main
+    result = click_chem.run_smiles_click(parent)
+  File "/data1/tgy/GA_llm/autogrow/operators/mutation/smiles_click_chem/smiles_click_chem.py", line 888, in run_smiles_click
+    reaction_product_smilestring = self.check_if_product_is_good(
+  File "/data1/tgy/GA_llm/autogrow/operators/mutation/smiles_click_chem/smiles_click_chem.py", line 988, in check_if_product_is_good
+    pass_or_not = Filter.run_filter_on_just_smiles(
+  File "/data1/tgy/GA_llm/autogrow/operators/filter/execute_filters.py", line 175, in run_filter_on_just_smiles
+    filter_result = run_all_selected_filters(mol, child_dict)
+  File "/data1/tgy/GA_llm/autogrow/operators/filter/execute_filters.py", line 209, in run_all_selected_filters
+    filter_function = child_dict[child].run_filter
+AttributeError: 'function' object has no attribute 'run_filter'
+
+2025-05-06 16:07:01,693 - ERROR - 第0代失败: 分子变异失败
+2025-05-06 16:07:01,694 - INFO - 开始第 1 代进化
+2025-05-06 16:07:01,694 - INFO - 开始第 1 代进化
+2025-05-06 16:07:01,694 - INFO - 开始分子分解: /data1/tgy/GA_llm/output/test/generation_0/generation_0_docked.smi
+2025-05-06 16:07:02,001 - ERROR - 分子分解失败: Traceback (most recent call last):
+  File "/data1/tgy/GA_llm/datasets/decompose/demo_frags.py", line 216, in <module>
+    batch_process(args.input, args.output,args.output2,args.output3,args.output4)
+  File "/data1/tgy/GA_llm/datasets/decompose/demo_frags.py", line 168, in batch_process
+    with open(input_file, 'r') as f_in, open(output_file, 'w') as f_out,open(output_file2,"w") as f_out2,open(output_file3,"w") as f_out3,open(output_file4, "w") as f_out4:
+FileNotFoundError: [Errno 2] No such file or directory: '/data1/tgy/GA_llm/output/test/generation_0/generation_0_docked.smi'
+
+2025-05-06 16:07:02,001 - ERROR - 第 1 代进化失败: 分子分解失败
