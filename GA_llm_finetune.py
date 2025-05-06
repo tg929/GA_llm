@@ -148,7 +148,7 @@ def get_molecules_from_file(file_path, with_score=False):
     
     return molecules
 
-def select_seed_molecules(molecules, num_seed_by_fitness, num_seed_by_diversity, generation_num, logger):
+def select_seed_molecules(molecules, num_seed_by_fitness, num_seed_by_diversity, generation_num, logger, selector_choice="Roulette_Selector", tourn_size=0.1):
     """
     从分子列表中选择种子分子，同时考虑适应度和多样性
     
@@ -158,21 +158,60 @@ def select_seed_molecules(molecules, num_seed_by_fitness, num_seed_by_diversity,
         num_seed_by_diversity: 基于多样性选择的种子数量
         generation_num: 当前代数
         logger: 日志记录器
+        selector_choice: 选择器类型 ("Roulette_Selector", "Rank_Selector", "Tournament_Selector")
+        tourn_size: 锦标赛选择器的大小参数
         
     Returns:
         选择的种子分子SMILES列表
     """
     logger.info(f"选择种子分子: 根据适应度选择 {num_seed_by_fitness} 个, 根据多样性选择 {num_seed_by_diversity} 个")
+    logger.info(f"使用选择器: {selector_choice}")
     
     if not molecules:
         logger.warning("没有提供分子，无法选择种子")
         return []   
     
+    # 基于适应度选择
     sorted_molecules = sorted(molecules, key=lambda x: x[1])    
     
-    fitness_seeds = [mol[0] for mol in sorted_molecules[:num_seed_by_fitness]]
+    # 根据选择器类型选择fitness种子
+    if selector_choice == "Rank_Selector":
+        # 排名选择：直接选择排名靠前的分子
+        fitness_seeds = [mol[0] for mol in sorted_molecules[:num_seed_by_fitness]]
     
+    elif selector_choice == "Tournament_Selector":
+        # 锦标赛选择
+        fitness_seeds = []
+        remaining_mols = sorted_molecules.copy()
+        
+        while len(fitness_seeds) < num_seed_by_fitness and remaining_mols:
+            # 确定锦标赛大小
+            tourn_pool_size = max(1, int(len(remaining_mols) * tourn_size))
+            # 随机选择锦标赛池
+            tourn_pool = random.sample(remaining_mols, min(tourn_pool_size, len(remaining_mols)))
+            # 选择锦标赛池中得分最好的分子
+            winner = min(tourn_pool, key=lambda x: x[1])
+            fitness_seeds.append(winner[0])
+            remaining_mols.remove(winner)
     
+    else:  # Roulette_Selector
+        # 轮盘赌选择
+        fitness_seeds = []
+        remaining_mols = sorted_molecules.copy()
+        
+        while len(fitness_seeds) < num_seed_by_fitness and remaining_mols:
+            # 计算适应度权重（得分越低权重越大）
+            max_score = max(mol[1] for mol in remaining_mols)
+            weights = [max_score - mol[1] + 1e-10 for mol in remaining_mols]  # 添加小值避免权重为0
+            total_weight = sum(weights)
+            weights = [w/total_weight for w in weights]
+            
+            # 根据权重随机选择
+            selected_idx = random.choices(range(len(remaining_mols)), weights=weights)[0]
+            fitness_seeds.append(remaining_mols[selected_idx][0])
+            remaining_mols.pop(selected_idx)
+    
+    # 如果没有多样性选择需求，直接返回适应度种子
     if num_seed_by_diversity <= 0:
         return fitness_seeds   
     
@@ -181,9 +220,8 @@ def select_seed_molecules(molecules, num_seed_by_fitness, num_seed_by_diversity,
         from rdkit.Chem import AllChem
         from rdkit import DataStructs
     except ImportError:
-        logger.warning("无法导入RDKit,样性选择将基于随机抽样")
-        
-        remaining = [mol[0] for mol in sorted_molecules[num_seed_by_fitness:]]
+        logger.warning("无法导入RDKit,多样性选择将基于随机抽样")
+        remaining = [mol[0] for mol in sorted_molecules if mol[0] not in fitness_seeds]
         if remaining:
             diversity_seeds = random.sample(
                 remaining, 
@@ -196,61 +234,83 @@ def select_seed_molecules(molecules, num_seed_by_fitness, num_seed_by_diversity,
     try:        
         remaining_mols = []
         remaining_smiles = []
-        for mol_smile, _ in sorted_molecules[num_seed_by_fitness:]:
-            mol = Chem.MolFromSmiles(mol_smile)
-            if mol:
-                remaining_mols.append(mol)
-                remaining_smiles.append(mol_smile)
+        for mol_smile, _ in sorted_molecules:
+            if mol_smile not in fitness_seeds:
+                mol = Chem.MolFromSmiles(mol_smile)
+                if mol:
+                    remaining_mols.append(mol)
+                    remaining_smiles.append(mol_smile)
         
         if not remaining_mols:
             return fitness_seeds        
         
+        # 计算Morgan指纹
         fingerprints = [AllChem.GetMorganFingerprintAsBitVect(mol, 2, 1024) for mol in remaining_mols]
         
-        
-        diversity_seeds = []
+        # 计算已选fitness种子的指纹
         fitness_mol_fps = []        
-       
         for smile in fitness_seeds:
             mol = Chem.MolFromSmiles(smile)
             if mol:
                 fp = AllChem.GetMorganFingerprintAsBitVect(mol, 2, 1024)
                 fitness_mol_fps.append(fp)
         
-        # 贪心算法选择多样性种子
-        while len(diversity_seeds) < num_seed_by_diversity and remaining_smiles:
-            max_diversity_idx = -1
-            max_min_similarity = 1.0  # 最大的最小相似度（越小表示多样性越大）
+        # 使用相同的选择器机制选择多样性种子
+        diversity_seeds = []
+        remaining_fps = list(zip(remaining_smiles, fingerprints))
+        
+        if selector_choice == "Rank_Selector":
+            # 计算每个分子与已选种子的最小相似度
+            min_similarities = []
+            for smile, fp in remaining_fps:
+                similarities = [DataStructs.TanimotoSimilarity(fp, f) for f in fitness_mol_fps]
+                min_similarities.append((smile, min(similarities)))
             
-            for i in range(len(remaining_smiles)):               
-                similarities = []
-                for fp in fitness_mol_fps + [fingerprints[j] for j, _ in enumerate(diversity_seeds)]:
-                    sim = DataStructs.TanimotoSimilarity(fingerprints[i], fp)
-                    similarities.append(sim)              
-               
-                if similarities:
-                    min_sim = min(similarities)
-                    if min_sim < max_min_similarity:
-                        max_diversity_idx = i
-                        max_min_similarity = min_sim
-                else:
-                    # 如果还没有选择任何分子，选第一个
-                    max_diversity_idx = i
-                    break
+            # 按最小相似度排序（相似度越低越好）
+            min_similarities.sort(key=lambda x: x[1])
+            diversity_seeds = [x[0] for x in min_similarities[:num_seed_by_diversity]]
             
-            if max_diversity_idx >= 0:
-                diversity_seeds.append(remaining_smiles[max_diversity_idx])
-                remaining_smiles.pop(max_diversity_idx)
-                fingerprints.pop(max_diversity_idx)
-            else:
-                break
+        elif selector_choice == "Tournament_Selector":
+            while len(diversity_seeds) < num_seed_by_diversity and remaining_fps:
+                tourn_pool_size = max(1, int(len(remaining_fps) * tourn_size))
+                tourn_pool = random.sample(remaining_fps, min(tourn_pool_size, len(remaining_fps)))
+                
+                # 计算每个候选分子与已选种子的最小相似度
+                min_similarities = []
+                for smile, fp in tourn_pool:
+                    similarities = [DataStructs.TanimotoSimilarity(fp, f) for f in fitness_mol_fps]
+                    min_similarities.append((smile, min(similarities)))
+                
+                # 选择最小相似度最大的分子（最不相似的）
+                winner = max(min_similarities, key=lambda x: x[1])
+                diversity_seeds.append(winner[0])
+                remaining_fps = [(s, f) for s, f in remaining_fps if s != winner[0]]
+        
+        else:  # Roulette_Selector
+            while len(diversity_seeds) < num_seed_by_diversity and remaining_fps:
+                # 计算每个分子与已选种子的最小相似度
+                min_similarities = []
+                for smile, fp in remaining_fps:
+                    similarities = [DataStructs.TanimotoSimilarity(fp, f) for f in fitness_mol_fps]
+                    min_similarities.append((smile, min(similarities)))
+                
+                # 将最小相似度转换为权重（相似度越低权重越大）
+                max_sim = max(sim for _, sim in min_similarities)
+                weights = [max_sim - sim + 1e-10 for _, sim in min_similarities]
+                total_weight = sum(weights)
+                weights = [w/total_weight for w in weights]
+                
+                # 根据权重随机选择
+                selected_idx = random.choices(range(len(remaining_fps)), weights=weights)[0]
+                diversity_seeds.append(remaining_fps[selected_idx][0])
+                remaining_fps.pop(selected_idx)
         
         return fitness_seeds + diversity_seeds
     
     except Exception as e:
         logger.error(f"多样性选择时出错: {str(e)}")
         # 出错时随机选择作为备选方案
-        remaining = [mol[0] for mol in sorted_molecules[num_seed_by_fitness:]]
+        remaining = [mol[0] for mol in sorted_molecules if mol[0] not in fitness_seeds]
         if remaining:
             diversity_seeds = random.sample(
                 remaining, 
@@ -817,7 +877,9 @@ def run_evolution(generation_num, args, logger):
         top_seeds, 
         diversity_seeds, 
         generation_num, 
-        logger
+        logger,
+        args.selector_choice,
+        args.tourn_size
     )
     
     # 处理没有种子的情况
@@ -976,6 +1038,13 @@ def main():
     parser.add_argument('--diversity_seed_depreciation_per_gen', type=int, default=2,
                        help='每代多样性种子数量的减少量')
     
+    # 选择器参数
+    parser.add_argument('--selector_choice', 
+                       choices=["Roulette_Selector", "Rank_Selector", "Tournament_Selector"],
+                       default="Roulette_Selector",
+                       help='选择器类型：轮盘赌选择(Roulette)、排名选择(Rank)或锦标赛选择(Tournament)')
+    parser.add_argument('--tourn_size', type=float, default=0.1,
+                       help='如果使用锦标赛选择器,这决定了每个锦标赛的大小。每个锦标赛使用的配体数量将是tourn_size * 考虑的配体数量')
     
     parser.add_argument('--max_population', type=int, default=0,
                        help='控制每代种群的最大数量,设置为0表示不限制')

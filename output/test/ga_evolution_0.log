@@ -130,3 +130,19 @@ AttributeError: 'function' object has no attribute 'run_filter'
 FileNotFoundError: [Errno 2] No such file or directory: '/data1/tgy/GA_llm/output/test/generation_0/generation_0_docked.smi'
 
 2025-05-05 22:53:11,614 - ERROR - 第 1 代进化失败: 分子分解失败
+2025-05-06 16:02:51,220 - INFO - 第0代交叉次数未指定,使用默认值: 50
+2025-05-06 16:02:51,220 - INFO - 第0代变异次数未指定,使用默认值: 50
+2025-05-06 16:02:51,220 - INFO - 开始第0代(对初始种群进行交叉变异后对接)
+2025-05-06 16:02:51,220 - INFO - 第0代将执行 50 次交叉和 50 次变异
+2025-05-06 16:02:51,220 - INFO - 开始第 0 代进化
+2025-05-06 16:02:51,220 - INFO - Generation 0: 对初始文件进行交叉和变异操作后进行对接
+2025-05-06 16:02:51,220 - INFO - 第0代交叉次数: 50, 变异次数: 50
+2025-05-06 16:02:51,220 - INFO - 开始分子分解: /data1/tgy/GA_llm/datasets/source_compounds/naphthalene_smiles.smi
+2025-05-06 16:02:51,666 - INFO - 分子分解完成，生成文件: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_crossover0.smi
+2025-05-06 16:02:51,667 - INFO - 开始GPT生成: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_crossover0.smi
+2025-05-06 16:04:14,524 - INFO - GPT生成完成,输出文件: /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_0.smi
+2025-05-06 16:04:14,525 - INFO - 开始分子交叉: 源文件 /data1/tgy/GA_llm/datasets/source_compounds/naphthalene_smiles.smi, LLM生成文件 /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_0.smi, 交叉次数 50
+2025-05-06 16:04:18,896 - INFO - 分子交叉完成，生成文件: /data1/tgy/GA_llm/output/test/generation_0/generation_0_crossover.smi
+2025-05-06 16:04:18,896 - INFO - 开始分子分解: /data1/tgy/GA_llm/output/test/generation_0/generation_0_crossover.smi
+2025-05-06 16:04:19,748 - INFO - 分子分解完成，生成文件: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_mutation0.smi
+2025-05-06 16:04:19,749 - INFO - 开始GPT生成: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_mutation0.smi

@@ -162,53 +162,53 @@ N=[N+]=NCc1nnc(CCC2CC2)o1	['*CN=[N+]=N', '*c1nnc(*)o1', '*CC*', '*C1CC1']
 N=[N+]=[N+]=C(CNc1ccccc1)[N+](=O)[O-]	['*CC(=[N+]=[N+]=N)[N+](=O)[O-]', '*N*', '*c1ccccc1']
 C#CC[N+](C)(C)Cc1cccc(OCC(=O)O)c1	['*CC#C', '*[N+](*)(C)C', '*C*', '*c1cccc(*)c1', '*O*', '*CC(=O)O']
 CC(=O)NC(=O)C(NCC1CCN(C(=O)c2ccnc3c2OCO3)C1c1cccnc1)C(C)(C)C	['*C(C)=O', '*N*', '*C(=O)C(*)C(C)(C)C', '*N*', '*C*', '*C1CCN(*)C1c1cccnc1', '*C(*)=O', '*c1ccnc2c1OCO2']
-CC(NCc1c(N=[N+]=N)cc(Cl)c2ccccc12)C(=O)O	['*C(C)C(=O)O', '*N*', '*C*', '*c1c(N=[N+]=N)cc(Cl)c2ccccc12']
-C#CCOc1c([S](O)CCN=[N+]=[N-])cc2ccccc2c1CNO	['*CC#C', '*O*', '*c1c([S](O)CCN=[N+]=[N-])cc2ccccc2c1*', '*CNO']
-COc1c(CN2C(=O)C3C(N=CN3Cc3ccc(Cl)cc3C)N(c3ccc(Cl)cc3)C2=O)ccc2c(N=[N+]=N)ccc(N=[N+]=N)c12	['*OC', '*c1ccc2c(N=[N+]=N)ccc(N=[N+]=N)c2c1*', '*C*', '*N1C(=O)C2C(N=CN2*)N(c2ccc(Cl)cc2)C1=O', '*C*', '*c1ccc(Cl)cc1C']
-[N-]=[N+]=NCCSCC12:C:C:C:C(CN):C:1(F):C(N=[N+]=N):C:C:C:2	['[N-]=[N+]=NCCSCC12:C:C:C:C(CN):C:1(F):C(N=[N+]=N):C:C:C:2']
-[N-]=[N+]=NC(=O)c1cc2cc(N=[N+]=N)ccc2cc1O	['*C(=O)N=[N+]=[N-]', '*c1cc2cc(N=[N+]=N)ccc2cc1O']
-N=[N+]=Nc1c(N=[N+]=N)c(Cl)c2ccccc2c1O	N=[N+]=Nc1c(N=[N+]=N)c(Cl)c2ccccc2c1O
-N=[N+]=[N+]=C(COCc1ccc2ccccc2c1)[N+](=O)[O-]	['*CC(=[N+]=[N+]=N)[N+](=O)[O-]', '*O*', '*C*', '*c1ccc2ccccc2c1']
-[N-]=[N+]=NCCCOc1c(N=[N+]=N)c(N=[N+]=N)c(N=[N+]=N)c2ccccc12	['*CCCN=[N+]=[N-]', '*O*', '*c1c(N=[N+]=N)c(N=[N+]=N)c(N=[N+]=N)c2ccccc12']
-CC#CCS(=O)(=O)c1cc(O)c2c(Cl)ccc(N=[N+]=N)c2c1	CC#CCS(=O)(=O)c1cc(O)c2c(Cl)ccc(N=[N+]=N)c2c1
-CN(C)C(=O)Oc1cc2c3c(cccc3c1N=[N+]=N)N(CCN=[N+]=[N-])C2=O	['*N(C)C', '*C(*)=O', '*O*', '*c1cc2c3c(cccc3c1N=[N+]=N)N(CCN=[N+]=[N-])C2=O']
-CC#CCOc1ccc(Oc2ccccc2)c2ccccc12	['*CC#CC', '*O*', '*c1ccc(*)c2ccccc12', '*O*', '*c1ccccc1']
-CC#CC[N+](C)(C)Cc1c(N=[N+]=N)c(Cl)c(N=[N+]=N)c2ccccc12	['*CC#CC', '*[N+](*)(C)C', '*C*', '*c1c(N=[N+]=N)c(Cl)c(N=[N+]=N)c2ccccc12']
-N=[N+]=NCC(=O)c1ccc(-c2ccccc2)cc1	['*C(=O)CN=[N+]=N', '*c1ccc(*)cc1', '*c1ccccc1']
-[N-]=[N+]=NCCCOc1ccc(N=[N+]=N)c2c(N)cccc12	['*CCCN=[N+]=[N-]', '*O*', '*c1ccc(N=[N+]=N)c2c(N)cccc12']
-C#Cc1c(N)c2ccccc2c2ccccc12	C#Cc1c(N)c2ccccc2c2ccccc12
-[N-]=[N+]=NCCNC(=O)c1ccc(CN=C(O)OCc2cc(-c3nnc(N=[N+]=[N-])o3)c3ccccc3c2F)cc1	['*CCN=[N+]=[N-]', '*N*', '*C(*)=O', '*c1ccc(*)cc1', '*CN=C(O)O*', '*C*', '*c1cc(*)c2ccccc2c1F', '*c1nnc(N=[N+]=[N-])o1']
-N=[N+]=Nc1c([N+](=O)[O-])cc2c3c(cccc13)CC2	N=[N+]=Nc1c([N+](=O)[O-])cc2c3c(cccc13)CC2
-N=[N+]=[N+]=C(C(=O)c1ccc(-c2ccccc2)c2ccccc12)[N+](=O)[O-]	['*C(=O)C(=[N+]=[N+]=N)[N+](=O)[O-]', '*c1ccc(*)c2ccccc12', '*c1ccccc1']
-[N-]=[N+]=NC(=O)C1Cc2ccccc2CC1O	['*C(=O)N=[N+]=[N-]', '*C1Cc2ccccc2CC1O']
-[N-]=[N+]=Nc1nnc(-c2cn(C3CC3)c3cc(N4CCNCC4)c(F)cc3c2=O)o1	['*c1nnc(N=[N+]=[N-])o1', '*c1cn(*)c2cc(N3CCNCC3)c(F)cc2c1=O', '*C1CC1']
-N=[N+]=Nc1c(N)c(N=[N+]=N)c2ccccc2c1O	N=[N+]=Nc1c(N)c(N=[N+]=N)c2ccccc2c1O
-C#CCOc1c(C(=O)[O-])c(Cl)c(Cl)c2ccccc12	['*CC#C', '*O*', '*c1c(Cl)c(Cl)c2ccccc2c1*', '*C(=O)[O-]']
-N=[N+]=NCCNC(=O)c1ccc2ccccc2c1	['*CCN=[N+]=N', '*N*', '*C(*)=O', '*c1ccc2ccccc2c1']
-C#Cc1cc2c3c(c(OC)cc(N=[N+]=N)c3c1)NC2=O	['*c1cc(N=[N+]=N)c2cc(C#C)cc3c2c1NC3=O', '*OC']
-C#CCOCC(O)CC1COC2(COCC[NH+](CNc3cc(F)c4ccccc4c3N=[N+]=N)C2)C1	['*CC#C', '*O*', '*CC(O)C*', '*NC[NH+]1CCOCC2(CC(*)CO2)C1', '*c1cc(F)c2ccccc2c1N=[N+]=N']
-COc1ccc2cccc(CCC(=O)O)c2c1N=[N+]=N	['*OC', '*c1ccc2cccc(*)c2c1N=[N+]=N', '*CCC(=O)O']
-[N-]=[N+]=NC(=O)c1c(N=[N+]=N)c(N=[N+]=N)c([N+](=O)[O-])c(Oc2ccccc2C(F)(F)F)c1-c1ccccc1	['*C(=O)N=[N+]=[N-]', '*c1c(N=[N+]=N)c(N=[N+]=N)c([N+](=O)[O-])c(*)c1-c1ccccc1', '*O*', '*c1ccccc1*', '*C(F)(F)F']
-C#Cc1ccc2c(O)cc3ccc(N=[N+]=N)c4ccc1c2c34	C#Cc1ccc2c(O)cc3ccc(N=[N+]=N)c4ccc1c2c34
-N#Cc1sc2c(c1N=[N+]=N)-c1ccccc1:C:[CH]2	N#Cc1sc2c(c1N=[N+]=N)-c1ccccc1:C:[CH]2
+C#CCNC(=O)c1ccc(N=[N+]=N)c(-c2noc(C3CCCC(C(F)(F)F)C3)n2)c1	['*CC#C', '*N*', '*C(*)=O', '*c1ccc(N=[N+]=N)c(*)c1', '*c1noc(*)n1', '*C1CCCC(*)C1', '*C(F)(F)F']
+CC#CC[N+](C)(C)Cc1cccc2ccccc12	['*CC#CC', '*[N+](*)(C)C', '*C*', '*c1cccc2ccccc12']
+[N-]=[N+]=NCCOc1ccc(Br)c2ccccc12	['*CCN=[N+]=[N-]', '*O*', '*c1ccc(Br)c2ccccc12']
+C#C[C@@](O)(c1ccc2c(N=[N+]=N)c(N=[N+]=N)c(N=[N+]=N)c(O)c2c1)C(C)(C)C	['*[C@](O)(C#C)C(C)(C)C', '*c1ccc2c(N=[N+]=N)c(N=[N+]=N)c(N=[N+]=N)c(O)c2c1']
+N=[N+]=Nc1c(N=[N+]=N)c(N=[N+]=N)c2ccccc2c1O	N=[N+]=Nc1c(N=[N+]=N)c(N=[N+]=N)c2ccccc2c1O
+C#CCOc1ccccccc(N=[N+]=N)cc1C(=O)O	['*CC#C', '*O*', '*c1ccccccc(N=[N+]=N)cc1*', '*C(=O)O']
 [N-]=[N+]=NCCSc1ccc2c(N=[N+]=N)c(N=[N+]=N)c(N=[N+]=N)c(O)c2c1	['*CCN=[N+]=[N-]', '*S*', '*c1ccc2c(N=[N+]=N)c(N=[N+]=N)c(N=[N+]=N)c(O)c2c1']
-C#CC[N+](C)(C)Cc1ncnn1-c1c(C#CC(=O)OC)cc(Cl)c2ccccc12	['*CC#C', '*[N+](*)(C)C', '*C*', '*c1ncnn1*', '*C(=O)C#Cc1cc(Cl)c2ccccc2c1*', '*OC']
-C#CCOc1ccc2cc(N=[N+]=N)ccc2c1	['*CC#C', '*O*', '*c1ccc2cc(N=[N+]=N)ccc2c1']
-N=[N+]=Nc1ccc2c3c(cccc13)C(=O)N2	N=[N+]=Nc1ccc2c3c(cccc13)C(=O)N2
+C#CC[N+](C)(C)Cc1cccc2ccccc12	['*CC#C', '*[N+](*)(C)C', '*C*', '*c1cccc2ccccc12']
+C[N+]1(C)Cc2cc3c(O)c(N=[N+]=N)c(N=[N+]=N)c(N=[N+]=N)c3cc2C1	C[N+]1(C)Cc2cc3c(O)c(N=[N+]=N)c(N=[N+]=N)c(N=[N+]=N)c3cc2C1
+CCN1C(=O)c2cc(Oc3ccccc3)cc3c(N=[N+]=N)ccc1c23	['*c1cc2c3c(ccc(N=[N+]=N)c3c1)N(CC)C2=O', '*O*', '*c1ccccc1']
+CC(=O)Nc1c([S](O)CCN=[N+]=[N-])cc(N=[N+]=N)c2ccccc12	['*C(C)=O', '*N*', '*c1c([S](O)CCN=[N+]=[N-])cc(N=[N+]=N)c2ccccc12']
+N=[N+]=Nc1ccc(N=[N+]=N)c2c(CO)cccc12	['*c1cccc2c(N=[N+]=N)ccc(N=[N+]=N)c12', '*CO']
+C#CC(O)(c1ccc2ccccc2c1)C(C)(C)C	['*C(O)(C#C)C(C)(C)C', '*c1ccc2ccccc2c1']
+CC#CCS(=O)(=O)c1ccc2cccc(N=[N+]=N)c2c1CCC(=O)O	['*c1c(S(=O)(=O)CC#CC)ccc2cccc(N=[N+]=N)c12', '*CCC(=O)O']
+CC#CCOc1cc(N=[N+]=N)c2c(Cl)ccc3c2c1CC3	['*CC#CC', '*O*', '*c1cc(N=[N+]=N)c2c(Cl)ccc3c2c1CC3']
+C#CC(O)(C1:C(N=[N+]=[N-]):C:C:c2ccccc:12)C(C)(C)C	['C#CC(O)(C1:C(N=[N+]=[N-]):C:C:c2ccccc:12)C(C)(C)C']
+COC(=O)C#Cc1ccc2c(N=[N+]=N)ccc(Br)c2c1	['*OC', '*C(=O)C#Cc1ccc2c(N=[N+]=N)ccc(Br)c2c1']
+C#CC[N+](C)(C)CC1:C:C:C(Cl):C2(OCC(=O)O):C:C:C:C:C:1:2	Invalid
+C#CC[N+](C)(C)Cc1c(C#C)ccc2cc(OC)ccc12	['*CC#C', '*[N+](*)(C)C', '*C*', '*c1ccc2c(*)c(C#C)ccc2c1', '*OC']
+[N-]=[N+]=NC(=O)c1ccc([N+](=O)[O-])c(Oc2ccccc2C(F)(F)F)c1-c1ccccc1	['*C(=O)N=[N+]=[N-]', '*c1ccc([N+](=O)[O-])c(*)c1-c1ccccc1', '*O*', '*c1ccccc1*', '*C(F)(F)F']
+CC(O)(C#CCO)C1:C:C:C2:C3:C(:C:C:C:C:1:3Br)C(=O)NC2=O	Invalid
+COc1ccc(CN2C(=O)C3C(N=CN3Cc3ccc(Cl)c(-c4nnc(N=[N+]=[N-])o4)c3C)N(c3ccc(Cl)cc3)C2=O)c(OC)c1	['*OC', '*c1ccc(*)c(OC)c1', '*C*', '*N1C(=O)C2C(N=CN2*)N(c2ccc(Cl)cc2)C1=O', '*C*', '*c1ccc(Cl)c(*)c1C', '*c1nnc(N=[N+]=[N-])o1']
+CC([NH+]=[N+]=[N-])c1cccc(C(F)F)c1NCc1ccc(OC[C@H](O)CN=[N+]=[N-])c2ccccc12	['*C(C)[NH+]=[N+]=[N-]', '*c1cccc(*)c1NCc1ccc(OC[C@H](O)CN=[N+]=[N-])c2ccccc12', '*C(F)F']
+[N-]=[N+]=NCCCOc1ccc(Oc2ccccc2)cc1	['*CCCN=[N+]=[N-]', '*O*', '*c1ccc(*)cc1', '*O*', '*c1ccccc1']
+N=[N+]=Nc1ccc(F)c2cc(CC(=[N+]=[N+]=N)[N+](=O)[O-])ccc12	['*c1ccc2c(N=[N+]=N)ccc(F)c2c1', '*CC(=[N+]=[N+]=N)[N+](=O)[O-]']
+C#CCOc1ccc2ccccc2c1C(NS(=O)(=O)Cc1ccccc1C(=O)OC)c1ccncc1	['*CC#C', '*O*', '*c1ccc2ccccc2c1*', '*C(*)c1ccncc1', '*N*', '*CS(*)(=O)=O', '*c1ccccc1*', '*C(*)=O', '*OC']
+N=[N+]=Nc1cccc2ccc(CC(=[N+]=[N+]=N)[N+](=O)[O-])cc12	['*c1ccc2cccc(N=[N+]=N)c2c1', '*CC(=[N+]=[N+]=N)[N+](=O)[O-]']
+CC#CC[N+](C)(C)Cc1cccc2cc(N=[N+]=N)c(N)cc12	['*CC#CC', '*[N+](*)(C)C', '*C*', '*c1cccc2cc(N=[N+]=N)c(N)cc12']
+N=[N+]=Nc1cc(N=[N+]=N)c2cccc3c2c1NC3=O	N=[N+]=Nc1cc(N=[N+]=N)c2cccc3c2c1NC3=O
+C[C@H]([NH+]=[N+]=[N-])c1ccc2c3c(ccc(N=[N+]=N)c13)CC2	['*[C@H](C)[NH+]=[N+]=[N-]', '*c1ccc2c3c(ccc(N=[N+]=N)c13)CC2']
+N=[N+]=Nc1c(N=[N+]=N)c2c3c(cccc3c1N=[N+]=N)CC2	N=[N+]=Nc1c(N=[N+]=N)c2c3c(cccc3c1N=[N+]=N)CC2
+[N-]=[N+]=NCCCOc1cc2c3c(ccc(N=[N+]=N)c3c1N=[N+]=N)CC2	['*CCCN=[N+]=[N-]', '*O*', '*c1cc2c3c(ccc(N=[N+]=N)c3c1N=[N+]=N)CC2']
+[N-]=[N+]=NC[C@@H](O)COc1cccc2c(Cl)ccc(N=[N+]=N)c12	['*C[C@H](O)CN=[N+]=[N-]', '*O*', '*c1cccc2c(Cl)ccc(N=[N+]=N)c12']
+CCCn1c(CCOCCN=C(O)c2ccccn2)c(-c2ccc3c(N=C(O)C4CCNC4)c(C(F)(F)F)ccc3c2)c2ccc(C3=CCN(C(=O)OCC)CC3)cc21	['*CCC', '*c1c(-c2ccc3c(N=C(O)C4CCNC4)c(C(F)(F)F)ccc3c2)c2ccc(C3=CCN(C(=O)OCC)CC3)cc2n1*', '*CC*', '*O*', '*CCN=C(O)c1ccccn1']
+C[N+]1(C)Cc2cc3ccccc3c(NCC(=[N+]=[N+]=N)[N+](=O)[O-])c2C1	['*c1c2c(cc3ccccc13)C[N+](C)(C)C2', '*N*', '*CC(=[N+]=[N+]=N)[N+](=O)[O-]']
+C#CC[N+](C)(C)Cc1cccc(OCC(=O)O)c1	['*CC#C', '*[N+](*)(C)C', '*C*', '*c1cccc(*)c1', '*O*', '*CC(=O)O']
+COc1ccc2ccccc2c1C(O)=NC(COC(=O)N=[N+]=[N-])C(=O)OCc1cnccn1	['*OC', '*CC(N=C(O)c1c(*)ccc2ccccc12)C(=O)OCc1cnccn1', '*O*', '*C(=O)N=[N+]=[N-]']
+C#CCOc1ccc(NC(=O)CCC(C)(C)C(O)(C#C)C2CCCCC2)cc1	['*CC#C', '*O*', '*c1ccc(*)cc1', '*N*', '*C(=O)CCC(C)(C)C(*)(O)C#C', '*C1CCCCC1']
+N=[N+]=Nc1cc2c(oc1=O)-c1ccccc1:C:[CH]2	N=[N+]=Nc1cc2c(oc1=O)-c1ccccc1:C:[CH]2
+C#CCOc1c(COCC(=[N+]=[N+]=N)[N+](=O)[O-])ccc2ccccc12	['*CC#C', '*O*', '*c1ccc2ccccc2c1*', '*CO*', '*CC(=[N+]=[N+]=N)[N+](=O)[O-]']
+C#CC[N+](C)(C)Cc1ncnn1-c1ccc(Cl)cc1C	['*CC#C', '*[N+](*)(C)C', '*C*', '*c1ncnn1*', '*c1ccc(Cl)cc1C']
+C#CC[N+](C)(C)Cc1cccc2c(N=[N+]=N)ccc(N=[N+]=N)c12	['*CC#C', '*[N+](*)(C)C', '*C*', '*c1cccc2c(N=[N+]=N)ccc(N=[N+]=N)c12']
+C#Cc1cc2ccccc2c2ccccc12	C#Cc1cc2ccccc2c2ccccc12
+CC#CCOc1c(N=[N+]=N)c2c3c(cccc3c1Cl)C(=O)N2	['*CC#CC', '*O*', '*c1c(N=[N+]=N)c2c3c(cccc3c1Cl)C(=O)N2']
+C#CCSc1ccc(N=[N+]=N)c2cccc(O)c12	['*CC#C', '*S*', '*c1ccc(N=[N+]=N)c2cccc(O)c12']
 N=[N+]=Nc1ccc2c3c(ccc(Cl)c13)CC2	N=[N+]=Nc1ccc2c3c(ccc(Cl)c13)CC2
-C#CC[N+](C)(C)Cc1ncnn1-c1cc2ccccc2cc1C#CC(=O)OC	['*CC#C', '*[N+](*)(C)C', '*C*', '*c1ncnn1*', '*C(=O)C#Cc1cc2ccccc2cc1*', '*OC']
-C#C[C@](O)(c1ccc2c(O)c(Cl)c(Cl)c(N=[N+]=N)c2c1)C(C)(C)C	['*[C@@](O)(C#C)C(C)(C)C', '*c1ccc2c(O)c(Cl)c(Cl)c(N=[N+]=N)c2c1']
-C#Cc1ccc2cc(OC)ccc2c1-c1nnc(CN=[N+]=N)o1	['*c1ccc2c(-c3nnc(CN=[N+]=N)o3)c(C#C)ccc2c1', '*OC']
-N=[N+]=Nc1ccc(N=[N+]=N)c2ccccc12	N=[N+]=Nc1ccc(N=[N+]=N)c2ccccc12
-N=[N+]=Nc1c(Cl)c(O)c2ccccc2c1N=[N+]=N	N=[N+]=Nc1c(Cl)c(O)c2ccccc2c1N=[N+]=N
-C#CCOc1ccc2ccccc2c1CNC1CCCC1	['*CC#C', '*O*', '*c1ccc2ccccc2c1*', '*CN*', '*C1CCCC1']
-[N-]=[N+]=NC(=O)OCC(N=C(O)c1c(Cl)c(Cl)c2ccccc2c1O)C(=O)OCc1cnccn1	['*C(=O)N=[N+]=[N-]', '*O*', '*CC(N=C(O)c1c(Cl)c(Cl)c2ccccc2c1O)C(*)=O', '*O*', '*C*', '*c1cnccn1']
-C#CCOc1cc2ccccc2c(Cl)c1Cl	['*CC#C', '*O*', '*c1cc2ccccc2c(Cl)c1Cl']
-CCN1C(=O)c2cccc3c(N=[N+]=N)ccc1c23	CCN1C(=O)c2cccc3c(N=[N+]=N)ccc1c23
-[N-]=[N+]=NCCSCc1cccc(CN)c1F	['*CCN=[N+]=[N-]', '*S*', '*C*', '*c1cccc(*)c1F', '*CN']
-C#CCOc1cc(SCC#CC)c2ccccc2c1CNO	['*CC#C', '*O*', '*c1cc(*)c2ccccc2c1CNO', '*S*', '*CC#CC']
-N=[N+]=Nc1c2ccccc2c(C=O)c2ccccc12	N=[N+]=Nc1c2ccccc2c(C=O)c2ccccc12
-C#CCS(=O)(=O)c1cc(N=[N+]=N)c2ccccc2c1Cl	C#CCS(=O)(=O)c1cc(N=[N+]=N)c2ccccc2c1Cl
-C#CC[N+](C)(C)Cc1c(C)ccc2c(O)c(N=[N+]=N)c(N=[N+]=N)c(Cl)c12	['*CC#C', '*[N+](*)(C)C', '*C*', '*c1c(C)ccc2c(O)c(N=[N+]=N)c(N=[N+]=N)c(Cl)c12']
-N=[N+]=Nc1cc(OCC(=O)O)cc2ccccc12	['*c1cc(N=[N+]=N)c2ccccc2c1', '*O*', '*CC(=O)O']
-C[C@@](O)(C#CCO)c1c(N=[N+]=N)c(O)c2ccccc2c1N=[N+]=N	['*[C@](C)(O)C#CCO', '*c1c(N=[N+]=N)c(O)c2ccccc2c1N=[N+]=N']
+CN(C)C(=O)Oc1cc(-c2nnc(CN=[N+]=N)o2)c2ccccc2c1N=[N+]=N	['*N(C)C', '*C(*)=O', '*O*', '*c1cc(*)c2ccccc2c1N=[N+]=N', '*c1nnc(*)o1', '*CN=[N+]=N']
+C#CCOCC(O)CC1COC2(COCC[NH+](CNc3cc4ccccc4c(F)c3N=[N+]=N)C2)C1	['*CC#C', '*O*', '*CC(O)C*', '*NC[NH+]1CCOCC2(CC(*)CO2)C1', '*c1cc2ccccc2c(F)c1N=[N+]=N']
+CN(C)C(=O)Oc1ccc2cccc(CC(=[N+]=[N+]=N)[N+](=O)[O-])c2c1N=[N+]=N	['*N(C)C', '*C(*)=O', '*O*', '*c1ccc2cccc(*)c2c1N=[N+]=N', '*CC(=[N+]=[N+]=N)[N+](=O)[O-]']
+[N-]=[N+]=NCCNC(=O)c1ccc2c(N=[N+]=N)cc(N=[N+]=N)c3c2c1C(=O)N3	['*CCN=[N+]=[N-]', '*N*', '*C(*)=O', '*c1ccc2c(N=[N+]=N)cc(N=[N+]=N)c3c2c1C(=O)N3']
