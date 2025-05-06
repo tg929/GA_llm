@@ -272,7 +272,7 @@ def run_crossover_with_seeds(source_file, llm_file, output_file, seed_list, num_
     Returns:
         包含生成的交叉产物的文件路径
     """
-    logger.info(f"开始分子交叉: 使用 {len(seed_list)} 个种子分子生成 {num_crossovers} 个新分子")
+    logger.info(f"开始分子交叉，目标生成 {num_crossovers} 个新分子")
         
     # 使用统一的种子文件命名
     seed_file = os.path.join(os.path.dirname(output_file), f"generation_{gen_num}_seeds.smi")
@@ -335,7 +335,7 @@ def run_mutation_with_seeds(input_file, llm_file, output_file, seed_list, num_mu
     Returns:
         包含生成的变异产物的文件路径
     """
-    logger.info(f"开始分子变异: 使用 {len(seed_list)} 个种子分子生成 {num_mutations} 个新分子")
+    logger.info(f"开始分子变异，目标生成 {num_mutations} 个新分子")
         
     # 使用统一的种子文件命名
     seed_file = os.path.join(os.path.dirname(output_file), f"generation_{gen_num}_seeds.smi")
@@ -857,13 +857,13 @@ def run_evolution(generation_num, args, logger):
     
     # 对于generation_0，也进行交叉和变异操作，但不执行完整的进化流程
     if generation_num == 0:
-        logger.info("Generation 0: 对初始文件进行交叉和变异操作后进行对接")
+        logger.info("第0代：对初始种群进行交叉和变异操作")
         
         # 确定第0代的交叉和变异次数
         num_crossovers_gen0 = args.number_of_crossovers_first_generation if args.number_of_crossovers_first_generation is not None else args.num_crossovers
         num_mutations_gen0 = args.number_of_mutants_first_generation if args.number_of_mutants_first_generation is not None else args.num_mutations
         
-        logger.info(f"第0代交叉次数: {num_crossovers_gen0}, 变异次数: {num_mutations_gen0}")
+        logger.info(f"目标生成数量：交叉 {num_crossovers_gen0} 个，变异 {num_mutations_gen0} 个")
         
         # 1. 第一次分子分解
         decompose_output1 = run_decompose(current_population, f"crossover{generation_num}", logger)
@@ -922,6 +922,8 @@ def run_evolution(generation_num, args, logger):
     with open(seed_file, 'w') as f:
         for smile in seeds:
             f.write(f"{smile}\n")
+    
+    logger.info(f"已选择 {len(seeds)} 个种子分子")
     
     # 2. 第一次分子分解
     decompose_output1 = run_decompose(seed_file, f"crossover{generation_num}", logger)
