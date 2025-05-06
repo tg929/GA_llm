@@ -130,7 +130,7 @@ def main():
             # 尝试最多2次变异
             success = False
             for attempt in range(args.max_mutations):
-                result = click_chem.run_smiles_click2(parent)
+                result = click_chem.run_smiles_click(parent)
                 if not result:
                     continue
                 

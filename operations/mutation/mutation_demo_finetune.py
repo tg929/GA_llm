@@ -16,7 +16,6 @@ from autogrow.operators.filter.filter_classes.filter_children_classes.vande_wate
 import autogrow.operators.mutation.smiles_click_chem.reaction_libraries.all_rxns.complementary_mol_dir as complementary_mol_dir
 import autogrow.operators.filter.execute_filters as Filter
 
-# 设置随机种子确保结果可复现
 SEED = 42
 random.seed(SEED)
 np.random.seed(SEED)

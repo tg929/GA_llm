@@ -1,0 +1,132 @@
+2025-05-05 22:10:03,788 - INFO - 第0代交叉次数未指定,使用默认值: 50
+2025-05-05 22:10:03,789 - INFO - 第0代变异次数未指定,使用默认值: 50
+2025-05-05 22:10:03,789 - INFO - 开始第0代(对初始种群进行交叉变异后对接)
+2025-05-05 22:10:03,789 - INFO - 第0代将执行 50 次交叉和 50 次变异
+2025-05-05 22:10:03,789 - INFO - 开始第 0 代进化
+2025-05-05 22:10:03,789 - INFO - Generation 0: 对初始文件进行交叉和变异操作后进行对接
+2025-05-05 22:10:03,789 - INFO - 第0代交叉次数: 50, 变异次数: 50
+2025-05-05 22:10:03,789 - INFO - 开始分子分解: /data1/tgy/GA_llm/datasets/source_compounds/naphthalene_smiles.smi
+2025-05-05 22:10:04,227 - INFO - 分子分解完成，生成文件: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_crossover0.smi
+2025-05-05 22:10:04,228 - INFO - 开始GPT生成: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_crossover0.smi
+2025-05-05 22:11:35,531 - INFO - GPT生成完成,输出文件: /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_0.smi
+2025-05-05 22:11:35,532 - INFO - 开始分子交叉: 源文件 /data1/tgy/GA_llm/datasets/source_compounds/naphthalene_smiles.smi, LLM生成文件 /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_0.smi, 交叉次数 50
+2025-05-05 22:11:41,712 - INFO - 分子交叉完成，生成文件: /data1/tgy/GA_llm/output/test/generation_0/generation_0_crossover.smi
+2025-05-05 22:11:41,713 - INFO - 开始分子分解: /data1/tgy/GA_llm/output/test/generation_0/generation_0_crossover.smi
+2025-05-05 22:11:42,822 - INFO - 分子分解完成，生成文件: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_mutation0.smi
+2025-05-05 22:11:42,822 - INFO - 开始GPT生成: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_mutation0.smi
+2025-05-05 22:14:14,285 - INFO - GPT生成完成,输出文件: /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_0.smi
+2025-05-05 22:14:14,285 - INFO - 开始分子变异: 输入文件 /data1/tgy/GA_llm/output/test/generation_0/generation_0_crossover.smi, LLM生成文件 /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_0.smi, 变异次数 50
+2025-05-05 22:14:18,949 - ERROR - 分子变异失败: Found local copy...
+
+Processing mutations:   0%|          | 0/345 [00:00<?, ?it/s]
+Processing mutations:   0%|          | 0/345 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/data1/tgy/GA_llm/operations/mutation/mutation_demo.py", line 184, in <module>
+    main()
+  File "/data1/tgy/GA_llm/operations/mutation/mutation_demo.py", line 133, in main
+    result = click_chem.run_smiles_click2(parent)
+AttributeError: 'SmilesClickChem' object has no attribute 'run_smiles_click2'
+
+2025-05-05 22:14:18,949 - ERROR - 第0代失败: 分子变异失败
+2025-05-05 22:14:18,950 - INFO - 开始第 1 代进化
+2025-05-05 22:14:18,950 - INFO - 开始第 1 代进化
+2025-05-05 22:14:18,950 - INFO - 开始分子分解: /data1/tgy/GA_llm/output/test/generation_0/generation_0_docked.smi
+2025-05-05 22:14:19,236 - ERROR - 分子分解失败: Traceback (most recent call last):
+  File "/data1/tgy/GA_llm/datasets/decompose/demo_frags.py", line 216, in <module>
+    batch_process(args.input, args.output,args.output2,args.output3,args.output4)
+  File "/data1/tgy/GA_llm/datasets/decompose/demo_frags.py", line 168, in batch_process
+    with open(input_file, 'r') as f_in, open(output_file, 'w') as f_out,open(output_file2,"w") as f_out2,open(output_file3,"w") as f_out3,open(output_file4, "w") as f_out4:
+FileNotFoundError: [Errno 2] No such file or directory: '/data1/tgy/GA_llm/output/test/generation_0/generation_0_docked.smi'
+
+2025-05-05 22:14:19,236 - ERROR - 第 1 代进化失败: 分子分解失败
+2025-05-05 22:43:44,781 - INFO - 第0代交叉次数未指定,使用默认值: 50
+2025-05-05 22:43:44,781 - INFO - 第0代变异次数未指定,使用默认值: 50
+2025-05-05 22:43:44,781 - INFO - 开始第0代(对初始种群进行交叉变异后对接)
+2025-05-05 22:43:44,781 - INFO - 第0代将执行 50 次交叉和 50 次变异
+2025-05-05 22:43:44,781 - INFO - 开始第 0 代进化
+2025-05-05 22:43:44,781 - INFO - Generation 0: 对初始文件进行交叉和变异操作后进行对接
+2025-05-05 22:43:44,781 - INFO - 第0代交叉次数: 50, 变异次数: 50
+2025-05-05 22:43:44,781 - INFO - 开始分子分解: /data1/tgy/GA_llm/datasets/source_compounds/naphthalene_smiles.smi
+2025-05-05 22:43:45,209 - INFO - 分子分解完成，生成文件: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_crossover0.smi
+2025-05-05 22:43:45,209 - INFO - 开始GPT生成: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_crossover0.smi
+2025-05-05 22:45:11,527 - INFO - GPT生成完成,输出文件: /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_0.smi
+2025-05-05 22:45:11,528 - INFO - 开始分子交叉: 源文件 /data1/tgy/GA_llm/datasets/source_compounds/naphthalene_smiles.smi, LLM生成文件 /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_0.smi, 交叉次数 50
+2025-05-05 22:45:16,220 - INFO - 分子交叉完成，生成文件: /data1/tgy/GA_llm/output/test/generation_0/generation_0_crossover.smi
+2025-05-05 22:45:16,221 - INFO - 开始分子分解: /data1/tgy/GA_llm/output/test/generation_0/generation_0_crossover.smi
+2025-05-05 22:45:17,071 - INFO - 分子分解完成，生成文件: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_mutation0.smi
+2025-05-05 22:45:17,072 - INFO - 开始GPT生成: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_mutation0.smi
+2025-05-05 22:47:52,350 - INFO - GPT生成完成,输出文件: /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_0.smi
+2025-05-05 22:47:52,351 - INFO - 开始分子变异: 输入文件 /data1/tgy/GA_llm/output/test/generation_0/generation_0_crossover.smi, LLM生成文件 /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_0.smi, 变异次数 50
+2025-05-05 22:47:56,195 - ERROR - 分子变异失败: Found local copy...
+
+Processing mutations:   0%|          | 0/338 [00:00<?, ?it/s]
+Processing mutations:   0%|          | 0/338 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/data1/tgy/GA_llm/operations/mutation/mutation_demo.py", line 184, in <module>
+    main()
+  File "/data1/tgy/GA_llm/operations/mutation/mutation_demo.py", line 133, in main
+    result = click_chem.run_smiles_click2(parent)
+AttributeError: 'SmilesClickChem' object has no attribute 'run_smiles_click2'
+
+2025-05-05 22:47:56,195 - ERROR - 第0代失败: 分子变异失败
+2025-05-05 22:47:56,196 - INFO - 开始第 1 代进化
+2025-05-05 22:47:56,196 - INFO - 开始第 1 代进化
+2025-05-05 22:47:56,197 - INFO - 开始分子分解: /data1/tgy/GA_llm/output/test/generation_0/generation_0_docked.smi
+2025-05-05 22:47:56,473 - ERROR - 分子分解失败: Traceback (most recent call last):
+  File "/data1/tgy/GA_llm/datasets/decompose/demo_frags.py", line 216, in <module>
+    batch_process(args.input, args.output,args.output2,args.output3,args.output4)
+  File "/data1/tgy/GA_llm/datasets/decompose/demo_frags.py", line 168, in batch_process
+    with open(input_file, 'r') as f_in, open(output_file, 'w') as f_out,open(output_file2,"w") as f_out2,open(output_file3,"w") as f_out3,open(output_file4, "w") as f_out4:
+FileNotFoundError: [Errno 2] No such file or directory: '/data1/tgy/GA_llm/output/test/generation_0/generation_0_docked.smi'
+
+2025-05-05 22:47:56,473 - ERROR - 第 1 代进化失败: 分子分解失败
+2025-05-05 22:48:50,334 - INFO - 第0代交叉次数未指定,使用默认值: 50
+2025-05-05 22:48:50,334 - INFO - 第0代变异次数未指定,使用默认值: 50
+2025-05-05 22:48:50,334 - INFO - 开始第0代(对初始种群进行交叉变异后对接)
+2025-05-05 22:48:50,334 - INFO - 第0代将执行 50 次交叉和 50 次变异
+2025-05-05 22:48:50,334 - INFO - 开始第 0 代进化
+2025-05-05 22:48:50,334 - INFO - Generation 0: 对初始文件进行交叉和变异操作后进行对接
+2025-05-05 22:48:50,334 - INFO - 第0代交叉次数: 50, 变异次数: 50
+2025-05-05 22:48:50,334 - INFO - 开始分子分解: /data1/tgy/GA_llm/datasets/source_compounds/naphthalene_smiles.smi
+2025-05-05 22:48:50,789 - INFO - 分子分解完成，生成文件: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_crossover0.smi
+2025-05-05 22:48:50,789 - INFO - 开始GPT生成: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_crossover0.smi
+2025-05-05 22:50:24,713 - INFO - GPT生成完成,输出文件: /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_0.smi
+2025-05-05 22:50:24,714 - INFO - 开始分子交叉: 源文件 /data1/tgy/GA_llm/datasets/source_compounds/naphthalene_smiles.smi, LLM生成文件 /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_0.smi, 交叉次数 50
+2025-05-05 22:50:29,436 - INFO - 分子交叉完成，生成文件: /data1/tgy/GA_llm/output/test/generation_0/generation_0_crossover.smi
+2025-05-05 22:50:29,437 - INFO - 开始分子分解: /data1/tgy/GA_llm/output/test/generation_0/generation_0_crossover.smi
+2025-05-05 22:50:30,296 - INFO - 分子分解完成，生成文件: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_mutation0.smi
+2025-05-05 22:50:30,297 - INFO - 开始GPT生成: /data1/tgy/GA_llm/datasets/decompose/decompose_results/truncated_frags_mutation0.smi
+2025-05-05 22:53:07,327 - INFO - GPT生成完成,输出文件: /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_0.smi
+2025-05-05 22:53:07,328 - INFO - 开始分子变异: 输入文件 /data1/tgy/GA_llm/output/test/generation_0/generation_0_crossover.smi, LLM生成文件 /data1/tgy/GA_llm/fragment_GPT/output/crossovered0_frags_new_0.smi, 变异次数 50
+2025-05-05 22:53:11,333 - ERROR - 分子变异失败: Found local copy...
+
+Processing mutations:   0%|          | 0/344 [00:00<?, ?it/s]
+Processing mutations:   0%|          | 1/344 [00:00<00:05, 64.87it/s, success_rate=0/1]
+Processing mutations:   0%|          | 1/344 [00:00<00:09, 36.16it/s, success_rate=0/1]
+Traceback (most recent call last):
+  File "/data1/tgy/GA_llm/operations/mutation/mutation_demo.py", line 184, in <module>
+    main()
+  File "/data1/tgy/GA_llm/operations/mutation/mutation_demo.py", line 133, in main
+    result = click_chem.run_smiles_click(parent)
+  File "/data1/tgy/GA_llm/autogrow/operators/mutation/smiles_click_chem/smiles_click_chem.py", line 888, in run_smiles_click
+    reaction_product_smilestring = self.check_if_product_is_good(
+  File "/data1/tgy/GA_llm/autogrow/operators/mutation/smiles_click_chem/smiles_click_chem.py", line 988, in check_if_product_is_good
+    pass_or_not = Filter.run_filter_on_just_smiles(
+  File "/data1/tgy/GA_llm/autogrow/operators/filter/execute_filters.py", line 175, in run_filter_on_just_smiles
+    filter_result = run_all_selected_filters(mol, child_dict)
+  File "/data1/tgy/GA_llm/autogrow/operators/filter/execute_filters.py", line 209, in run_all_selected_filters
+    filter_function = child_dict[child].run_filter
+AttributeError: 'function' object has no attribute 'run_filter'
+
+2025-05-05 22:53:11,334 - ERROR - 第0代失败: 分子变异失败
+2025-05-05 22:53:11,335 - INFO - 开始第 1 代进化
+2025-05-05 22:53:11,335 - INFO - 开始第 1 代进化
+2025-05-05 22:53:11,335 - INFO - 开始分子分解: /data1/tgy/GA_llm/output/test/generation_0/generation_0_docked.smi
+2025-05-05 22:53:11,613 - ERROR - 分子分解失败: Traceback (most recent call last):
+  File "/data1/tgy/GA_llm/datasets/decompose/demo_frags.py", line 216, in <module>
+    batch_process(args.input, args.output,args.output2,args.output3,args.output4)
+  File "/data1/tgy/GA_llm/datasets/decompose/demo_frags.py", line 168, in batch_process
+    with open(input_file, 'r') as f_in, open(output_file, 'w') as f_out,open(output_file2,"w") as f_out2,open(output_file3,"w") as f_out3,open(output_file4, "w") as f_out4:
+FileNotFoundError: [Errno 2] No such file or directory: '/data1/tgy/GA_llm/output/test/generation_0/generation_0_docked.smi'
+
+2025-05-05 22:53:11,614 - ERROR - 第 1 代进化失败: 分子分解失败
