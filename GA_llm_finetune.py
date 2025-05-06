@@ -846,7 +846,7 @@ def run_evolution(generation_num, args, logger):
         current_population = args.initial_population
         # 第0代直接使用源文件所有分子作为种子
         seed_list = get_molecules_from_file(current_population)
-        logger.info(f"第0代：使用源文件所有 {len(seed_list)} 个分子作为种子")
+        logger.info(f"第0代:使用源文件所有 {len(seed_list)} 个分子作为种子")
     else:
         # 后续代使用上一代的对接结果
         current_population = os.path.join(args.output_dir, f"generation_{generation_num-1}", f"generation_{generation_num-1}_docked.smi")
