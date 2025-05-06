@@ -844,9 +844,26 @@ def run_evolution(generation_num, args, logger):
     if generation_num == 0:
         # 第一代使用初始种群
         current_population = args.initial_population
+        # 第0代直接使用源文件所有分子作为种子
+        seed_list = get_molecules_from_file(current_population)
+        logger.info(f"第0代：使用源文件所有 {len(seed_list)} 个分子作为种子")
     else:
         # 后续代使用上一代的对接结果
         current_population = os.path.join(args.output_dir, f"generation_{generation_num-1}", f"generation_{generation_num-1}_docked.smi")
+        # 选择种子分子
+        num_seeds = args.top_mols_to_seed_next_generation
+        diversity_seeds = max(0, args.diversity_mols_to_seed_first_generation - (generation_num - 1) * args.diversity_seed_depreciation_per_gen)
+        seed_list = select_seed_molecules(current_population, num_seeds, diversity_seeds, args)
+        if not seed_list:
+            logger.error("无法选择种子分子，进化终止")
+            return None
+        logger.info(f"已选择 {len(seed_list)} 个种子分子")
+    
+    # 保存种子分子到文件
+    seed_file = os.path.join(output_base, f"generation_{generation_num}_seeds.smi")
+    with open(seed_file, 'w') as f:
+        for smile in seed_list:
+            f.write(f"{smile}\n")
     
     # 设置各阶段输出文件
     crossover_output = os.path.join(output_base, f"generation_{generation_num}_crossover.smi")
@@ -855,96 +872,39 @@ def run_evolution(generation_num, args, logger):
     filter_output = os.path.join(output_base, f"generation_{generation_num}_filtered.smi")
     docking_output = os.path.join(output_base, f"generation_{generation_num}_docked.smi")
     
-    # 对于generation_0，也进行交叉和变异操作，但不执行完整的进化流程
-    if generation_num == 0:
-        logger.info("第0代：对初始种群进行交叉和变异操作")
-        
-        # 确定第0代的交叉和变异次数
-        num_crossovers_gen0 = args.number_of_crossovers_first_generation if args.number_of_crossovers_first_generation is not None else args.num_crossovers
-        num_mutations_gen0 = args.number_of_mutants_first_generation if args.number_of_mutants_first_generation is not None else args.num_mutations
-        
-        logger.info(f"目标生成数量：交叉 {num_crossovers_gen0} 个，变异 {num_mutations_gen0} 个")
-        
-        # 1. 第一次分子分解
-        decompose_output1 = run_decompose(current_population, f"crossover{generation_num}", logger)
-        
-        # 2. 第一次GPT生成
-        gpt_output1 = run_gpt_generation(decompose_output1, f"crossover{generation_num}", generation_num, logger)
-        
-        # 3. 分子交叉
-        seed_list = get_molecules_from_file(current_population)
-        crossover_output = run_crossover_with_seeds(current_population, gpt_output1, crossover_output, seed_list, num_crossovers_gen0, generation_num, logger)
-        
-        # 4. 第二次分子分解
-        decompose_output2 = run_decompose(crossover_output, f"mutation{generation_num}", logger)
-        
-        # 5. 第二次GPT生成
-        gpt_output2 = run_gpt_generation(decompose_output2, f"mutation{generation_num}", generation_num, logger)
-        
-        # 6. 分子变异
-        mutation_output = run_mutation_with_seeds(current_population, gpt_output2, mutation_output, seed_list, num_mutations_gen0, generation_num, logger)
-        
-        # 7. 分子过滤
-        filter_output = run_filter(mutation_output, filter_output, logger, args)
-        
-        # 8. 分子对接
-        docking_output = run_docking(
-            filter_output, 
-            docking_output, 
-            args.receptor_file, 
-            args.mgltools_path, 
-            logger,
-            args.number_of_processors,
-            args.multithread_mode
-        )
-        
-        # 9. 对接结果分析
-        analysis_output = run_analysis(docking_output, output_base, generation_num, logger)
-        
-        # 10. 计算统计信息
-        calculate_and_print_stats(docking_output, generation_num, logger)
-        
-        logger.info(f"第 {generation_num} 代完成")
-        return analysis_output
-    
-    # 对于后续代数，执行完整的进化流程
-    # 1. 选择种子分子
-    num_seeds = args.top_mols_to_seed_next_generation
-    diversity_seeds = max(0, args.diversity_mols_to_seed_first_generation - (generation_num - 1) * args.diversity_seed_depreciation_per_gen)
-    
-    seeds = select_seed_molecules(current_population, num_seeds, diversity_seeds, args)
-    if not seeds:
-        logger.error("无法选择种子分子，进化终止")
-        return None
-    
-    # 保存种子分子到文件
-    seed_file = os.path.join(output_base, f"generation_{generation_num}_seeds.smi")
-    with open(seed_file, 'w') as f:
-        for smile in seeds:
-            f.write(f"{smile}\n")
-    
-    logger.info(f"已选择 {len(seeds)} 个种子分子")
-    
-    # 2. 第一次分子分解
+    # 1. 第一次分子分解（用于交叉）
     decompose_output1 = run_decompose(seed_file, f"crossover{generation_num}", logger)
     
-    # 3. 第一次GPT生成
+    # 2. 第一次GPT生成（用于交叉）
     gpt_output1 = run_gpt_generation(decompose_output1, f"crossover{generation_num}", generation_num, logger)
     
-    # 4. 分子交叉
-    crossover_output = run_crossover_with_seeds(seed_file, gpt_output1, crossover_output, seeds, args.num_crossovers, generation_num, logger)
+    # 3. 分子交叉
+    logger.info(f"开始分子交叉，目标生成 {args.num_crossovers} 个新分子")
+    crossover_output = run_crossover_with_seeds(seed_file, gpt_output1, crossover_output, seed_list, args.num_crossovers, generation_num, logger)
     
-    # 5. 第二次分子分解
-    decompose_output2 = run_decompose(crossover_output, f"mutation{generation_num}", logger)
+    # 4. 第二次分子分解（用于变异）
+    decompose_output2 = run_decompose(seed_file, f"mutation{generation_num}", logger)
     
-    # 6. 第二次GPT生成
+    # 5. 第二次GPT生成（用于变异）
     gpt_output2 = run_gpt_generation(decompose_output2, f"mutation{generation_num}", generation_num, logger)
     
-    # 7. 分子变异
-    mutation_output = run_mutation_with_seeds(seed_file, gpt_output2, mutation_output, seeds, args.num_mutations, generation_num, logger)
+    # 6. 分子变异
+    logger.info(f"开始分子变异，目标生成 {args.num_mutations} 个新分子")
+    mutation_output = run_mutation_with_seeds(seed_file, gpt_output2, mutation_output, seed_list, args.num_mutations, generation_num, logger)
+    
+    # 7. 合并新生成的分子（只包含交叉和变异产物）
+    with open(merged_output, 'w') as outfile:
+        # 写入交叉产物
+        with open(crossover_output, 'r') as f:
+            outfile.write(f.read())
+        # 写入变异产物
+        with open(mutation_output, 'r') as f:
+            outfile.write(f.read())
+    
+    logger.info(f"合并后的种群大小: {sum(1 for _ in open(merged_output))} 个新分子")
     
     # 8. 分子过滤
-    filter_output = run_filter(mutation_output, filter_output, logger, args)
+    filter_output = run_filter(merged_output, filter_output, logger, args)
     
     # 9. 分子对接
     docking_output = run_docking(

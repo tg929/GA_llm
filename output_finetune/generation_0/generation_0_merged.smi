@@ -133,7 +133,9 @@ C#CC[N+](C)(C)Cc1c(C)ccc2c(N=[N+]=N)ccc(N)c12
 N=[N+]=Nc1ccc2c3c(cc(C#CC(=O)[O-])c(N=[N+]=N)c13)CC2
 [N-]=[N+]=NCCNC(=O)c1cc(N)c2c(N=[N+]=N)cccc2c1
 C#CC[N+](C)(C)Cc1ccc2ccccc2c1
+C#Cc1cc(N=[N+]=N)c2cc(-c3c(CCOCCN=C(O)c4ccccn4)n(CCC)c4cc(C5=CCN(C(=O)OCC)CC5)ccc34)cc3c2c1C(=O)N(O)C3=O
 C#CC[N+](C)(C)Cc1cccc2c(N=[N+]=N)ccc(OC(=O)N(C)C)c12
+[N-]=[N+]=NC[C@@H](O)COC1:C:C:C:C2:C:C:C:C:C:1:2Br
 [N-]=[N+]=NCCSc1ccc2ccccc2c1N=[N+]=N
 CC([NH+]=[N+]=[N-])c1cccc(C(F)F)c1NCc1ccc(OC(F)(F)F)cc1
 N=[N+]=NCOC(=O)Oc1c(N=[N+]=N)c(Cl)c(Cl)c2ccccc12
@@ -153,6 +155,7 @@ C#CCOc1cc(N=[N+]=N)c2ccccc2c1CO
 CC#CCSc1cccc2ccc(OC(=O)OCN=[N+]=N)cc12
 C#C[C@](O)(c1ccc2c(O)c(Cl)c(N=[N+]=N)c(Cl)c2c1)C(C)(C)C
 C#Cc1cc2ccccc2c2c(N=[N+]=N)c(O)ccc12
+N=[N+]=NC1(C(F)F):C(NCc2ccc(OC(F)(F)F)cc2):C:c2ccccc2:C:1O
 N=[N+]=[N+]=C(COCc1ccc2ccccc2c1)[N+](=O)[O-]
 N=[N+]=Nc1c(O)ccccc(Cl)cc(Cl)c1N=[N+]=N
 N=[N+]=NCc1nnc(COc2c(N=[N+]=N)c3c4c(cccc4c2Cl)C(=O)N3)o1

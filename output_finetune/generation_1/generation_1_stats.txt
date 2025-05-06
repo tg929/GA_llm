@@ -1,5 +1,5 @@
-Total molecules: 41
-Top 1 average score: -12.2
-Top 10 average score: -10.940000000000001
-Top 20 average score: -10.440000000000001
-Top 50 average score: N/A (Not enough molecules)
+Total molecules: 96
+Top 1 average score: -11.1
+Top 10 average score: -10.69
+Top 20 average score: -10.195000000000004
+Top 50 average score: -9.260000000000002
