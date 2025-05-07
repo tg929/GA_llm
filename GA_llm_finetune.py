@@ -190,9 +190,10 @@ def select_seed_molecules(current_population, fitness_seeds, diversity_seeds, ar
     else:
         if args.selector_choice == "Rank_Selector":
             # 排名选择
-            for i in range(min(fitness_seeds, len(current_population))):
-                fitness_selected.append(current_population[i][0])
-                current_population.pop(i)
+            for _ in range(min(fitness_seeds, len(current_population))):
+                if current_population:
+                    fitness_selected.append(current_population[0][0])
+                    current_population.pop(0)
         else:  # Roulette_Selector
             # 轮盘选择
             total_fitness = sum(mol[1] for mol in current_population)
@@ -202,13 +203,13 @@ def select_seed_molecules(current_population, fitness_seeds, diversity_seeds, ar
                         break
                     r = random.random() * total_fitness
                     cumsum = 0
-                    for mol in current_population:
+                    for i, mol in enumerate(current_population):
                         cumsum += mol[1]
                         if cumsum >= r:
                             fitness_selected.append(mol[0])
-                            current_population.remove(mol)
+                            current_population.pop(i)
                             total_fitness -= mol[1]
-                    break
+                            break
             
     # 然后从剩余分子中选择多样性最高的
     diversity_selected = []
@@ -842,22 +843,49 @@ def run_evolution(generation_num, args, logger):
     
     # 确定当前代的种群文件
     if generation_num == 0:
-        # 第一代使用初始种群
+        # 第0代直接使用源文件进行对接
         current_population = args.initial_population
-        # 第0代直接使用源文件所有分子作为种子
-        seed_list = get_molecules_from_file(current_population)
-        logger.info(f"第0代:使用源文件所有 {len(seed_list)} 个分子作为种子")
-    else:
-        # 后续代使用上一代的对接结果
-        current_population = os.path.join(args.output_dir, f"generation_{generation_num-1}", f"generation_{generation_num-1}_docked.smi")
-        # 选择种子分子
-        num_seeds = args.top_mols_to_seed_next_generation
-        diversity_seeds = max(0, args.diversity_mols_to_seed_first_generation - (generation_num - 1) * args.diversity_seed_depreciation_per_gen)
-        seed_list = select_seed_molecules(current_population, num_seeds, diversity_seeds, args)
-        if not seed_list:
-            logger.error("无法选择种子分子，进化终止")
-            return None
-        logger.info(f"已选择 {len(seed_list)} 个种子分子")
+        logger.info(f"第0代:直接使用源文件 {current_population} 进行对接")
+        
+        # 设置输出文件
+        filter_output = os.path.join(output_base, f"generation_{generation_num}_filtered.smi")
+        docking_output = os.path.join(output_base, f"generation_{generation_num}_docked.smi")
+        
+        # 1. 分子过滤
+        filter_output = run_filter(current_population, filter_output, logger, args)
+        
+        # 2. 分子对接
+        docking_output = run_docking(
+            filter_output, 
+            docking_output, 
+            args.receptor_file, 
+            args.mgltools_path, 
+            logger,
+            args.number_of_processors,
+            args.multithread_mode
+        )
+        
+        # 3. 对接结果分析
+        analysis_output = run_analysis(docking_output, output_base, generation_num, logger)
+        
+        # 4. 计算并输出统计信息
+        calculate_and_print_stats(docking_output, generation_num, logger)
+        
+        logger.info(f"第 {generation_num} 代完成")
+        return analysis_output
+    
+    # 后续代的进化流程
+    # 使用上一代的对接结果
+    current_population = os.path.join(args.output_dir, f"generation_{generation_num-1}", f"generation_{generation_num-1}_docked.smi")
+    
+    # 选择种子分子
+    num_seeds = args.top_mols_to_seed_next_generation
+    diversity_seeds = max(0, args.diversity_mols_to_seed_first_generation - (generation_num - 1) * args.diversity_seed_depreciation_per_gen)
+    seed_list = select_seed_molecules(current_population, num_seeds, diversity_seeds, args)
+    if not seed_list:
+        logger.error("无法选择种子分子，进化终止")
+        return None
+    logger.info(f"已选择 {len(seed_list)} 个种子分子")
     
     # 保存种子分子到文件
     seed_file = os.path.join(output_base, f"generation_{generation_num}_seeds.smi")
@@ -872,59 +900,87 @@ def run_evolution(generation_num, args, logger):
     filter_output = os.path.join(output_base, f"generation_{generation_num}_filtered.smi")
     docking_output = os.path.join(output_base, f"generation_{generation_num}_docked.smi")
     
-    # 1. 第一次分子分解（用于交叉）
-    decompose_output1 = run_decompose(seed_file, f"crossover{generation_num}", logger)
-    
-    # 2. 第一次GPT生成（用于交叉）
-    gpt_output1 = run_gpt_generation(decompose_output1, f"crossover{generation_num}", generation_num, logger)
-    
-    # 3. 分子交叉
-    logger.info(f"开始分子交叉，目标生成 {args.num_crossovers} 个新分子")
-    crossover_output = run_crossover_with_seeds(seed_file, gpt_output1, crossover_output, seed_list, args.num_crossovers, generation_num, logger)
-    
-    # 4. 第二次分子分解（用于变异）
-    decompose_output2 = run_decompose(seed_file, f"mutation{generation_num}", logger)
-    
-    # 5. 第二次GPT生成（用于变异）
-    gpt_output2 = run_gpt_generation(decompose_output2, f"mutation{generation_num}", generation_num, logger)
-    
-    # 6. 分子变异
-    logger.info(f"开始分子变异，目标生成 {args.num_mutations} 个新分子")
-    mutation_output = run_mutation_with_seeds(seed_file, gpt_output2, mutation_output, seed_list, args.num_mutations, generation_num, logger)
-    
-    # 7. 合并新生成的分子（只包含交叉和变异产物）
-    with open(merged_output, 'w') as outfile:
-        # 写入交叉产物
-        with open(crossover_output, 'r') as f:
-            outfile.write(f.read())
-        # 写入变异产物
-        with open(mutation_output, 'r') as f:
-            outfile.write(f.read())
-    
-    logger.info(f"合并后的种群大小: {sum(1 for _ in open(merged_output))} 个新分子")
-    
-    # 8. 分子过滤
-    filter_output = run_filter(merged_output, filter_output, logger, args)
-    
-    # 9. 分子对接
-    docking_output = run_docking(
-        filter_output, 
-        docking_output, 
-        args.receptor_file, 
-        args.mgltools_path, 
-        logger,
-        args.number_of_processors,
-        args.multithread_mode
-    )
-    
-    # 10. 对接结果分析
-    analysis_output = run_analysis(docking_output, output_base, generation_num, logger)
-    
-    # 11. 计算并输出统计信息
-    calculate_and_print_stats(docking_output, generation_num, logger)
-    
-    logger.info(f"第 {generation_num} 代进化完成")
-    return analysis_output
+    try:
+        # 1. 第一次分子分解（用于交叉）
+        decompose_output1 = run_decompose(seed_file, f"crossover{generation_num}", logger)
+        
+        # 2. 第一次GPT生成（用于交叉）
+        gpt_output1 = run_gpt_generation(decompose_output1, f"crossover{generation_num}", generation_num, logger)
+        
+        # 3. 分子交叉
+        logger.info(f"开始分子交叉，目标生成 {args.num_crossovers} 个新分子")
+        crossover_output = run_crossover_with_seeds(seed_file, gpt_output1, crossover_output, seed_list, args.num_crossovers, generation_num, logger)
+        
+        # 4. 第二次分子分解（用于变异）
+        decompose_output2 = run_decompose(seed_file, f"mutation{generation_num}", logger)
+        
+        # 5. 第二次GPT生成（用于变异）
+        gpt_output2 = run_gpt_generation(decompose_output2, f"mutation{generation_num}", generation_num, logger)
+        
+        # 6. 分子变异
+        logger.info(f"开始分子变异，目标生成 {args.num_mutations} 个新分子")
+        mutation_output = run_mutation_with_seeds(seed_file, gpt_output2, mutation_output, seed_list, args.num_mutations, generation_num, logger)
+        
+        # 7. 合并新生成的分子（只包含交叉和变异产物）
+        with open(merged_output, 'w') as outfile:
+            # 写入交叉产物
+            with open(crossover_output, 'r') as f:
+                outfile.write(f.read())
+            # 写入变异产物
+            with open(mutation_output, 'r') as f:
+                outfile.write(f.read())
+        
+        logger.info(f"合并后的种群大小: {sum(1 for _ in open(merged_output))} 个新分子")
+        
+        # 8. 分子过滤
+        filter_output = run_filter(merged_output, filter_output, logger, args)
+        
+        # 9. 分子对接
+        docking_output = run_docking(
+            filter_output, 
+            docking_output, 
+            args.receptor_file, 
+            args.mgltools_path, 
+            logger,
+            args.number_of_processors,
+            args.multithread_mode
+        )
+        
+        # 10. 对接结果分析
+        analysis_output = run_analysis(docking_output, output_base, generation_num, logger)
+        
+        # 11. 计算并输出统计信息
+        calculate_and_print_stats(docking_output, generation_num, logger)
+        
+        # 12. 检查进化效果
+        if generation_num > 0:
+            prev_stats_file = os.path.join(args.output_dir, f"generation_{generation_num-1}", f"generation_{generation_num-1}_stats.txt")
+            if os.path.exists(prev_stats_file):
+                with open(prev_stats_file, 'r') as f:
+                    prev_stats = f.read()
+                    prev_top1 = float(prev_stats.split("Top1得分:")[1].split("\n")[0].strip())
+                
+                with open(os.path.join(output_base, f"generation_{generation_num}_stats.txt"), 'r') as f:
+                    curr_stats = f.read()
+                    curr_top1 = float(curr_stats.split("Top1得分:")[1].split("\n")[0].strip())
+                
+                if curr_top1 > prev_top1:
+                    logger.info(f"进化效果提升：上一代Top1得分 {prev_top1:.4f} -> 当前代Top1得分 {curr_top1:.4f}")
+                else:
+                    logger.warning(f"进化效果未提升：上一代Top1得分 {prev_top1:.4f} -> 当前代Top1得分 {curr_top1:.4f}")
+        
+        logger.info(f"第 {generation_num} 代进化完成")
+        return analysis_output
+        
+    except Exception as e:
+        logger.error(f"第 {generation_num} 代进化过程发生错误: {str(e)}")
+        # 如果发生错误，返回上一代的结果
+        if generation_num > 0:
+            prev_output = os.path.join(args.output_dir, f"generation_{generation_num-1}", f"generation_{generation_num-1}_sorted.smi")
+            if os.path.exists(prev_output):
+                logger.info(f"返回上一代结果: {prev_output}")
+                return prev_output
+        return None
 
 def main():
     # 解析命令行参数

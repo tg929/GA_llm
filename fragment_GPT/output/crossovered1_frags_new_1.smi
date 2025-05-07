@@ -1,14 +1,3 @@
-[N-]=[N+]=NCC(O)COC(c1cc(CC2CC2)c(F)cc1F)C1CC1
-[N-]=[N+]=NCCSc1nnc(C2CC2)s1
-NCCOCCSc1ncccc1Br
-C#CC[N+](C)(C)Cc1ncnn1C(C)C
-CCC(=O)C(C)OC1CCC(C)C(C)C1
-[N-]=[N+]=NCCOCCOCCOCCOc1cccc(OCCOCCOCCN)c1CO
-[N-]=[N+]=NC(=O)c1ccc2c(-c3ccc(-c4ccccc4)cc3)c(-c3ccc(-c4ccccc4)cc3)oc2c1
-CC([NH+]=[N+]=[N-])c1cccc(C(F)(F)F)c1NCc1ccc(OC(F)(F)F)cc1
-Cc1c(C[N+](C)(C)Cc2cn(Cc3ccc(Cc4c(O)n(C5OC(O)C(O)C5O)c(=O)[nH]4)cc3)nn2)c2ccccc2cc1
-C=Cc1ccc(C(=O)NCC2C3CN(CC(=O)C4CC4)CC23)cc1
-Cc1c(C(=O)O)nnn1Cc1ncnn1C
-C#CCOc1ccc(NC(=O)CCCC(O)Nc2ccc(OC)cc2)c2ccccc12
-C#CC[N+](C)(C)C(=O)c1c(C)cc([N+](=O)[O-])c(Oc2ccccc2OC)c1-c1ccccc1
-[N-]=[N+]=NCC[S](O)c1ccc2c(Oc3cccnc3)cccc2c1
+C#Cc1cc2ccc(C(C)OC3CC3)cc2cc1
+CC#CCSc1cccc(CC(=O)O)c1
+C#CCOc1ccc2ccccc2c1C[NH2+]Cc1ccccc1
